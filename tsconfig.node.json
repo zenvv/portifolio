@@ -6,6 +6,9 @@
     "types": ["node"],
     "skipLibCheck": true,
 
+    "paths": {
+      "@/*": ["./*"]
+    },
     /* Bundler mode */
     "module": "nodenext",
     "allowImportingTsExtensions": true,
