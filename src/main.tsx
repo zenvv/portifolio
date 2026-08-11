@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip.tsx";
 import { LanguageProvider } from "@/lib/i18n/language.provider.tsx";
+import { ThemeProvider } from "@/components/theme-provider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <LanguageProvider>
-      <TooltipProvider>
-        <App />
-      </TooltipProvider>
-    </LanguageProvider>
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <LanguageProvider>
+        <TooltipProvider>
+          <App />
+        </TooltipProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   </StrictMode>,
 );

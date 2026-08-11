@@ -44,7 +44,7 @@ export const Projetos: Project[] = [
     repo: "https://www.github.com/zenvv/bello-sge-demo",
   },
   {
-    icon: "/projects/bello_logo.png",
+    icon: "/projects/powerapps-logo.svg",
     slug: "operational-app",
     title: { en: "Operational App", pt: "Aplicativo Operacional" },
     description: {
@@ -77,6 +77,7 @@ export const Projetos: Project[] = [
     type: "dev",
   },
   {
+    icon: "/projects/powerapps-logo.svg",
     slug: "risk-analysis-app",
     title: { en: "Risk Analysis App", pt: "App de Análise de Risco" },
     description: {

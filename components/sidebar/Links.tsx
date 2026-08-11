@@ -1,5 +1,5 @@
 import { useLanguage } from "@/lib/i18n/language.provider";
-import { Button, buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "../ui/button";
 
 import {
   ArrowUpRightIcon,
@@ -53,7 +53,7 @@ function Links() {
       <span className="text-xs text-muted-foreground md:text-left text-center md:block hidden">
         {t.contact.heading}
       </span>
-      <span className="md:items-start md:justify-start gap-1 md:flex-col flex flex-1 justify-center">
+      <span className="md:items-start md:justify-start gap-1 md:flex-col flex flex-1 justify-end">
         {socials.map((social) => {
           return (
             <Button
@@ -61,15 +61,15 @@ function Links() {
               variant="ghost"
               size={"sm"}
               className={
-                "hover:bg-linear-to-tl from-foreground/80 to-foreground border hover:border-border border-transparent hover:text-background justify-start p-0! h-auto! group flex md:w-full"
+                "hover:bg-linear-to-tl from-foreground/80 to-foreground border hover:border-border border-transparent hover:text-background justify-start p-0! h-auto m-0! group flex md:w-full"
               }
             >
               <a
                 href={social.link}
                 target="_blank"
-                className="flex gap-2 items-center justify-start p-0 h-8 text-xs w-full md:group-hover:pl-1 md:group-hover:pr-0! px-2! transition-[padding]"
+                className="flex aspect-square md:aspect-auto md:gap-2 items-center  md:justify-start justify-center p-0 h-8 text-xs w-full md:group-hover:pl-1 md:group-hover:pr-0! transition-[padding]"
               >
-                <span className="bg-muted flex items-center justify-center rounded-sm border group-hover:bg-transparent group-hover:border-transparent  text-foreground group-hover:text-background size-6!  aspect-square">
+                <span className="bg-muted flex items-center justify-center rounded-sm border group-hover:bg-transparent group-hover:border-transparent  text-foreground group-hover:text-background size-full md:size-6!  aspect-square">
                   <social.icon
                     weight="fill"
                     className="hidden group-hover:block"

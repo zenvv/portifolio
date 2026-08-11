@@ -15,14 +15,14 @@ function LangSelector() {
           setLocale(next === "PT" ? ("pt" as Locale) : ("en" as Locale));
       }}
       aria-label={t.nav.languageSelection}
-      spacing={0.5}
+      spacing={0.1}
       size={"sm"}
       className="divide-x"
     >
       <ToggleGroupItem
         value="PT"
         aria-label="Português"
-        className="aspect-square saturate-0! transition-all data-pressed:saturate-100! data-pressed:bg-card border border-transparent data-pressed:border-border group p-0"
+        className="aspect-square saturate-0! transition-all data-pressed:saturate-100! data-pressed:bg-transparent   border-transparent  group p-0"
       >
         <Flag
           code={"br"}
@@ -32,7 +32,7 @@ function LangSelector() {
       <ToggleGroupItem
         value="EN"
         aria-label="English"
-        className="aspect-square saturate-0! transition-all data-pressed:saturate-100! data-pressed:bg-card border border-transparent data-pressed:border-border group p-0"
+        className="aspect-square saturate-0! transition-all data-pressed:saturate-100! data-pressed:bg-transparent  border-transparent  group p-0"
       >
         <Flag
           code={"gb"}
