@@ -36,17 +36,16 @@ export function ThemeSwitcher() {
 
   return (
     <ToggleGroup
-      spacing={0}
-      size={"sm"}
+      spacing={0.5}
       variant="outline"
       defaultValue={[theme]}
-      className="rounded-full! bg-transparent! h-7!"
+      className="rounded-full! bg-transparent! border p-0.5"
     >
       {items.map((item) => (
         <ToggleGroupItem
           id={item.value}
           key={item.value}
-          className="cursor-pointer rounded-full aspect-square size-7!"
+          className="cursor-pointer rounded-full aspect-square h-7 max-w-7! min-w-0"
           onClick={() => setTheme(item.value)}
           aria-label={item.label}
           value={item.value}

@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
+@import "tailwindcss-animated";
+
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -122,7 +125,7 @@
     @apply border-border outline-ring/50;
     }
   body {
-    @apply bg-linear-to-b from-muted to-popover text-foreground;
+    @apply bg-linear-to-b from-muted to-popover dark:from-popover dark:to-background text-foreground;
     }
   button:not(:disabled), [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -130,4 +133,23 @@
   html {
     @apply font-sans;
     }
+}
+
+@layer utilities {
+  .prose {
+    @apply prose-neutral dark:prose-invert leading-tight
+    dark:prose-a:text-blue-500 prose-a:text-blue-800
+    prose-blockquote:px-8 prose-blockquote:py-2 prose-blockquote:rounded-md
+    prose-blockquote:bg-linear-to-r dark:prose-blockquote:from-muted/50 prose-blockquote:from-accent-foreground/5
+    prose-blockquote:to-transparent prose-blockquote:font-normal prose-blockquote:text-secondary-foreground/90
+    prose-code:bg-foreground/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded-sm
+    prose-img:rounded-md;
+
+    & pre {
+      @apply overflow-x-auto;
+    }
+    & table {
+      @apply block w-fit max-w-full overflow-x-auto;
+    }
+  }
 }

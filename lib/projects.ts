@@ -1,10 +1,11 @@
 import type { Locale } from "./i18n/translations";
 
-export const PROJECT_TYPES = ["dev", "design"] as const;
+export const PROJECT_TYPES = ["dev", "design", "automation"] as const;
 
 export type projectType = (typeof PROJECT_TYPES)[number];
 
 export type Project = {
+  index: number;
   slug: string;
   title: Record<Locale, string>;
   description: Record<Locale, string>;
@@ -17,10 +18,12 @@ export type Project = {
   color?: string | null;
   repo?: string | null;
   icon?: string | null;
+  featured?: boolean;
 };
 
 export const Projetos: Project[] = [
   {
+    index: 0,
     icon: "/projects/bello_logo.png",
     slug: "erp-bello-aramados",
     title: { en: "ERP - Bello Aramados", pt: "ERP - Bello Aramados" },
@@ -42,8 +45,10 @@ export const Projetos: Project[] = [
     link: "https://bello-sge-demo.vercel.app",
     type: "dev",
     repo: "https://www.github.com/zenvv/bello-sge-demo",
+    featured: true,
   },
   {
+    index: 1,
     icon: "/projects/powerapps-logo.svg",
     slug: "operational-app",
     title: { en: "Operational App", pt: "Aplicativo Operacional" },
@@ -57,8 +62,10 @@ export const Projetos: Project[] = [
     image: null,
     link: null,
     type: "dev",
+    featured: true,
   },
   {
+    index: 5,
     icon: "/projects/bello_logo.png",
     slug: "bello-website",
     title: {
@@ -75,8 +82,10 @@ export const Projetos: Project[] = [
     image: "/projects/site-bello.png",
     link: "https://belloaramados.com/",
     type: "dev",
+    featured: false,
   },
   {
+    index: 2,
     icon: "/projects/powerapps-logo.svg",
     slug: "risk-analysis-app",
     title: { en: "Risk Analysis App", pt: "App de Análise de Risco" },
@@ -90,8 +99,10 @@ export const Projetos: Project[] = [
     image: null,
 
     type: "dev",
+    featured: true,
   },
   {
+    index: 3,
     icon: "/projects/sferi-icon.png",
     slug: "sferi",
     title: { en: "Sferi", pt: "Sferi" },
@@ -112,12 +123,14 @@ export const Projetos: Project[] = [
     ],
     tags: ["Web", "Software"],
     image: "/projects/sferi-image.png",
+    featured: true,
 
     type: "dev",
     repo: "https://github.com/zenvv/sferi",
     link: "https://sferi.vercel.app/",
   },
   {
+    index: 5,
     icon: "/projects/not-my-typo-icon.png",
     slug: "not-my-typo",
     title: { en: "Not My Typo", pt: "Not My Typo" },
@@ -139,8 +152,10 @@ export const Projetos: Project[] = [
     type: "dev",
     repo: "https://github.com/zenvv/not-my-typo",
     link: "https://not-my-typo.vercel.app/",
+    featured: false,
   },
   {
+    index: 6,
     slug: "bello-pregos-fixadores",
     title: { en: "Bello Prego & Fixadores", pt: "Bello Prego & Fixadores" },
     description: {
@@ -155,6 +170,7 @@ export const Projetos: Project[] = [
     color: "#ED2C26",
   },
   {
+    index: 7,
     slug: "mini-factory",
     title: { en: "Mini Factory", pt: "Mini Factory" },
     description: {

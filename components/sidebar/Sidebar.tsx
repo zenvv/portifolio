@@ -6,7 +6,7 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 
 function Sidebar() {
   return (
-    <aside className="md:w-48 flex flex-col items-start justify-between md:fixed md:top-8 md:bottom-8 flex-1 shrink-0 h-auto">
+    <aside className="md:w-48 flex flex-col items-start justify-between md:fixed md:top-8 md:bottom-8 md:flex-1 shrink-0 h-auto">
       <div className="flex flex-row md:flex-col md:items-start items-center w-full md:gap-0 gap-3 ">
         <Images className="md:flex hidden" />
         <span className="md:hidden block w-30">
