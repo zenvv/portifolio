@@ -1,58 +1,21 @@
-import { useTheme, type Theme } from "@/components/theme-provider";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import {
-  LaptopIcon,
-  MoonIcon,
-  SunDimIcon,
-  type Icon,
-} from "@phosphor-icons/react";
-
-interface ThemeItems {
-  label: string;
-  value: Theme;
-  icon: Icon;
-}
-
-const items: ThemeItems[] = [
-  {
-    label: "Claro",
-    value: "light",
-    icon: SunDimIcon,
-  },
-  {
-    label: "Escuro",
-    value: "dark",
-    icon: MoonIcon,
-  },
-  {
-    label: "Sistema",
-    value: "system",
-    icon: LaptopIcon,
-  },
-];
+import { useTheme } from "@/components/theme-provider";
+import { MoonIcon, SunDimIcon } from "@phosphor-icons/react";
+import { Button } from "../ui/button";
 
 export function ThemeSwitcher() {
   const { setTheme, theme } = useTheme();
 
   return (
-    <ToggleGroup
-      spacing={0.5}
-      variant="outline"
-      defaultValue={[theme]}
-      className="rounded-full! bg-transparent! border p-0.5"
+    <Button
+      variant={"ghost"}
+      size="icon-sm"
+      className={
+        "active:rotate-45 active:not-aria-[haspopup]:translate-y-0 active:scale-95 rounded-full"
+      }
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
-      {items.map((item) => (
-        <ToggleGroupItem
-          id={item.value}
-          key={item.value}
-          className="cursor-pointer rounded-full aspect-square h-7 max-w-7! min-w-0"
-          onClick={() => setTheme(item.value)}
-          aria-label={item.label}
-          value={item.value}
-        >
-          <item.icon weight={theme === item.value ? "fill" : "regular"} />
-        </ToggleGroupItem>
-      ))}
-    </ToggleGroup>
+      <SunDimIcon className="dark:hidden block transition-all scale-100 dark:scale-0 rotate-360 " />
+      <MoonIcon className="dark:block hidden transition-all scale-0 dark:scale-100 rotate-360 " />
+    </Button>
   );
 }

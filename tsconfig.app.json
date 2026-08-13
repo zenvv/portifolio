@@ -27,5 +27,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "components", "lib"]
+  "include": ["src", "components", "lib", "data/projects.ts", "data/songs.ts", "data/stack.ts"]
 }

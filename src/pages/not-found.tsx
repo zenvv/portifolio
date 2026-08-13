@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import TransitionLink from "@/components/TransitionLink";
 import { useLanguage } from "@/lib/i18n/language.provider";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
@@ -9,10 +9,10 @@ export default function NotFoundPage() {
   return (
     <div className="flex flex-col gap-3 items-center justify-center font-mono">
       <Button variant="outline" className="font-sans self-start">
-        <Link to="/" className="flex items-center gap-2">
+        <TransitionLink to="/" direction="backward" className="flex items-center gap-2">
           <ArrowLeftIcon />
           {t.notFound.backHome}
-        </Link>
+        </TransitionLink>
       </Button>
       <span className="flex flex-col items-center justify-center w-full border bg-card p-4 py-8 rounded-md text-center">
         <code className="">

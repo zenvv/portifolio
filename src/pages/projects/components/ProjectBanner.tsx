@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language.provider";
-import { Projetos } from "@/lib/projects";
-import { Button } from "../../../../components/ui/button";
-import { Link } from "react-router";
+
+import { Button } from "@/components/ui/button";
+import TransitionLink from "@/components/TransitionLink";
 import {
   ArrowRightIcon,
   CodeIcon,
-  DatabaseIcon,
   GraphIcon,
   PenNibIcon,
   type Icon,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
+import { Projetos } from "@/data/projects";
 
 const CYCLE_INTERVAL_MS = 3000;
 const TRANSITION_MS = 350;
@@ -44,7 +44,7 @@ const bannerIcons: bannerIconsType[] = [
   },
 ];
 
-export default function ProjectsBanner() {
+export default function ProjectsBanner({ className }: { className?: string }) {
   const { t, locale } = useLanguage();
   const [order, setOrder] = useState(() =>
     featuredProjects.map((proj) => proj.slug),
@@ -94,25 +94,28 @@ export default function ProjectsBanner() {
   }, [count]);
 
   return (
-    <Link
+    <TransitionLink
       to="/projects"
-      className="relative flex h-40 items-stretch overflow-hidden rounded-lg border text-left group mt-8 bg-linear-to-tl from-card to-background hover:to-card"
+      direction="forward"
+      className={cn(
+        "relative flex flex-col overflow-hidden rounded-lg border text-left group mt-8 bg-linear-to-tl from-card to-background hover:to-card sm:h-40 sm:flex-row sm:items-stretch",
+        className,
+      )}
     >
-      <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-1 p-4">
+      <div className="order-2 flex min-w-0 flex-1 flex-col items-start justify-center gap-1 p-4 sm:order-1">
         <span className="mb-1 flex items-center gap-2 text-muted-foreground">
           {bannerIcons.map((bni) => (
-            <>
-              <bni.icon
-                className={cn(
-                  "size-4 transition-all group-hover:size-5",
-                  bni.class,
-                )}
-                style={{
-                  transitionDuration: "200ms",
-                  transitionTimingFunction: "ease-in-out",
-                }}
-              />
-            </>
+            <bni.icon
+              key={bni.label}
+              className={cn(
+                "size-4 transition-all group-hover:size-5",
+                bni.class,
+              )}
+              style={{
+                transitionDuration: "200ms",
+                transitionTimingFunction: "ease-in-out",
+              }}
+            />
           ))}
         </span>
         <h1 className="text-lg font-semibold">{t.hero.projects.title}</h1>
@@ -129,7 +132,7 @@ export default function ProjectsBanner() {
         </span>
       </div>
 
-      <div className="pointer-events-none relative w-58 shrink-0 sm:w-58 mask-t-from-50% group-hover:saturate-0 transition-all">
+      <div className="order-1 pointer-events-none relative h-28 w-full shrink-0 mask-t-from-50% group-hover:saturate-0 transition-all sm:order-2 sm:h-auto sm:w-58">
         {order.map((slug, position) => {
           const proj = featuredProjects.find((p) => p.slug === slug);
           if (!proj) return null;
@@ -170,6 +173,6 @@ export default function ProjectsBanner() {
           );
         })}
       </div>
-    </Link>
+    </TransitionLink>
   );
 }

@@ -1,4 +1,4 @@
-import type { Locale } from "./i18n/translations";
+import type { Locale } from "../lib/i18n/translations";
 
 export const PROJECT_TYPES = ["dev", "design", "automation"] as const;
 
@@ -28,8 +28,8 @@ export const Projetos: Project[] = [
     slug: "erp-bello-aramados",
     title: { en: "ERP - Bello Aramados", pt: "ERP - Bello Aramados" },
     description: {
-      en: "(Demo) Custom made ERP system for Bello Aramados, a company specializing in metal furniture and accessories. The system streamlines inventory management, order processing, and customer relationship management.",
-      pt: "(Demo) Sistema de ERP personalizado para a Bello Aramados, empresa especializada em móveis e acessórios de metal. O sistema simplifica a gestão de estoque, o processamento de pedidos e o relacionamento com clientes.",
+      en: "(Demo) Custom Next.js ERP for Bello Aramados: production, orders, purchasing and finance, with granular RBAC and Microsoft Graph integration.",
+      pt: "(Demo) ERP personalizado em Next.js para a Bello Aramados: produção, pedidos, compras e financeiro, com RBAC granular e integração via Microsoft Graph.",
     },
     tecnologias: [
       "Next.js",
@@ -69,12 +69,12 @@ export const Projetos: Project[] = [
     icon: "/projects/bello_logo.png",
     slug: "bello-website",
     title: {
-      en: "Redesigned Institucional Website",
-      pt: "Redesign do Website Institucional",
+      en: "Institucional Website",
+      pt: "Website Institucional",
     },
     description: {
-      en: "...",
-      pt: "...",
+      en: "Redesign of Bello Aramados' website: standardized styling, optimized load times, animations and responsiveness. Stack: PHP (CodeIgniter) + JS for specific functions, vanilla CSS",
+      pt: "Redesign do site da Bello Aramados: padronização de estilos, otimização de carregamento, animações e responsividade. Stack: PHP (CodeIgniter) + JS pontual, CSS puro",
     },
     tecnologias: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
     tags: ["Web", "Software"],
@@ -102,13 +102,32 @@ export const Projetos: Project[] = [
     featured: true,
   },
   {
+    index: 2,
+    icon: "",
+    slug: "nfs-transporte",
+    title: {
+      en: "Automation of Invoices and Transportation Declarations",
+      pt: "Automação de NFs e Declarações de Transporte",
+    },
+    description: {
+      en: "I redesigned the workflow for receiving invoices and issuing Transportation Declarations (a substitute document, since the CTR does not have state registration) for vehicle test samples received daily. The previous process was manual: physical invoice filed, located manually each time a sample was returned, the call was filled out field by field in Qualitor, the declaration was printed and stapled to the invoice. A cycle of up to 6 hours between searching, bottlenecks, and rework. I implemented a standardized form (Microsoft Forms + SharePoint List) with automatic status notifications via email, a policy for scanning invoices upon arrival with automatic organization by client folder, and automatic capture of the PDF issued by Qualitor with registration in the list and direct sending to the engineer. Reducing the cycle to about 15 minutes.",
+      pt: "Redesenhei o fluxo de recebimento de notas fiscais e emissão de Declarações de Transporte (documento substituto, já que o CTR não possui inscrição estadual) para amostras de teste veicular recebidas diariamente. O processo anterior era manual: nota física arquivada, localizada à mão a cada retorno de amostra, chamado preenchido campo a campo no Qualitor, declaração impressa e grampeada à nota. Um ciclo de até 6h entre busca, gargalos e retrabalho. Implementei formulário padronizado (Microsoft Forms + SharePoint List) com notificações automáticas de status por e-mail, política de digitalização das notas na chegada com organização automática por pasta de cliente, e captura automática do PDF emitido pelo Qualitor com registro na lista e envio direto ao engenheiro. Reduzindo o ciclo para cerca de 15 minutos.",
+    },
+    tecnologias: ["Microsoft Forms", "Power Automate", "SharePoint Lists"],
+    tags: ["Microsoft", "Automation"],
+    empresa: "Centro Tecnológico Randon",
+    image: null,
+    type: "automation",
+    featured: true,
+  },
+  {
     index: 3,
     icon: "/projects/sferi-icon.png",
     slug: "sferi",
     title: { en: "Sferi", pt: "Sferi" },
     description: {
       en: "sferi is a Figma-inspired design tool (shapes, frames, typography, gradients, image fills, groups, layers, the works) built from scratch on the HTML canvas, via Konva, as a personal deep-dive into how canvas-based editors actually work under the hood: hit-testing, transforms, clipping, undo history, all of it.",
-      pt: "sferi is a Figma-inspired design tool (shapes, frames, typography, gradients, image fills, groups, layers, the works) built from scratch on the HTML canvas, via Konva, as a personal deep-dive into how canvas-based editors actually work under the hood: hit-testing, transforms, clipping, undo history, all of it.",
+      pt: "sferi é uma ferramenta de design inspirada no Figma (formas, frames, tipografia, gradientes, preenchimento com imagem, grupos, camadas, tudo isso) construída do zero sobre o HTML canvas, via Konva, como um mergulho pessoal em como editores baseados em canvas realmente funcionam por baixo dos panos: hit-testing, transformações, clipping, histórico de undo, tudo.",
     },
     tecnologias: [
       "Vite",
@@ -136,7 +155,7 @@ export const Projetos: Project[] = [
     title: { en: "Not My Typo", pt: "Not My Typo" },
     description: {
       en: "Not My Typo is a from-scratch clone of the monkeytype.com typing-test experience: words stream across the screen, you type them, and the app tracks your words-per-minute, accuracy, consistency, and misses.",
-      pt: "Not My Typo is a from-scratch clone of the monkeytype.com typing-test experience: words stream across the screen, you type them, and the app tracks your words-per-minute, accuracy, consistency, and misses.",
+      pt: "Not My Typo é um clone feito do zero da experiência de teste de digitação do monkeytype.com: as palavras passam pela tela, você digita, e o app acompanha suas palavras por minuto, precisão, consistência e erros.",
     },
     tecnologias: [
       "Vite",

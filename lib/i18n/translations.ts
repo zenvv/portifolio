@@ -6,6 +6,9 @@ export const translations = {
   en: {
     nav: {
       languageSelection: "Language selection",
+      cv: "Download CV",
+      menu: "Menu",
+      theme: "Theme",
     },
     easterEgg: "🎉 me at my birthday :)",
     hero: {
@@ -23,7 +26,26 @@ export const translations = {
         button: "View Projects",
       },
       stack: {
-        title: "My current Stack",
+        title: "Tech I use",
+        types: {
+          languages: "Languages",
+          frameworks: "Frameworks",
+          data: "Data",
+          automation: "Automation",
+          microsoft: "Microsoft",
+          tools: "Tools",
+          design: "Design",
+          ai: "AI",
+          other: "Other",
+        },
+        levels: {
+          learning: "Learning",
+          beginner: "Beginner",
+          intermediate: "Intermediate",
+          advanced: "Advanced",
+        },
+        showAll: "Show all",
+        showLess: "Show less",
       },
       songs: {
         title: "Some songs that I jam to",
@@ -39,6 +61,23 @@ export const translations = {
       backToHome: "Back to homepage",
       notFound: "Project not found",
       notFoundDescription: "We couldn't find a project with this address.",
+      empty: {
+        dev: {
+          title: "No development projects yet",
+          description:
+            "Nothing published yet in this category — check back later.",
+        },
+        design: {
+          title: "No design projects yet",
+          description:
+            "Nothing published yet in this category — check back later.",
+        },
+        automation: {
+          title: "Automation projects coming soon",
+          description:
+            "Nothing published yet in this category — check back later, or take a look at the Development and Design projects instead.",
+        },
+      },
     },
     notFound: {
       title: "Page not found",
@@ -52,6 +91,9 @@ export const translations = {
   pt: {
     nav: {
       languageSelection: "Seleção de idioma",
+      cv: "Baixar Currículo",
+      menu: "Menu",
+      theme: "Tema",
     },
     easterEgg: "🎉 eu no meu aniversário :)",
     hero: {
@@ -69,7 +111,26 @@ export const translations = {
         button: "Ver Projetos",
       },
       stack: {
-        title: "Minha Stack atual",
+        title: "Tecnologias que eu uso",
+        types: {
+          languages: "Linguagens",
+          frameworks: "Frameworks",
+          data: "Dados",
+          automation: "Automação",
+          microsoft: "Microsoft",
+          tools: "Ferramentas",
+          design: "Design",
+          ai: "IA",
+          other: "Outros",
+        },
+        levels: {
+          learning: "Aprendendo",
+          beginner: "Iniciante",
+          intermediate: "Intermediário",
+          advanced: "Avançado",
+        },
+        showAll: "Ver tudo",
+        showLess: "Ver menos",
       },
       songs: {
         title: "Algumas músicas que eu curto",
@@ -85,6 +146,23 @@ export const translations = {
       backToHome: "Voltar à Página Inicial",
       notFound: "Projeto não encontrado",
       notFoundDescription: "Não encontramos um projeto neste endereço.",
+      empty: {
+        dev: {
+          title: "Ainda não há projetos de desenvolvimento",
+          description:
+            "Nada publicado nessa categoria ainda — volte mais tarde.",
+        },
+        design: {
+          title: "Ainda não há projetos de design",
+          description:
+            "Nada publicado nessa categoria ainda — volte mais tarde.",
+        },
+        automation: {
+          title: "Projetos de automação em breve",
+          description:
+            "Nada publicado nessa categoria ainda — volte mais tarde, ou dê uma olhada nos projetos de Desenvolvimento e Design.",
+        },
+      },
     },
     notFound: {
       title: "Página não encontrada",

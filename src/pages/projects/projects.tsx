@@ -1,22 +1,19 @@
-import { Projetos, type projectType } from "@/lib/projects";
-
 import { useLanguage } from "@/lib/i18n/language.provider";
-import { loadProjectDetails, type ProjectDetails } from "@/lib/project-content";
 import { cn } from "@/lib/utils";
 import {
   ArrowLeftIcon,
   CodeIcon,
-  DatabaseIcon,
   GraphIcon,
   PenNibIcon,
   type Icon,
 } from "@phosphor-icons/react";
 import ProjectCard from "./components/ProjectCard";
+import ProjectsEmptyState from "./components/ProjectsEmptyState";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { useEffect, useRef, useState } from "react";
-import { ButtonGroup } from "@/components/ui/button-group";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router";
+import { useLayoutEffect, useRef, useState } from "react";
+
+import TransitionLink from "@/components/TransitionLink";
+import { Projetos, type projectType } from "@/data/projects";
 
 interface ptTypes {
   value: projectType;
@@ -26,7 +23,8 @@ interface ptTypes {
   };
   icon: Icon;
   enabled: boolean;
-  color: string;
+  indicatorClass: string;
+  textActiveClass: string;
   accent: string;
 }
 
@@ -39,9 +37,23 @@ const projectTypes: ptTypes[] = [
     },
     icon: CodeIcon,
     enabled: true,
-    color:
-      "data-pressed:bg-violet-500 data-pressed:text-white dark:data-pressed:bg-violet-800/50 dark:data-pressed:text-violet-100",
+    indicatorClass: "bg-violet-500 dark:bg-violet-800/50",
+    textActiveClass:
+      "data-pressed:text-white dark:data-pressed:text-violet-100",
     accent: "text-violet-600 dark:text-violet-400",
+  },
+
+  {
+    value: "automation",
+    label: {
+      en: "Automation",
+      pt: "Automação",
+    },
+    icon: GraphIcon,
+    enabled: true,
+    indicatorClass: "bg-blue-500 dark:bg-blue-800/50",
+    textActiveClass: "data-pressed:text-white dark:data-pressed:text-blue-100",
+    accent: "text-blue-600 dark:text-blue-400",
   },
   {
     value: "design",
@@ -51,73 +63,100 @@ const projectTypes: ptTypes[] = [
     },
     icon: PenNibIcon,
     enabled: true,
-    color:
-      "data-pressed:bg-amber-600 data-pressed:text-white dark:data-pressed:bg-amber-800/50 dark:data-pressed:text-amber-100",
+    indicatorClass: "bg-amber-600 dark:bg-amber-800/50",
+    textActiveClass: "data-pressed:text-white dark:data-pressed:text-amber-100",
     accent: "text-amber-600 dark:text-amber-400",
-  },
-  {
-    value: "automation",
-    label: {
-      en: "Automation",
-      pt: "Automação",
-    },
-    icon: GraphIcon,
-    enabled: true,
-    color:
-      "data-pressed:bg-blue-500 data-pressed:text-white dark:data-pressed:bg-blue-800/50 dark:data-pressed:text-blue-100",
-    accent: "text-blue-600 dark:text-blue-400",
   },
 ];
 
 export default function ProjectsPage() {
   const { locale, t } = useLanguage();
   const [selectedType, setSelectedType] = useState<projectType>("dev");
+  const toggleGroupRef = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState<{ left: number; width: number }>({
+    left: 0,
+    width: 0,
+  });
 
-  const projectDetails = loadProjectDetails();
+  const filteredProjects = Projetos.filter((e) => e.type === selectedType);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const activeEl = toggleGroupRef.current?.querySelector<HTMLElement>(
+        `[data-type="${selectedType}"]`,
+      );
+      if (activeEl) {
+        setIndicator({
+          left: activeEl.offsetLeft,
+          width: activeEl.offsetWidth,
+        });
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [selectedType, locale]);
 
   return (
-    <div className="flex flex-col flex-1 w-full animate-fade-left">
-      <span className="flex w-full items-start flex-col justify-between mb-8 gap-3">
-        <Link
+    <div className="flex flex-col flex-1 w-full">
+      <span className="flex w-full items-start flex-col justify-between mb-8 gap-4">
+        <TransitionLink
           to="/"
+          direction="backward"
           className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors w-fit "
         >
           <ArrowLeftIcon className="size-3.5" />
           {t.projects.backToHome}
-        </Link>
-        <div className="flex items-center justify-center gap-3 w-full">
+        </TransitionLink>
+        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-3 w-full">
           <span className="text-base font-medium  text-center ">
             {t.projects.startTitle}
           </span>
-          <ToggleGroup
-            className="gap-1 border p-0.5 rounded-full h-auto"
-            value={[selectedType]}
-          >
-            {projectTypes.map((types) => (
-              <ToggleGroupItem
-                key={types.value}
-                value={types.value}
-                onClick={() => {
-                  setSelectedType(types.value);
-                }}
+          <div className="max-w-full shrink-0 overflow-x-auto scroll-fade-x">
+            <ToggleGroup
+              ref={toggleGroupRef}
+              className="relative gap-1 border p-0.5 rounded-full h-auto w-max"
+              value={[selectedType]}
+            >
+              <span
+                aria-hidden
                 className={cn(
-                  "text-foreground text-xs! rounded-full h-7 hover:bg-background",
-                  types.color,
+                  "absolute left-0 top-0.5 bottom-0.5 rounded-full transition-[transform,width,background-color] duration-300 ease-out",
+                  projectTypes.find((types) => types.value === selectedType)
+                    ?.indicatorClass,
                 )}
-              >
-                <types.icon /> {types.label[locale]}
-              </ToggleGroupItem>
-            ))}
-          </ToggleGroup>
+                style={{
+                  width: indicator.width,
+                  transform: `translateX(${indicator.left}px)`,
+                }}
+              />
+              {projectTypes.map((types) => (
+                <ToggleGroupItem
+                  key={types.value}
+                  value={types.value}
+                  data-type={types.value}
+                  onClick={() => {
+                    setSelectedType(types.value);
+                  }}
+                  className={cn(
+                    "relative z-10 text-foreground text-xs! rounded-full h-7 hover:bg-transparent data-pressed:bg-transparent",
+                    types.textActiveClass,
+                  )}
+                >
+                  <types.icon /> {types.label[locale]}
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
+          </div>
           <span className="text-base font-medium  text-center ">
             {t.projects.endTitle}
           </span>
         </div>
       </span>
 
-      <div className="flex-1 gap-2 flex flex-col">
-        {Projetos.filter((e) => e.type === selectedType).map(
-          (projeto, index) => (
+      {filteredProjects.length > 0 ? (
+        <div className="flex-1 gap-2 flex flex-col">
+          {filteredProjects.map((projeto, index) => (
             <ProjectCard
               className=""
               key={projeto.slug}
@@ -125,11 +164,12 @@ export default function ProjectsPage() {
               index={index}
               locale={locale}
               t={t}
-              markdown={projectDetails[projeto.slug]?.[locale]}
             />
-          ),
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <ProjectsEmptyState type={selectedType} />
+      )}
     </div>
   );
 }

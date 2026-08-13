@@ -1,12 +1,10 @@
 import { useLanguage } from "@/lib/i18n/language.provider";
-import { Button, buttonVariants } from "../ui/button";
+import { Button } from "../ui/button";
 
 import {
-  ArrowUpRightIcon,
   EnvelopeOpenIcon,
   GithubLogoIcon,
   LinkedinLogoIcon,
-  MailboxIcon,
   WhatsappLogoIcon,
   type Icon,
 } from "@phosphor-icons/react";
@@ -49,11 +47,11 @@ function Links() {
   const { t } = useLanguage();
 
   return (
-    <span className="gap-1 flex flex-col md:mt-4 min-w-full flex-1">
-      <span className="text-xs text-muted-foreground md:text-left text-center md:block hidden">
+    <div className="flex flex-col gap-1.5 min-w-full">
+      <span className="text-xs text-muted-foreground">
         {t.contact.heading}
       </span>
-      <span className="md:items-start md:justify-start gap-1 md:flex-col flex flex-1 justify-end">
+      <div className="flex flex-col gap-1">
         {socials.map((social) => {
           return (
             <Button
@@ -61,15 +59,16 @@ function Links() {
               variant="ghost"
               size={"sm"}
               className={
-                "hover:bg-linear-to-tl from-foreground/80 to-foreground border hover:border-border border-transparent hover:text-background justify-start p-0! h-auto m-0! group flex md:w-full"
+                "hover:bg-linear-to-tl from-foreground/80 to-foreground border hover:border-border border-transparent hover:text-background justify-start p-0! h-auto m-0! group flex w-full"
               }
             >
               <a
                 href={social.link}
                 target="_blank"
-                className="flex aspect-square md:aspect-auto md:gap-2 items-center  md:justify-start justify-center p-0 h-8 text-xs w-full md:group-hover:pl-1 md:group-hover:pr-0! transition-[padding]"
+                rel="noreferrer"
+                className="flex aspect-auto gap-2 items-center justify-start p-0 h-9 text-xs w-full group-hover:pl-1 group-hover:pr-0! transition-[padding]"
               >
-                <span className="bg-muted flex items-center justify-center rounded-sm border group-hover:bg-transparent group-hover:border-transparent  text-foreground group-hover:text-background size-full md:size-6!  aspect-square">
+                <span className="bg-muted flex items-center justify-center rounded-sm border group-hover:bg-transparent group-hover:border-transparent text-foreground group-hover:text-background size-6! shrink-0 aspect-square">
                   <social.icon
                     weight="fill"
                     className="hidden group-hover:block"
@@ -79,13 +78,13 @@ function Links() {
                     className="block group-hover:hidden"
                   />
                 </span>
-                <span className="truncate md:block hidden">{social.label}</span>
+                <span className="truncate">{social.label}</span>
               </a>
             </Button>
           );
         })}
-      </span>
-    </span>
+      </div>
+    </div>
   );
 }
 

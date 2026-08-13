@@ -1,16 +1,15 @@
 import Hero from "@/components/Hero";
 import ProjectsBanner from "@/src/pages/projects/components/ProjectBanner";
-import { loadProjectDetails } from "@/lib/project-content";
+import StackSection from "@/components/home/Stack";
 import SongsBanner from "@/components/home/Songs";
 
 export default function HomePage() {
-  const projectDetails = loadProjectDetails();
-
   return (
-    <div className="animate-fade-right">
+    <div>
       <Hero />
-      <ProjectsBanner />
-      <SongsBanner />
+      <ProjectsBanner className="animate-fade-down animate-duration-500 animate-delay-550 animate-fill-both" />
+      <SongsBanner className="animate-fade-down animate-duration-500 animate-delay-850 animate-fill-both my-8" />
+      <StackSection className="animate-fade-down animate-duration-500 animate-delay-700 animate-fill-both" />
     </div>
   );
 }
