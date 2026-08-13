@@ -4,7 +4,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { cn } from "@/lib/utils";
 import Confetti from "react-confetti-boom";
 
-function Images({ className, mini }: { className?: string; mini?: boolean }) {
+function Images({ className }: { className?: string }) {
   const { t } = useLanguage();
   const avatarRef = useRef<HTMLSpanElement>(null);
   const [boom, setBoom] = useState<{
@@ -43,39 +43,31 @@ function Images({ className, mini }: { className?: string; mini?: boolean }) {
           />
         </div>
       )}
-      {mini ? (
-        <img
-          src="/images/me_1.png"
-          alt="me"
-          className="object-cover opacity-100 transition-all aspect-square border rounded-lg size-full"
-        />
-      ) : (
-        <Tooltip>
-          <TooltipTrigger
-            className={cn("flex mb-8 group relative", className)}
-            onClick={handleClick}
+      <Tooltip>
+        <TooltipTrigger
+          className={cn("flex mb-8 group relative", className)}
+          onClick={handleClick}
+        >
+          <span
+            ref={avatarRef}
+            className="size-48 relative border rounded-lg overflow-hidden transition-transform duration-150 active:scale-95"
           >
-            <span
-              ref={avatarRef}
-              className="size-48 relative border rounded-lg overflow-hidden transition-transform duration-150 active:scale-95"
-            >
-              <img
-                src="/images/me_1.png"
-                alt="me at my 22nd birthday"
-                className=" object-cover opacity-100 transition-all absolute size-48 group-hover:scale-110 z-0"
-              />
-              <img
-                src="/images/me_2.png"
-                alt="me at my 22nd birthday"
-                className="object-cover group-hover:opacity-100 opacity-0 transition-all absolute size-48 group-hover:scale-110 z-2"
-              />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent side="bottom" align="center" sideOffset={-10}>
-            {t.easterEgg}
-          </TooltipContent>
-        </Tooltip>
-      )}
+            <img
+              src="/images/me_1.png"
+              alt="me at my 22nd birthday"
+              className=" object-cover opacity-100 transition-all absolute size-48 group-hover:scale-110 z-0"
+            />
+            <img
+              src="/images/me_2.png"
+              alt="me at my 22nd birthday"
+              className="object-cover group-hover:opacity-100 opacity-0 transition-all absolute size-48 group-hover:scale-110 z-2"
+            />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent side="bottom" align="center" sideOffset={-10}>
+          {t.easterEgg}
+        </TooltipContent>
+      </Tooltip>
     </>
   );
 }
