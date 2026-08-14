@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import TransitionLink from "../TransitionLink";
 
-function Avatar({ className }: { className?: string }) {
+function Avatar() {
   const avatarRef = useRef<HTMLSpanElement>(null);
 
   return (

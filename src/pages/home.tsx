@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import ProjectsBanner from "@/src/pages/projects/components/ProjectBanner";
 import StackSection from "@/components/home/Stack";
-import SongsBanner from "@/components/home/Songs";
 import {
   usePageMeta,
   DEFAULT_TITLE,

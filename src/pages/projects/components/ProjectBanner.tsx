@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language.provider";
 
-import { Button } from "@/components/ui/button";
 import TransitionLink from "@/components/TransitionLink";
 import {
   ArrowRightIcon,

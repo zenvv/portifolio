@@ -3,7 +3,6 @@ import PowerAppsIcon from "@/lib/icons/PowerAppsIcon";
 import MsGraphIcon from "@/lib/icons/MsGraphIcon";
 import MsGraphIconSolid from "@/lib/icons/MsGraphIconSolid";
 import MicrosoftFabricIcon from "@/lib/icons/MicrosoftFabricIcon";
-import ZustandIcon from "@/lib/icons/ZustandIcon";
 
 export type IconComponent = ComponentType<{ className?: string }>;
 

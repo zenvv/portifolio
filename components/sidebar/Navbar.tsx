@@ -6,19 +6,12 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 import DownloadCV from "./DownloadCV";
 import { useLanguage } from "@/lib/i18n/language.provider";
 import { Button } from "@/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { CellSignalHighIcon, ListIcon, XIcon } from "@phosphor-icons/react";
+import { ListIcon } from "@phosphor-icons/react";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
 
