@@ -10,10 +10,14 @@ function Sidebar() {
       <div className="flex flex-col items-start w-full">
         <Images />
         <div className="flex flex-col leading-none w-full">
-          <span className="text text-sm font-semibold">Willian Zeni</span>
-          <span className="text-xs text-muted-foreground">@zenvv</span>
+          <span className="text text-sm font-semibold leading-none">
+            Willian Zeni
+          </span>
+          <span className="text-xs text-muted-foreground leading-none">
+            @zenvv
+          </span>
         </div>
-        <span className="w-full">
+        <span className="w-full mt-8">
           <Links />
         </span>
       </div>

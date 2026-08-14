@@ -14,6 +14,7 @@ export type Project = {
   empresa?: string;
   type?: projectType;
   image: string | null;
+  imageCaption?: Record<Locale, string>;
   link?: string | null;
   color?: string | null;
   repo?: string | null;
@@ -96,7 +97,7 @@ export const Projetos: Project[] = [
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Centro Tecnológico Randon",
-    image: null,
+    image: "/projects/app-ssma-02.png",
 
     type: "dev",
     featured: true,
@@ -110,13 +111,36 @@ export const Projetos: Project[] = [
       pt: "Automação de NFs e Declarações de Transporte",
     },
     description: {
-      en: "I redesigned the workflow for receiving invoices and issuing Transportation Declarations (a substitute document, since the CTR does not have state registration) for vehicle test samples received daily. The previous process was manual: physical invoice filed, located manually each time a sample was returned, the call was filled out field by field in Qualitor, the declaration was printed and stapled to the invoice. A cycle of up to 6 hours between searching, bottlenecks, and rework. I implemented a standardized form (Microsoft Forms + SharePoint List) with automatic status notifications via email, a policy for scanning invoices upon arrival with automatic organization by client folder, and automatic capture of the PDF issued by Qualitor with registration in the list and direct sending to the engineer. Reducing the cycle to about 15 minutes.",
-      pt: "Redesenhei o fluxo de recebimento de notas fiscais e emissão de Declarações de Transporte (documento substituto, já que o CTR não possui inscrição estadual) para amostras de teste veicular recebidas diariamente. O processo anterior era manual: nota física arquivada, localizada à mão a cada retorno de amostra, chamado preenchido campo a campo no Qualitor, declaração impressa e grampeada à nota. Um ciclo de até 6h entre busca, gargalos e retrabalho. Implementei formulário padronizado (Microsoft Forms + SharePoint List) com notificações automáticas de status por e-mail, política de digitalização das notas na chegada com organização automática por pasta de cliente, e captura automática do PDF emitido pelo Qualitor com registro na lista e envio direto ao engenheiro. Reduzindo o ciclo para cerca de 15 minutos.",
+      en: "I redesigned the workflow for receiving invoices and issuing Transportation Declarations (a substitute document, since the CTR does not have state registration) for vehicle test samples received daily. The previous process was manual: physical invoice filed, located manually each time a sample was returned, the call was filled out field by field in Qualitor, the declaration was printed and stapled to the invoice.</br>A cycle of up to **6 hours** between searching, bottlenecks, and rework. I implemented a standardized form (Microsoft Forms + SharePoint List) with automatic status notifications via email, a policy for scanning invoices upon arrival with automatic organization by client folder, and automatic capture of the PDF issued by Qualitor with registration in the list and direct sending to the engineer. Reducing the cycle to about 15 minutes.",
+      pt: "Redesenhei o fluxo de recebimento de notas fiscais e emissão de Declarações de Transporte (documento substituto, já que o CTR não possui inscrição estadual) para amostras de teste veicular recebidas diariamente. O processo anterior era manual: nota física arquivada, localizada à mão a cada retorno de amostra, chamado preenchido campo a campo no Qualitor, declaração impressa e grampeada à nota. </br> Um ciclo de **até 6h** entre busca, gargalos e retrabalho. Implementei formulário padronizado (Microsoft Forms + SharePoint List) com notificações automáticas de status por e-mail, política de digitalização das notas na chegada com organização automática por pasta de cliente, e captura automática do PDF emitido pelo Qualitor com registro na lista e envio direto ao engenheiro. Reduzindo o ciclo para cerca de 15 minutos.",
     },
     tecnologias: ["Microsoft Forms", "Power Automate", "SharePoint Lists"],
     tags: ["Microsoft", "Automation"],
     empresa: "Centro Tecnológico Randon",
     image: null,
+    type: "automation",
+    featured: true,
+  },
+  {
+    index: 2,
+    icon: "",
+    slug: "rpa-sap-pyautogui",
+    title: {
+      en: "RPA with PyAutoGUI for SAP Report Extraction",
+      pt: "RPA com PyAutoGUI para Extração de Relatórios SAP",
+    },
+    description: {
+      en: "",
+      pt: "",
+    },
+    tecnologias: ["Python", "SAP ERP/HANA", "Excel", "Power BI"],
+    tags: ["Microsoft", "Automation"],
+    empresa: "Centro Tecnológico Randon",
+    image: "/projects/rpa-sap-pyautogui.gif",
+    imageCaption: {
+      en: "* Illustrative simulation of an RPA workflow (**Python** + **PyAutoGUI**) I built to pull reports from an ERP system, consolidate the data, and refresh a **Power BI dashboard**. Fully autonomous, ~10 min end-to-end. The original recording can't be shared due to a _data confidentiality agreement_, so I recreated the process in an abstract form.",
+      pt: "* Simulação ilustrativa do fluxo de uma automação RPA (**Python + PyAutoGUI**) que desenvolvi para extrair relatórios de um ERP, consolidar os dados e atualizar um **dashboard no Power BI**. 100% autônoma, ~10 min de execução. O vídeo original não pode ser divulgado por _cláusula de confidencialidade de dados_, então recriei o processo de forma abstrata.",
+    },
     type: "automation",
     featured: true,
   },

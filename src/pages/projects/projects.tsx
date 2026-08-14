@@ -14,6 +14,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 
 import TransitionLink from "@/components/TransitionLink";
 import { Projetos, type projectType } from "@/data/projects";
+import { usePageMeta } from "@/lib/use-page-meta";
 
 interface ptTypes {
   value: projectType;
@@ -71,6 +72,12 @@ const projectTypes: ptTypes[] = [
 
 export default function ProjectsPage() {
   const { locale, t } = useLanguage();
+  usePageMeta(
+    "zenvv / projetos",
+    locale === "pt"
+      ? "Projetos de desenvolvimento, automação e design de Willian Zeni (zenvv)."
+      : "Development, automation and design projects by Willian Zeni (zenvv).",
+  );
   const [selectedType, setSelectedType] = useState<projectType>("dev");
   const toggleGroupRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState<{ left: number; width: number }>({
@@ -99,6 +106,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="flex flex-col flex-1 w-full">
+      <h1 className="sr-only">{t.hero.projects.title}</h1>
       <span className="flex w-full items-start flex-col justify-between mb-8 gap-4">
         <TransitionLink
           to="/"
@@ -108,14 +116,14 @@ export default function ProjectsPage() {
           <ArrowLeftIcon className="size-3.5" />
           {t.projects.backToHome}
         </TransitionLink>
-        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-3 w-full">
-          <span className="text-base font-medium  text-center ">
+        <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-x-2 gap-y-1 w-full">
+          <span className="text-base font-medium md:w-auto w-full text-center ">
             {t.projects.startTitle}
           </span>
-          <div className="max-w-full shrink-0 overflow-x-auto scroll-fade-x">
+          <div className="min-w-full md:min-w-auto max-w-full  shrink-0 overflow-x-auto scroll-fade-x">
             <ToggleGroup
               ref={toggleGroupRef}
-              className="relative gap-1 border p-0.5 rounded-full h-auto w-max"
+              className="relative gap-1 md:flex grid grid-cols-3 border p-0.5 h-10 rounded-full md:h-auto w-full!"
               value={[selectedType]}
             >
               <span
@@ -139,16 +147,17 @@ export default function ProjectsPage() {
                     setSelectedType(types.value);
                   }}
                   className={cn(
-                    "relative z-10 text-foreground text-xs! rounded-full h-7 hover:bg-transparent data-pressed:bg-transparent",
+                    "relative z-10 text-foreground text-xs! rounded-full h-7 hover:bg-transparent data-pressed:bg-transparent md:aspect-auto",
                     types.textActiveClass,
                   )}
                 >
-                  <types.icon /> {types.label[locale]}
+                  <types.icon />
+                  <span className="">{types.label[locale]}</span>
                 </ToggleGroupItem>
               ))}
             </ToggleGroup>
           </div>
-          <span className="text-base font-medium  text-center ">
+          <span className="text-base font-medium md:w-auto w-full text-center ">
             {t.projects.endTitle}
           </span>
         </div>

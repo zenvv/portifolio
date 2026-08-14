@@ -26,7 +26,9 @@ export const translations = {
         button: "View Projects",
       },
       stack: {
-        title: "Tech I use",
+        title: "Main Stack",
+        subtitle: "Tech I use",
+        learningBadge: "learning",
         types: {
           languages: "Languages",
           frameworks: "Frameworks",
@@ -38,13 +40,7 @@ export const translations = {
           ai: "AI",
           other: "Other",
         },
-        levels: {
-          learning: "Learning",
-          beginner: "Beginner",
-          intermediate: "Intermediate",
-          advanced: "Advanced",
-        },
-        showAll: "Show all",
+        showAll: "Show all technologies",
         showLess: "Show less",
       },
       songs: {
@@ -61,6 +57,7 @@ export const translations = {
       backToHome: "Back to homepage",
       notFound: "Project not found",
       notFoundDescription: "We couldn't find a project with this address.",
+      clientTitle: "Built for",
       empty: {
         dev: {
           title: "No development projects yet",
@@ -111,7 +108,9 @@ export const translations = {
         button: "Ver Projetos",
       },
       stack: {
-        title: "Tecnologias que eu uso",
+        title: "Stack Principal",
+        subtitle: "Tecnologias que eu uso",
+        learningBadge: "estudando",
         types: {
           languages: "Linguagens",
           frameworks: "Frameworks",
@@ -123,13 +122,7 @@ export const translations = {
           ai: "IA",
           other: "Outros",
         },
-        levels: {
-          learning: "Aprendendo",
-          beginner: "Iniciante",
-          intermediate: "Intermediário",
-          advanced: "Avançado",
-        },
-        showAll: "Ver tudo",
+        showAll: "Ver todas as tecnologias",
         showLess: "Ver menos",
       },
       songs: {
@@ -146,21 +139,19 @@ export const translations = {
       backToHome: "Voltar à Página Inicial",
       notFound: "Projeto não encontrado",
       notFoundDescription: "Não encontramos um projeto neste endereço.",
+      clientTitle: "Construído para",
       empty: {
         dev: {
           title: "Ainda não há projetos de desenvolvimento",
-          description:
-            "Nada publicado nessa categoria ainda — volte mais tarde.",
+          description: "Nada publicado nessa categoria ainda.",
         },
         design: {
           title: "Ainda não há projetos de design",
-          description:
-            "Nada publicado nessa categoria ainda — volte mais tarde.",
+          description: "Nada publicado nessa categoria ainda.",
         },
         automation: {
           title: "Projetos de automação em breve",
-          description:
-            "Nada publicado nessa categoria ainda — volte mais tarde, ou dê uma olhada nos projetos de Desenvolvimento e Design.",
+          description: "Nada publicado nessa categoria ainda.",
         },
       },
     },

@@ -12,6 +12,7 @@ import {
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { Projetos } from "@/data/projects";
+import { PROJECT_IMAGE_PLACEHOLDER } from "@/lib/placeholders";
 
 const CYCLE_INTERVAL_MS = 3000;
 const TRANSITION_MS = 350;
@@ -98,11 +99,11 @@ export default function ProjectsBanner({ className }: { className?: string }) {
       to="/projects"
       direction="forward"
       className={cn(
-        "relative flex flex-col overflow-hidden rounded-lg border text-left group mt-8 bg-linear-to-tl from-card to-background hover:to-card sm:h-40 sm:flex-row sm:items-stretch",
+        "relative flex flex-col overflow-hidden rounded-lg border! border-border! text-left group mt-8 bg-linear-to-tl from-card to-background hover:to-card sm:h-40 h-40 sm:flex-row sm:items-stretch max-w-full! p-0! mx-0 items-center justify-center",
         className,
       )}
     >
-      <div className="order-2 flex min-w-0 flex-1 flex-col items-start justify-center gap-1 p-4 sm:order-1">
+      <div className="flex min-w-0 flex-1 flex-col items-center sm:items-start justify-center gap-1 p-4 w-full">
         <span className="mb-1 flex items-center gap-2 text-muted-foreground">
           {bannerIcons.map((bni) => (
             <bni.icon
@@ -118,21 +119,18 @@ export default function ProjectsBanner({ className }: { className?: string }) {
             />
           ))}
         </span>
-        <h1 className="text-lg font-semibold">{t.hero.projects.title}</h1>
-        <p className="text-xs text-muted-foreground">
+        <h2 className="text-lg font-semibold">{t.hero.projects.title}</h2>
+        <p className="text-xs text-muted-foreground text-wrap! sm:text-left text-center sm:w-full w-2/3">
           {t.hero.projects.description}
         </p>
         <span className="flex-1 flex items-end">
-          <Button
-            variant="link"
-            className="flex items-center gap-1 p-0 text-xs group-hover:gap-1.5 group-hover:underline"
-          >
+          <span className="flex items-center gap-1 p-0 text-xs group-hover:gap-1.5 group-hover:underline transition-all ">
             {t.hero.projects.button} <ArrowRightIcon />
-          </Button>
+          </span>
         </span>
       </div>
 
-      <div className="order-1 pointer-events-none relative h-28 w-full shrink-0 mask-t-from-50% group-hover:saturate-0 transition-all sm:order-2 sm:h-auto sm:w-58">
+      <div className="order-1 pointer-events-none h-full w-full border shrink-0 sm:mask-t-from-50% mask-b-from-0% mask-b-to-95% group-hover:saturate-0 transition-all gap-0 sm:order-2 sm:h-auto sm:w-58 hidden sm:block">
         {order.map((slug, position) => {
           const proj = featuredProjects.find((p) => p.slug === slug);
           if (!proj) return null;
@@ -159,17 +157,20 @@ export default function ProjectsBanner({ className }: { className?: string }) {
               };
 
           return (
-            <div
-              key={slug}
-              className="absolute bottom-0 right-0 aspect-video w-28 overflow-hidden rounded-sm border bg-background shadow-xl sm:w-56"
-              style={style}
-            >
-              <img
-                src={proj.image ?? "/projects/fallback.png"}
-                alt={proj.title[locale]}
-                className="h-full w-full object-cover"
-              />
-            </div>
+            <>
+              <div
+                key={slug}
+                className="sm:absolute bottom-0 right-0 aspect-video w-full h-full overflow-hidden sm:rounded-sm sm:border sm:h-auto bg-background shadow-xl sm:w-56 max-sm:transform-none! transition-all! "
+                style={style}
+              >
+                <img
+                  src={proj.image ?? PROJECT_IMAGE_PLACEHOLDER}
+                  alt={proj.title[locale]}
+                  className="h-full w-full object-cover"
+                  decoding="async"
+                />
+              </div>
+            </>
           );
         })}
       </div>

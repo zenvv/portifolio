@@ -19,6 +19,8 @@ function SongSlide({ song }: { song: songsTypes }) {
           alt={`${song.name}'s artwork`}
           className="size-full object-cover"
           draggable={false}
+          loading="lazy"
+          decoding="async"
         />
       </TooltipTrigger>
 

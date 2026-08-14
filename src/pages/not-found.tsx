@@ -26,9 +26,9 @@ export default function NotFoundPage() {
           ___________\/\\\_____\///\\\\\\\/_____________\/\\\____
           ___________\///________\///////_______________\///_____
         </code>
-        <span className="text-lg font-semibold mt-8">
+        <h1 className="text-lg font-semibold mt-8">
           {t.notFound.title} :(
-        </span>
+        </h1>
         <p className="text-sm text-muted-foreground">
           {t.notFound.description}
         </p>

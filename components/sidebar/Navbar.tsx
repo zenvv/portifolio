@@ -11,53 +11,65 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { CellSignalHighIcon, ListIcon, XIcon } from "@phosphor-icons/react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
 
 function Navbar() {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="md:hidden sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
+    <header className="md:hidden sticky top-0 z-40 backdrop-blur-2xl">
       <div className="relative mx-auto flex w-full max-w-full items-center justify-between gap-4 px-4 py-3 sm:px-8 lg:max-w-5xl">
         <LangSelector />
         <Avatar />
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger
             aria-label={t.nav.menu}
             render={
               <Button
                 variant="ghost"
                 size="icon-sm"
-                className="rounded-full"
+                className="rounded-md active:scale-90 transition-all group"
               />
             }
           >
-            {open ? <XIcon /> : <ListIcon />}
-          </PopoverTrigger>
-          <PopoverContent
-            align="end"
-            sideOffset={12}
-            className="w-72 max-h-(--available-height) overflow-y-auto flex flex-col gap-5"
+            <ListIcon weight="regular" className="" />
+          </SheetTrigger>
+          <SheetContent
+            side="right"
+            className="bg-linear-to-b from-popover to-background max-w-full!"
           >
-            <div className="flex flex-col leading-none">
-              <span className="text-sm font-semibold">Willian Zeni</span>
-              <span className="text-xs text-muted-foreground">@zenvv</span>
+            <SheetHeader className="flex flex-col leading-none">
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold">Willian Zeni</span>
+                <span className="text-xs text-muted-foreground">@zenvv</span>
+              </div>
+            </SheetHeader>
+            <div className="flex-1 gap-8 h-full p-4 flex flex-col justify-between">
+              <Links />
+              <DownloadCV />
             </div>
-            <Links />
-            <DownloadCV />
-            <div className="flex items-center justify-between border-t pt-4">
+            <SheetFooter className="flex items-center justify-between flex-row min-w-full border-t">
               <span className="text-xs text-muted-foreground">
                 {t.nav.theme}
               </span>
               <ThemeSwitcher />
-            </div>
-          </PopoverContent>
-        </Popover>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </div>
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-full h-6 bg-gradient-to-b from-background/60 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-full h-6 "
       />
     </header>
   );

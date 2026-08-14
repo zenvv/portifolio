@@ -4,7 +4,10 @@ import { DownloadSimpleIcon, ReadCvLogoIcon } from "@phosphor-icons/react";
 
 function DownloadCV() {
   const { t, locale } = useLanguage();
-  const cvHref = locale === "pt" ? "/cv/pt.pdf" : "/cv/en.pdf";
+  const cvHref =
+    locale === "pt"
+      ? "/cv/Currículo - Willian Ferreira Zeni - PTBR.pdf"
+      : "/cv/en.pdf";
 
   return (
     <Button
