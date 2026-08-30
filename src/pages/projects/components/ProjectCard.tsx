@@ -148,7 +148,7 @@ function ProjectCard({
           <h2 className="font-medium text-sm leading-tight truncate">
             {projeto.title[locale]}
           </h2>
-          <span className="text-xs text-muted-foreground line-clamp-2">
+          <span className="text-xs text-muted-foreground line-clamp-2 ">
             {projeto.shortDescription[locale]}
           </span>
         </div>

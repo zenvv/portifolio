@@ -16,7 +16,7 @@ export const translations = {
       label: "software developer · ui/ux designer",
       aboutTitle: "About me",
       tagline:
-        "I automate processes and integrate corporate systems — Power Platform, SharePoint, React, and a design eye.",
+        "I automate processes and integrate corporate systems with Power Platform, Power BI, React and TypeScript.",
       cta: {
         viewProjects: "View projects",
         aboutMe: "About me",
@@ -116,7 +116,7 @@ export const translations = {
       label: "desenvolvedor de software · ui/ux designer",
       aboutTitle: "Sobre mim",
       tagline:
-        "Automatizo processos e integro sistemas corporativos — Power Platform, SharePoint, React e um olhar de design.",
+        "Automatizo processos e integro sistemas corporativos com Power Platform, Power BI, React e TypeScript",
       cta: {
         viewProjects: "Ver projetos",
         aboutMe: "Sobre mim",

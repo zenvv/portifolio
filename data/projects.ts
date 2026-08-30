@@ -41,8 +41,8 @@ export const Projetos: Project[] = [
       pt: "(Demo) ERP personalizado em Next.js para a Bello Aramados: produção, pedidos, compras e financeiro, com RBAC granular e integração via Microsoft Graph.",
     },
     shortDescription: {
-      en: "custom ERP for production, orders and finance",
-      pt: "ERP personalizado para produção, pedidos e financeiro",
+      en: "Custom ERP for production, sales, finance and tax area",
+      pt: "ERP personalizado para produção, comercial, financeiro e fiscal",
     },
     createdAt: "Jun/2026",
     tecnologias: [
@@ -69,8 +69,8 @@ export const Projetos: Project[] = [
       pt: "Aplicativo operacional para a Bello Aramados, desenvolvido para registrar o trabalho dos operadores e fornecer atualizações em tempo real sobre o status da produção. O app melhora a comunicação entre a equipe de produção e a gestão, garantindo um fluxo de trabalho eficiente e a entrega pontual dos produtos.",
     },
     shortDescription: {
-      en: "real-time production tracking app for factory operators",
-      pt: "app de acompanhamento de produção em tempo real para operadores",
+      en: "Real-time industrial production tracking app for operators",
+      pt: "Apontamentos e acompanhamento de produção industrial em tempo real para operadores",
     },
     createdAt: "Mar/2026",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
@@ -92,8 +92,8 @@ export const Projetos: Project[] = [
       pt: "Redesign do site da Bello Aramados: padronização de estilos, otimização de carregamento, animações e responsividade. Stack: PHP (CodeIgniter) + JS pontual, CSS puro",
     },
     shortDescription: {
-      en: "institutional website redesign",
-      pt: "redesign do site institucional",
+      en: "Institutional website redesign",
+      pt: "Redesign do site institucional",
     },
     createdAt: "Feb/2026",
     tecnologias: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
@@ -106,14 +106,14 @@ export const Projetos: Project[] = [
   {
     index: 2,
     slug: "risk-analysis-app",
-    title: { en: "Risk Analysis App", pt: "App de Análise de Risco" },
+    title: { en: "HSE App", pt: "App SSMA" },
     description: {
       en: "Risk analysis app for Bello Aramados, designed to identify and assess potential risks in the production process. The app helps management make informed decisions and implement effective risk mitigation strategies.",
       pt: "App de análise de risco para a Bello Aramados, desenvolvido para identificar e avaliar os riscos potenciais no processo de produção. O app ajuda a gestão a tomar decisões informadas e implementar estratégias eficazes de mitigação de riscos.",
     },
     shortDescription: {
-      en: "risk identification app for the production process",
-      pt: "app de identificação de riscos no processo produtivo",
+      en: "-todo-",
+      pt: "Analises de Riscos de Teste, Serviços de Ferramentaria, Licenças Ambientais, Gestão de Pessoas e Indicadores.",
     },
     createdAt: "Mar/2025",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
@@ -134,8 +134,8 @@ export const Projetos: Project[] = [
       pt: "Redesenhei o fluxo de recebimento de notas fiscais e emissão de Declarações de Transporte (documento substituto, já que o CTR não possui inscrição estadual) para amostras de teste veicular recebidas diariamente. O processo anterior era manual: nota física arquivada, localizada à mão a cada retorno de amostra, chamado preenchido campo a campo no Qualitor, declaração impressa e grampeada à nota. </br> Um ciclo de **até 6h** entre busca, gargalos e retrabalho. Implementei formulário padronizado (Microsoft Forms + SharePoint List) com notificações automáticas de status por e-mail, política de digitalização das notas na chegada com organização automática por pasta de cliente, e captura automática do PDF emitido pelo Qualitor com registro na lista e envio direto ao engenheiro. Reduzindo o ciclo para cerca de 15 minutos.",
     },
     shortDescription: {
-      en: "cut a 6h manual invoice/declaration cycle down to ~15min",
-      pt: "reduziu um ciclo manual de notas/declarações de 6h para ~15min",
+      en: "Cut a 6h manual invoice/declaration cycle down to ~15-30min",
+      pt: "Reduziu um ciclo manual de notas/declarações de 6h para ~15-30min",
     },
     createdAt: "Apr/2022",
     tecnologias: ["Microsoft Forms", "Power Automate", "SharePoint Lists"],
@@ -179,8 +179,8 @@ export const Projetos: Project[] = [
       pt: "sferi é uma ferramenta de design inspirada no Figma (formas, frames, tipografia, gradientes, preenchimento com imagem, grupos, camadas, tudo isso) construída do zero sobre o HTML canvas, via Konva, como um mergulho pessoal em como editores baseados em canvas realmente funcionam por baixo dos panos: hit-testing, transformações, clipping, histórico de undo, tudo.",
     },
     shortDescription: {
-      en: "figma-inspired vector designing tool",
-      pt: "ferramenta de design vetorial inspirada no Figma",
+      en: "Figma-inspired vector designing tool",
+      pt: "Ferramenta de design vetorial inspirada no Figma",
     },
     createdAt: "Agu/2026",
     tecnologias: [
@@ -209,8 +209,8 @@ export const Projetos: Project[] = [
       pt: "Not My Typo é um clone feito do zero da experiência de teste de digitação do monkeytype.com: as palavras passam pela tela, você digita, e o app acompanha suas palavras por minuto, precisão, consistência e erros.",
     },
     shortDescription: {
-      en: "monkeytype-inspired typing speed test",
-      pt: "teste de velocidade de digitação inspirado no monkeytype",
+      en: "MonkeyType inspired mini-game",
+      pt: "Mini-game inspirado no MonkeyType",
     },
     createdAt: "Jul/2026",
     tecnologias: [
