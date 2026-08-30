@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language.provider";
 import TransitionLink from "@/components/TransitionLink";
 import DownloadCV from "./sidebar/DownloadCV";
-import Images from "./sidebar/Images";
+// import Images from "./sidebar/Images";
 import { ArrowRightIcon, UserListIcon } from "@phosphor-icons/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
