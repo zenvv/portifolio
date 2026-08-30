@@ -1,0 +1,64 @@
+import { useId, type SVGProps } from "react";
+
+export type IconProps = SVGProps<SVGSVGElement> & {
+    width?: string;
+    height?: string;
+};
+
+function MsalIcon({ width = "1em", height = "1em", ...props }: IconProps) {
+    const uid = useId().replace(/:/g, "");
+    const paint0 = `${uid}-paint0`;
+    const paint1 = `${uid}-paint1`;
+    const paint2 = `${uid}-paint2`;
+    const paint3 = `${uid}-paint3`;
+
+    return (
+        <svg
+            width={width}
+            height={height}
+            viewBox="0 0 217 217"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <path
+                d="M211.973 119.71L121.882 18.0941C114.684 9.96864 101.532 9.96864 94.3226 18.0941L4.24353 119.71C-2.71253 127.571 -0.892138 139.421 8.12542 145.063L98.2045 201.375C104.208 205.136 111.996 205.136 118 201.375L208.079 145.063C217.096 139.433 218.929 127.559 211.973 119.71Z"
+                fill={`url(#${paint0})`}
+            />
+            <path
+                d="M121.894 18.0941C114.697 9.96864 101.544 9.96864 94.3347 18.0941L4.25561 119.71C-2.70044 127.571 -0.880053 139.421 8.1375 145.063C8.1375 145.063 41.4832 165.907 45.6906 168.535C50.3561 171.441 58.0957 174.672 66.2935 174.672C73.7559 174.672 80.6758 172.514 86.4263 168.825C86.4263 168.825 86.4263 168.825 86.4504 168.825L108.126 155.274L55.7087 122.507L109.452 61.8799C116.059 54.3451 125.993 49.5591 137.108 49.5591C142.774 49.5591 148.127 50.849 152.889 53.0673L121.906 18.1182V18.0941H121.894Z"
+                fill={`url(#${paint1})`}
+            />
+            <path
+                d="M55.6846 122.507L56.3115 122.881L108.114 155.274L160.532 122.507H160.544H160.532L108.114 63.3506L55.6846 122.507Z"
+                fill={`url(#${paint2})`}
+            />
+            <path
+                opacity="0.5"
+                d="M108.114 204.196C111.562 204.196 115.01 203.255 118.012 201.387L208.091 145.075C217.109 139.445 218.929 127.571 211.973 119.722L121.894 18.094C118.289 14.0313 113.214 12.006 108.114 12.006V204.196Z"
+                fill={`url(#${paint3})`}
+                fillOpacity="0.5"
+            />
+            <defs>
+                <linearGradient id={paint0} x1="92.454" y1="149.054" x2="169.151" y2="59.4085" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#225086" />
+                    <stop offset="1" stopColor="#0055C5" />
+                </linearGradient>
+                <linearGradient id={paint1} x1="76.4443" y1="161.109" x2="76.4443" y2="-34.0582" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#66DDFF" />
+                    <stop offset="1" stopColor="#0294E4" />
+                </linearGradient>
+                <linearGradient id={paint2} x1="108.114" y1="187.631" x2="108.114" y2="-39.2542" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#44DBF9" />
+                    <stop offset="1" stopColor="#CBF8FF" />
+                </linearGradient>
+                <linearGradient id={paint3} x1="162.159" y1="202.472" x2="162.159" y2="9.54665" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#041642" />
+                    <stop offset="1" stopColor="#041642" stopOpacity="0.25" />
+                </linearGradient>
+            </defs>
+        </svg>
+    );
+}
+
+export default MsalIcon;

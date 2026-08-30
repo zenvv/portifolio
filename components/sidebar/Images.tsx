@@ -4,7 +4,13 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { cn } from "@/lib/utils";
 import Confetti from "react-confetti-boom";
 
-function Images({ className }: { className?: string }) {
+function Images({
+  className,
+  size = "size-32",
+}: {
+  className?: string;
+  size?: string;
+}) {
   const { t } = useLanguage();
   const avatarRef = useRef<HTMLSpanElement>(null);
   const [boom, setBoom] = useState<{
@@ -45,22 +51,31 @@ function Images({ className }: { className?: string }) {
       )}
       <Tooltip>
         <TooltipTrigger
-          className={cn("flex mb-8 group relative", className)}
+          className={cn("flex group relative shrink-0", className)}
           onClick={handleClick}
         >
           <span
             ref={avatarRef}
-            className="size-48 relative border rounded-lg overflow-hidden transition-transform duration-150 active:scale-95"
+            className={cn(
+              "relative border rounded-xl aspect-square overflow-hidden transition-transform duration-150 active:scale-95",
+              size,
+            )}
           >
             <img
               src="/images/me_1.png"
               alt="me at my 22nd birthday"
-              className=" object-cover opacity-100 transition-all absolute size-48 group-hover:scale-110 z-0"
+              className={cn(
+                "object-cover opacity-100 transition-all absolute group-hover:scale-110 z-0",
+                size,
+              )}
             />
             <img
               src="/images/me_2.png"
               alt="me at my 22nd birthday"
-              className="object-cover group-hover:opacity-100 opacity-0 transition-all absolute size-48 group-hover:scale-110 z-2"
+              className={cn(
+                "object-cover group-hover:opacity-100 opacity-0 transition-all absolute group-hover:scale-110 z-2",
+                size,
+              )}
             />
           </span>
         </TooltipTrigger>

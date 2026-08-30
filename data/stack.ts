@@ -111,7 +111,7 @@ export const StackList: stackTypes[] = [
   },
   {
     index: 16,
-    name: "Sharepoint Lists",
+    name: "Sharepoint",
     link: "https://www.microsoft.com/pt-br/microsoft-365/microsoft-lists",
     type: "data",
   },

@@ -1,90 +1,63 @@
 import { useLanguage } from "@/lib/i18n/language.provider";
-import { Button } from "../ui/button";
+import type { Locale } from "@/lib/i18n/translations";
+import TransitionLink from "../TransitionLink";
+import { useLocation } from "react-router";
+import { cn } from "@/lib/utils";
 
-import {
-  EnvelopeOpenIcon,
-  GithubLogoIcon,
-  LinkedinLogoIcon,
-  WhatsappLogoIcon,
-  type Icon,
-} from "@phosphor-icons/react";
-
-interface SocialsType {
+interface linksTypes {
   id: number;
-  label: string;
-  icon: Icon;
-  link: string;
+  label: Record<Locale, string>;
+  to: string;
 }
 
-const socials: SocialsType[] = [
+const linksList: linksTypes[] = [
   {
     id: 0,
-    label: "Github",
-    icon: GithubLogoIcon,
-    link: "https://www.github.com/zenvv",
+    label: {
+      en: "Home",
+      pt: "Início",
+    },
+    to: "/",
   },
   {
     id: 1,
-    label: "LinkedIn",
-    icon: LinkedinLogoIcon,
-    link: "https://www.linkedin.com/in/willian-z-327bba186/",
+    label: {
+      en: "Projects",
+      pt: "Projetos",
+    },
+    to: "/projects",
   },
   {
     id: 2,
-    label: "willianf.zeni@gmail.com",
-    icon: EnvelopeOpenIcon,
-    link: "mailto:willianf.zeni@gmail.com",
-  },
-  {
-    id: 3,
-    label: "(54) 99158-0442",
-    icon: WhatsappLogoIcon,
-    link: "tel:54991580442",
+    label: {
+      en: "About",
+      pt: "Sobre",
+    },
+    to: "/about",
   },
 ];
 
 function Links() {
-  const { t } = useLanguage();
+  const { locale } = useLanguage();
+  const location = useLocation();
 
   return (
-    <div className="flex flex-col gap-1.5 min-w-full">
-      <span className="text-xs text-muted-foreground">
-        {t.contact.heading}
-      </span>
-      <div className="flex flex-col gap-1">
-        {socials.map((social) => {
-          return (
-            <Button
-              key={social.id}
-              variant="ghost"
-              size={"sm"}
-              className={
-                "hover:bg-linear-to-tl from-foreground/80 to-foreground border hover:border-border border-transparent hover:text-background justify-start p-0! h-auto m-0! group flex w-full"
-              }
-            >
-              <a
-                href={social.link}
-                target="_blank"
-                rel="noreferrer"
-                className="flex aspect-auto gap-2 items-center justify-start p-0 h-9 text-xs w-full group-hover:pl-1 group-hover:pr-0! transition-[padding]"
-              >
-                <span className="bg-muted flex items-center justify-center rounded-sm border group-hover:bg-transparent group-hover:border-transparent text-foreground group-hover:text-background size-6! shrink-0 aspect-square">
-                  <social.icon
-                    weight="fill"
-                    className="hidden group-hover:block"
-                  />
-                  <social.icon
-                    weight="regular"
-                    className="block group-hover:hidden"
-                  />
-                </span>
-                <span className="truncate">{social.label}</span>
-              </a>
-            </Button>
-          );
-        })}
-      </div>
-    </div>
+    <span className="hidden items-center justify-center gap-2 md:flex">
+      {linksList.map((link) => (
+        <TransitionLink
+          key={link.id}
+          to={link.to}
+          direction="forward"
+          className={cn(
+            location.pathname == link.to
+              ? "text-amber-600 dark:text-amber-400"
+              : "",
+          )}
+        >
+          <span>{link.label[locale]}</span>
+        </TransitionLink>
+      ))}
+    </span>
   );
 }
 

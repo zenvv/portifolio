@@ -11,7 +11,7 @@
 //
 // Uses Vite's SSR module loader so it can import data/projects.ts (TS,
 // path-aliased) from a plain Node script without extra build tooling.
-import { writeFileSync, readFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, readFileSync, mkdirSync, existsSync } from "node:fs";
 import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
@@ -27,6 +27,18 @@ const DEFAULT_DESCRIPTION =
 const server = await createServer({ root, server: { middlewareMode: true } });
 const { Projetos } = await server.ssrLoadModule("/data/projects.ts");
 await server.close();
+
+const BANNER_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "gif", "svg"];
+
+// Mirrors lib/project-content.ts's getProjectBannerCandidates(), but reads
+// the filesystem directly since this script runs outside the SPA bundle.
+function findProjectBanner(slug) {
+  for (const ext of BANNER_EXTENSIONS) {
+    const relative = `/projects/${slug}/images/banner.${ext}`;
+    if (existsSync(resolve(root, "public", `.${relative}`))) return relative;
+  }
+  return null;
+}
 
 // --- sitemap.xml ---
 
@@ -111,7 +123,7 @@ const pageMeta = [
     path: `/projects/${p.slug}`,
     title: `zenvv / ${p.title.pt}`,
     description: p.description.pt,
-    image: p.image,
+    image: findProjectBanner(p.slug),
   })),
 ];
 

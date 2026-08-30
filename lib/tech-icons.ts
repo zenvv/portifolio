@@ -1,8 +1,13 @@
 import type { ComponentType } from "react";
 import PowerAppsIcon from "@/lib/icons/PowerAppsIcon";
+import PowerAppsIconSolid from "@/lib/icons/PowerAppsIconSolid";
+import PowerAutomateIconSolid from "@/lib/icons/PowerAutomateIconSolid";
 import MsGraphIcon from "@/lib/icons/MsGraphIcon";
 import MsGraphIconSolid from "@/lib/icons/MsGraphIconSolid";
+import MsalIcon from "@/lib/icons/MsalIcon";
+import MsalIconSolid from "@/lib/icons/MsalIconSolid";
 import MicrosoftFabricIcon from "@/lib/icons/MicrosoftFabricIcon";
+import { StackList, type techType } from "@/data/stack";
 
 export type IconComponent = ComponentType<{ className?: string }>;
 
@@ -36,7 +41,7 @@ export const TECH_ICONS: Record<string, TechIcon> = {
   "Microsoft Fabric": "thesvg-color:microsoft-fabric",
   "Microsoft Power BI": "logos:microsoft-power-bi",
   Excel: "selfhst:microsoft-excel",
-  "Sharepoint Lists": "selfhst:microsoft-sharepoint",
+  Sharepoint: "selfhst:microsoft-sharepoint",
 
   // automation
   "Microsoft Power Apps": PowerAppsIcon,
@@ -47,7 +52,7 @@ export const TECH_ICONS: Record<string, TechIcon> = {
   // microsoft
   "Microsoft Entra ID": "selfhst:microsoft-entra-id",
   "Microsoft Admin": "selfhst:microsoft-365",
-  MSAL: "selfhst:microsoft-azure",
+  MSAL: MsalIcon,
 
   // tools
   GitHub: "simple-icons:github",
@@ -110,13 +115,16 @@ export const SOLID_TECH_ICONS: Record<string, TechIcon> = {
   "Microsoft Fabric": MicrosoftFabricIcon,
   "Microsoft Power BI": "simple-icons:powerbi",
   Excel: "simple-icons:microsoftexcel",
-  "Sharepoint Lists": "simple-icons:microsoftsharepoint",
+  Sharepoint: "simple-icons:microsoftsharepoint",
 
   // automation
-  "Microsoft Power Apps": "simple-icons:powerapps",
-  "Microsoft Power Automate": "simple-icons:powerautomate",
+  "Microsoft Power Apps": PowerAppsIconSolid,
+  "Microsoft Power Automate": PowerAutomateIconSolid,
   "Microsoft Graph API": MsGraphIconSolid,
   N8N: "simple-icons:n8n",
+
+  // microsoft
+  MSAL: MsalIconSolid,
 
   // tools
   Docker: "simple-icons:docker",
@@ -138,9 +146,9 @@ export const SOLID_TECH_ICONS: Record<string, TechIcon> = {
 
 /** Alternate spellings used in project tech chips, mapped to a TECH_ICONS key. */
 const TECH_ALIASES: Record<string, string> = {
-  SharePoint: "Sharepoint Lists",
-  Sharepoint: "Sharepoint Lists",
-  "SharePoint Lists": "Sharepoint Lists",
+  SharePoint: "Sharepoint",
+  "SharePoint Lists": "Sharepoint",
+  "Sharepoint Lists": "Sharepoint",
   TailwindCSS: "Tailwind CSS",
   "Power Apps": "Microsoft Power Apps",
   "Power Automate": "Microsoft Power Automate",
@@ -166,4 +174,29 @@ export function getSolidTechIcon(name: string): TechIcon | undefined {
     SOLID_TECH_ICONS[TECH_ALIASES[name]] ??
     getTechIcon(name)
   );
+}
+
+/** Canonical display name for a raw tech string; collapses spelling variants (e.g. "SharePoint Lists" -> "Sharepoint"). */
+export function canonicalTechName(name: string): string {
+  return TECH_ALIASES[name] ?? name;
+}
+
+const STACK_TECH_TYPES: Record<string, techType> = Object.fromEntries(
+  StackList.map((tech) => [tech.name, tech.type]),
+);
+
+/** Tech-type bucket for a raw tech string, not covered by StackList (project-only technologies). */
+const EXTRA_TECH_TYPES: Record<string, techType> = {
+  MSAL: "microsoft",
+  "Microsoft Forms": "microsoft",
+  Konva: "tools",
+  GSAP: "tools",
+  jsPDF: "tools",
+  "shadcn/ui": "tools",
+};
+
+/** Tech-type bucket (languages/frameworks/data/…) for a raw tech string, used to group technologies the same way the Stack section does. */
+export function getTechType(name: string): techType {
+  const canonical = canonicalTechName(name);
+  return STACK_TECH_TYPES[canonical] ?? EXTRA_TECH_TYPES[canonical] ?? "other";
 }

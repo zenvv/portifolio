@@ -1,74 +1,32 @@
 import { useLanguage } from "@/lib/i18n/language.provider";
-import { cn } from "@/lib/utils";
-import {
-  ArrowLeftIcon,
-  CodeIcon,
-  GraphIcon,
-  PenNibIcon,
-  type Icon,
-} from "@phosphor-icons/react";
+import { ArrowLeftIcon, MagicWandIcon } from "@phosphor-icons/react";
+import { useMemo, useState } from "react";
+
 import ProjectCard from "./components/ProjectCard";
 import ProjectsEmptyState from "./components/ProjectsEmptyState";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { useLayoutEffect, useRef, useState } from "react";
+import ProjectsFilterPanel from "./components/ProjectsFilterPanel";
 
 import TransitionLink from "@/components/TransitionLink";
-import { Projetos, type projectType } from "@/data/projects";
+import SectionTitle from "@/components/SectionTitle";
+import { Projetos } from "@/data/projects";
+import { Companies } from "@/data/experience";
+import { TECH_TYPES } from "@/data/stack";
+import { canonicalTechName, getTechType } from "@/lib/tech-icons";
+import type { ProjectTypeFilterValue } from "@/lib/project-type-meta";
 import { usePageMeta } from "@/lib/use-page-meta";
+import { Scales } from "@/src/components/ui/scales";
 
-interface ptTypes {
-  value: projectType;
-  label: {
-    en: string;
-    pt: string;
-  };
-  icon: Icon;
-  enabled: boolean;
-  indicatorClass: string;
-  textActiveClass: string;
-  accent: string;
+const COMPANY_GROUPS = ["Bello Aramados", "Centro Tecnológico Randon"] as const;
+const PERSONAL_GROUP = "__personal__";
+
+const companyIconByName = new Map(Companies.map((c) => [c.name, c.icon]));
+
+function companyGroupOf(empresa: string | undefined) {
+  if (empresa === "Bello Aramados") return "Bello Aramados";
+  if (empresa === "Centro Tecnológico Randon")
+    return "Centro Tecnológico Randon";
+  return PERSONAL_GROUP;
 }
-
-const projectTypes: ptTypes[] = [
-  {
-    value: "dev",
-    label: {
-      en: "Development",
-      pt: "Desenvolvimento",
-    },
-    icon: CodeIcon,
-    enabled: true,
-    indicatorClass: "bg-violet-500 dark:bg-violet-800/50",
-    textActiveClass:
-      "data-pressed:text-white dark:data-pressed:text-violet-100",
-    accent: "text-violet-600 dark:text-violet-400",
-  },
-
-  {
-    value: "automation",
-    label: {
-      en: "Automation",
-      pt: "Automação",
-    },
-    icon: GraphIcon,
-    enabled: true,
-    indicatorClass: "bg-blue-500 dark:bg-blue-800/50",
-    textActiveClass: "data-pressed:text-white dark:data-pressed:text-blue-100",
-    accent: "text-blue-600 dark:text-blue-400",
-  },
-  {
-    value: "design",
-    label: {
-      en: "Design",
-      pt: "Design",
-    },
-    icon: PenNibIcon,
-    enabled: true,
-    indicatorClass: "bg-amber-600 dark:bg-amber-800/50",
-    textActiveClass: "data-pressed:text-white dark:data-pressed:text-amber-100",
-    accent: "text-amber-600 dark:text-amber-400",
-  },
-];
 
 export default function ProjectsPage() {
   const { locale, t } = useLanguage();
@@ -78,107 +36,143 @@ export default function ProjectsPage() {
       ? "Projetos de desenvolvimento, automação e design de Willian Zeni (zenvv)."
       : "Development, automation and design projects by Willian Zeni (zenvv).",
   );
-  const [selectedType, setSelectedType] = useState<projectType>("dev");
-  const toggleGroupRef = useRef<HTMLDivElement>(null);
-  const [indicator, setIndicator] = useState<{ left: number; width: number }>({
-    left: 0,
-    width: 0,
-  });
 
-  const filteredProjects = Projetos.filter((e) => e.type === selectedType);
+  const [search, setSearch] = useState("");
+  const [selectedType, setSelectedType] =
+    useState<ProjectTypeFilterValue>("all");
+  const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
+  const [selectedCompanies, setSelectedCompanies] = useState<string[]>([]);
 
-  useLayoutEffect(() => {
-    const measure = () => {
-      const activeEl = toggleGroupRef.current?.querySelector<HTMLElement>(
-        `[data-type="${selectedType}"]`,
-      );
-      if (activeEl) {
-        setIndicator({
-          left: activeEl.offsetLeft,
-          width: activeEl.offsetWidth,
-        });
+  const techGroups = useMemo(() => {
+    const byType = new Map<(typeof TECH_TYPES)[number], Set<string>>();
+    for (const p of Projetos) {
+      for (const tec of p.tecnologias) {
+        const canonical = canonicalTechName(tec);
+        const type = getTechType(tec);
+        if (!byType.has(type)) byType.set(type, new Set());
+        byType.get(type)!.add(canonical);
       }
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [selectedType, locale]);
+    }
+    return TECH_TYPES.filter((type) => byType.has(type)).map((type) => ({
+      label: t.hero.stack.types[type],
+      options: Array.from(byType.get(type)!)
+        .sort((a, b) => a.localeCompare(b))
+        .map((name) => ({ value: name, label: name })),
+    }));
+  }, [t]);
+
+  const companyOptions = useMemo(
+    () => [
+      ...COMPANY_GROUPS.map((name) => ({ value: name, label: name })),
+      { value: PERSONAL_GROUP, label: t.projects.groups.personal },
+    ],
+    [t],
+  );
+
+  const filteredProjects = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    return Projetos.filter((p) => {
+      const matchesSearch =
+        query === "" ||
+        p.title[locale].toLowerCase().includes(query) ||
+        p.shortDescription[locale].toLowerCase().includes(query);
+      const matchesType = selectedType === "all" || p.type === selectedType;
+      const matchesTechs =
+        selectedTechs.length === 0 ||
+        selectedTechs.some((tec) =>
+          p.tecnologias.some((raw) => canonicalTechName(raw) === tec),
+        );
+      const matchesCompany =
+        selectedCompanies.length === 0 ||
+        selectedCompanies.includes(companyGroupOf(p.empresa));
+
+      return matchesSearch && matchesType && matchesTechs && matchesCompany;
+    });
+  }, [search, selectedType, selectedTechs, selectedCompanies, locale]);
+
+  const groups = useMemo(() => {
+    const order = [...COMPANY_GROUPS, PERSONAL_GROUP];
+    return order
+      .map((group) => ({
+        group,
+        label: group === PERSONAL_GROUP ? t.projects.groups.personal : group,
+        items: filteredProjects.filter(
+          (p) => companyGroupOf(p.empresa) === group,
+        ),
+      }))
+      .filter((g) => g.items.length > 0);
+  }, [filteredProjects, t]);
 
   return (
-    <div className="flex flex-col flex-1 w-full">
-      <h1 className="sr-only">{t.hero.projects.title}</h1>
-      <span className="flex w-full items-start flex-col justify-between mb-8 gap-4">
-        <TransitionLink
-          to="/"
-          direction="backward"
-          className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors w-fit "
-        >
-          <ArrowLeftIcon className="size-3.5" />
-          {t.projects.backToHome}
-        </TransitionLink>
-        <div className="flex flex-wrap md:flex-row flex-col items-center justify-center gap-x-2 gap-y-1 w-full">
-          <span className="text-base font-medium md:w-auto w-full text-center ">
-            {t.projects.startTitle}
-          </span>
-          <div className="min-w-full md:min-w-auto max-w-full  shrink-0 overflow-x-auto scroll-fade-x">
-            <ToggleGroup
-              ref={toggleGroupRef}
-              className="relative gap-1 md:flex grid grid-cols-3 border p-0.5 h-10 rounded-full md:h-auto w-full!"
-              value={[selectedType]}
-            >
-              <span
-                aria-hidden
-                className={cn(
-                  "absolute left-0 top-0.5 bottom-0.5 rounded-full transition-[transform,width,background-color] duration-300 ease-out",
-                  projectTypes.find((types) => types.value === selectedType)
-                    ?.indicatorClass,
-                )}
-                style={{
-                  width: indicator.width,
-                  transform: `translateX(${indicator.left}px)`,
-                }}
-              />
-              {projectTypes.map((types) => (
-                <ToggleGroupItem
-                  key={types.value}
-                  value={types.value}
-                  data-type={types.value}
-                  onClick={() => {
-                    setSelectedType(types.value);
-                  }}
-                  className={cn(
-                    "relative z-10 text-foreground text-xs! rounded-full h-7 hover:bg-transparent data-pressed:bg-transparent md:aspect-auto",
-                    types.textActiveClass,
-                  )}
-                >
-                  <types.icon />
-                  <span className="">{types.label[locale]}</span>
-                </ToggleGroupItem>
-              ))}
-            </ToggleGroup>
-          </div>
-          <span className="text-base font-medium md:w-auto w-full text-center ">
-            {t.projects.endTitle}
-          </span>
+    <div className="flex-1 flex flex-col ">
+      <span className="flex w-full items-start flex-col justify-between mb-6 gap-4">
+        <div className="p-2 border-b w-full flex justify-start items-center gap-4">
+          <TransitionLink
+            to="/"
+            direction="backward"
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors w-fit "
+          >
+            <ArrowLeftIcon className="size-3.5" />
+            {t.projects.backToHome}
+          </TransitionLink>
         </div>
       </span>
 
-      {filteredProjects.length > 0 ? (
-        <div className="flex-1 gap-2 flex flex-col">
-          {filteredProjects.map((projeto, index) => (
-            <ProjectCard
-              className=""
-              key={projeto.slug}
-              projeto={projeto}
-              index={index}
-              locale={locale}
-              t={t}
-            />
-          ))}
-        </div>
-      ) : (
-        <ProjectsEmptyState type={selectedType} />
-      )}
+      <div className="p-0 pt-0 max-w-full flex-1 flex flex-col gap-6">
+        <ProjectsFilterPanel
+          t={t}
+          search={search}
+          onSearchChange={setSearch}
+          selectedType={selectedType}
+          onTypeChange={setSelectedType}
+          techGroups={techGroups}
+          selectedTechs={selectedTechs}
+          onTechsChange={setSelectedTechs}
+          companyOptions={companyOptions}
+          selectedCompanies={selectedCompanies}
+          onCompaniesChange={setSelectedCompanies}
+        />
+
+        {groups.length > 0 ? (
+          <div className="flex flex-col gap-4 ">
+            {groups.map(({ group, label, items }) => (
+              <div key={group} className="flex flex-col gap-3">
+                <SectionTitle
+                  align="center"
+                  title={label}
+                  icon={
+                    group === PERSONAL_GROUP ? (
+                      <MagicWandIcon className="size-3.5" />
+                    ) : companyIconByName.has(group) ? (
+                      <img
+                        src={companyIconByName.get(group)}
+                        alt=""
+                        className="size-4 shrink-0 rounded-xs object-contain"
+                      />
+                    ) : null
+                  }
+                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-4">
+                  {items.map((projeto, index) => (
+                    <ProjectCard
+                      key={projeto.slug}
+                      projeto={projeto}
+                      index={index}
+                      locale={locale}
+                      t={t}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <ProjectsEmptyState />
+        )}
+      </div>
+      <span className="h-12 relative border-y">
+        <Scales />
+      </span>
     </div>
   );
 }

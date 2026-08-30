@@ -14,20 +14,17 @@ export const translations = {
     hero: {
       greeting: "Hi, I'm Will :^)",
       label: "software developer · ui/ux designer",
-      aboutTitle: "about me",
-      aboutMe1:
-        "Brazillian Full-Stack Developer with experience in **corporate systems integration**, **process automation**,**Microsoft Power Platform**, **SharePoint/Graph API**, and **ReactJS**.",
-      aboutMe2:
-        "I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments.",
+      aboutTitle: "About me",
+      tagline:
+        "I automate processes and integrate corporate systems — Power Platform, SharePoint, React, and a design eye.",
+      cta: {
+        viewProjects: "View projects",
+        aboutMe: "About me",
+      },
       projects: {
-        title: "My Projects",
-        description:
-          "See all the things I've developed or design throught my journey on this Earth",
-        button: "View Projects",
+        title: "Featured Projects",
       },
       stack: {
-        title: "Main Stack",
-        subtitle: "Tech I use",
         learningBadge: "learning",
         types: {
           languages: "Languages",
@@ -40,8 +37,8 @@ export const translations = {
           ai: "AI",
           other: "Other",
         },
-        showAll: "Show all technologies",
-        showLess: "Show less",
+        showAll: "Show all",
+        allTitle: "All technologies",
       },
       songs: {
         title: "Some songs that I jam to",
@@ -58,23 +55,44 @@ export const translations = {
       notFound: "Project not found",
       notFoundDescription: "We couldn't find a project with this address.",
       clientTitle: "Built for",
-      empty: {
-        dev: {
-          title: "No development projects yet",
-          description:
-            "Nothing published yet in this category — check back later.",
-        },
-        design: {
-          title: "No design projects yet",
-          description:
-            "Nothing published yet in this category — check back later.",
-        },
-        automation: {
-          title: "Automation projects coming soon",
-          description:
-            "Nothing published yet in this category — check back later, or take a look at the Development and Design projects instead.",
-        },
+      personalProject: "Personal project",
+      types: {
+        all: "All",
+        web: "Web",
+        powerapps: "Power Apps",
+        automation: "Automation",
+        bi: "BI",
+        design: "Design",
       },
+      groups: {
+        personal: "Personal Projects",
+      },
+      filters: {
+        searchPlaceholder: "Search projects...",
+        technologies: "Technologies",
+        company: "Company",
+        clearAll: "Clear filters",
+      },
+      empty: {
+        title: "No projects match this filter",
+        description: "Try adjusting or clearing the filters above.",
+      },
+    },
+    about: {
+      backToHome: "Back to homepage",
+      intro:
+        "Brazilian **Full-Stack Developer** with hands-on experience across **corporate systems integration**, **process automation**, the **Microsoft Power Platform**, **SharePoint/Graph API**, and **ReactJS**. I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments — from mapping a broken workflow to shipping the tool that fixes it.",
+      companiesWebsite: "View Company Website",
+      companiesTitle: "Experience",
+      showActivities: "Show activities",
+      hideActivities: "Hide activities",
+      educationTitle: "Education",
+      personalTitle: "About me - Personally",
+      personalBlurb:
+        "Hi, I'm Willian! Outside of work I'm a huge music lover — especially good old rock n' roll — but I'm into pretty much everything, from hip-hop to folk, emo to MPB (Brazilian pop). In my free time I like studying, reading, and occasionally sketching some doodles (haha). I got into software because I've always had a creative mind, constantly coming up with solutions to problems I noticed — today, combining that creativity with UI/UX design and automating repetitive processes is what I enjoy doing most.",
+      photosTitle: "Some snapshots of my life",
+      showMorePhotos: "Show more photos",
+      showLessPhotos: "Show less photos",
     },
     notFound: {
       title: "Page not found",
@@ -96,20 +114,17 @@ export const translations = {
     hero: {
       greeting: "Eae, eu sou o Will :^)",
       label: "desenvolvedor de software · ui/ux designer",
-      aboutTitle: "sobre mim",
-      aboutMe1:
-        "Desenvolvedor Full-Stack, com atuação em **integração de sistemas corporativos**: **automação de processos**, **Microsoft Power Platform**, **SharePoint/Graph API** e **ReactJS**.",
-      aboutMe2:
-        "Combino desenvolvimento, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais.",
+      aboutTitle: "Sobre mim",
+      tagline:
+        "Automatizo processos e integro sistemas corporativos — Power Platform, SharePoint, React e um olhar de design.",
+      cta: {
+        viewProjects: "Ver projetos",
+        aboutMe: "Sobre mim",
+      },
       projects: {
-        title: "Meus Projetos",
-        description:
-          "Veja todas as coisas que eu desenvolvi ou projetei durante minha jornada na vida",
-        button: "Ver Projetos",
+        title: "Projetos em Destaque",
       },
       stack: {
-        title: "Stack Principal",
-        subtitle: "Tecnologias que eu uso",
         learningBadge: "estudando",
         types: {
           languages: "Linguagens",
@@ -122,8 +137,8 @@ export const translations = {
           ai: "IA",
           other: "Outros",
         },
-        showAll: "Ver todas as tecnologias",
-        showLess: "Ver menos",
+        showAll: "Mostrar todos",
+        allTitle: "Todas as tecnologias",
       },
       songs: {
         title: "Algumas músicas que eu curto",
@@ -140,20 +155,44 @@ export const translations = {
       notFound: "Projeto não encontrado",
       notFoundDescription: "Não encontramos um projeto neste endereço.",
       clientTitle: "Construído para",
-      empty: {
-        dev: {
-          title: "Ainda não há projetos de desenvolvimento",
-          description: "Nada publicado nessa categoria ainda.",
-        },
-        design: {
-          title: "Ainda não há projetos de design",
-          description: "Nada publicado nessa categoria ainda.",
-        },
-        automation: {
-          title: "Projetos de automação em breve",
-          description: "Nada publicado nessa categoria ainda.",
-        },
+      personalProject: "Projeto pessoal",
+      types: {
+        all: "Tudo",
+        web: "Web",
+        powerapps: "Power Apps",
+        automation: "Automação",
+        bi: "BI",
+        design: "Design",
       },
+      groups: {
+        personal: "Projetos Pessoais",
+      },
+      filters: {
+        searchPlaceholder: "Buscar projetos...",
+        technologies: "Tecnologias",
+        company: "Empresa",
+        clearAll: "Limpar filtros",
+      },
+      empty: {
+        title: "Nenhum projeto encontrado com esse filtro",
+        description: "Tente ajustar ou limpar os filtros acima.",
+      },
+    },
+    about: {
+      backToHome: "Voltar à Página Inicial",
+      intro:
+        "Desenvolvedor Full-Stack, com atuação prática em **integração de sistemas corporativos**, **automação de processos**, **Microsoft Power Platform**, **SharePoint/Graph API** e **ReactJS**. Combino desenvolvimento de software, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais — do mapeamento de um fluxo quebrado até a entrega da ferramenta que resolve.",
+      companiesTitle: "Experiência",
+      companiesWebsite: "Ver website da empresa",
+      showActivities: "Mostrar atividades desenvolvidas",
+      hideActivities: "Ocultar atividades",
+      educationTitle: "Educação",
+      personalTitle: "Sobre mim - pessoalmente",
+      personalBlurb:
+        "Oi, eu sou o Willian! Fora do trabalho sou um amante de música — especialmente o bom e velho rock n' roll — mas curto ouvir de tudo, do hip-hop ao folk, do emo à MPB. No tempo livre gosto de estudar, ler e, às vezes, desenhar uns rabiscos (hahaha). Me interessei pela área de software porque sempre tive uma mente criativa, sempre inventando soluções pros problemas que via — hoje, unir essa criatividade com design de interface/UX e automação de processos repetitivos é o que mais gosto de fazer.",
+      photosTitle: "Alguns registros da minha vida",
+      showMorePhotos: "Exibir mais fotos",
+      showLessPhotos: "Exibir menos fotos",
     },
     notFound: {
       title: "Página não encontrada",
