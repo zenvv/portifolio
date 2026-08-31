@@ -11,7 +11,6 @@ import { getTechIcon } from "@/lib/tech-icons";
 import { Button } from "@/components/ui/button";
 import TechIcon from "@/components/TechIcon";
 import FallbackImage from "@/components/FallbackImage";
-import { cn } from "@/lib/utils";
 import {
   ArrowLeftIcon,
   GithubLogoIcon,
@@ -23,6 +22,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import MarkdownPre from "@/components/markdown/MarkdownPre";
+import MarkdownSkeleton from "@/components/markdown/MarkdownSkeleton";
 import NotFoundPage from "@/src/pages/not-found";
 import { Projetos } from "@/data/projects";
 import { ICON_PLACEHOLDER } from "@/lib/placeholders";
@@ -73,7 +73,8 @@ export default function ProjectPage() {
                 ...getProjectIconCandidates(projeto.slug),
                 ICON_PLACEHOLDER,
               ]}
-              className={cn("size-10 sm:size-8")}
+              wrapperClassName="size-10 sm:size-8 shrink-0 rounded-sm"
+              className="object-contain"
             />
           ) : null}
           <div className="flex w-full min-w-0 flex-col items-center gap-1 leading-none sm:flex-1 sm:items-start">
@@ -155,9 +156,9 @@ export default function ProjectPage() {
       <span className="w-full">
         <FallbackImage
           candidates={getProjectBannerCandidates(projeto.slug)}
-          className={cn(
-            "shrink w-full h-auto flex overflow-hidden object-cover",
-          )}
+          fluid
+          wrapperClassName="w-full min-h-60 sm:min-h-90"
+          className="h-auto"
         />
         {projeto?.imageCaption && (
           <span className="flex items-start justify-center  gap-2 p-5">
@@ -169,7 +170,9 @@ export default function ProjectPage() {
         )}
       </span>
 
-      {markdownLoading ? null : markdown ? (
+      {markdownLoading ? (
+        <MarkdownSkeleton />
+      ) : markdown ? (
         <div className="text-sm text-muted-foreground border-t pt-12 mt-0 p-6 prose max-w-full flex-1 min-w-0">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}

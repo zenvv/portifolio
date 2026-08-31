@@ -2,6 +2,7 @@ import { useLanguage } from "@/lib/i18n/language.provider";
 
 import { ArrowUpRightIcon, MusicNotesIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
+import { Img } from "@/components/ui/image";
 import SectionTitle from "@/components/SectionTitle";
 import { Songs, type songsTypes } from "@/data/songs";
 
@@ -14,10 +15,11 @@ function SongCard({ song }: { song: songsTypes }) {
       href={song.spotifyLink}
       target="_blank"
     >
-      <img
+      <Img
         src={song.artwork ?? ""}
         alt={`${song.name}'s artwork`}
-        className="size-10 rounded-sm object-cover"
+        wrapperClassName="size-10 shrink-0 rounded-sm"
+        className="rounded-sm"
         draggable={false}
         loading="lazy"
         decoding="async"

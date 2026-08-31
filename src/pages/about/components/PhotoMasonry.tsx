@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Translations } from "@/lib/i18n/translations";
 import { cn } from "@/lib/utils";
+import { Img } from "@/components/ui/image";
 import { Button } from "@/components/ui/button";
 import SectionTitle from "@/components/SectionTitle";
 import type { ProfilePhoto, PhotoSize } from "@/data/photos";
@@ -17,17 +18,23 @@ const ASPECT_CLASS: Record<PhotoSize, string> = {
 function PhotoTile({ photo }: { photo: ProfilePhoto }) {
   const label = photo.label || undefined;
   const aspectClass = ASPECT_CLASS[photo.size];
+  const fluid = !aspectClass;
 
   const image = (
-    <img
+    <Img
       src={photo.img}
       alt={label ?? ""}
       loading="lazy"
       decoding="async"
       draggable={false}
+      fluid={fluid}
+      wrapperClassName={cn(
+        "size-full rounded-[inherit]",
+        fluid && "min-h-40",
+      )}
       className={cn(
-        "w-full rounded-md! transition-transform duration-300 ease-out group-hover:scale-105 group-hover:rounded-none",
-        aspectClass ? "h-full object-cover" : "h-auto",
+        "rounded-[inherit] transition-transform duration-300 ease-out group-hover:scale-105",
+        fluid && "h-auto",
       )}
     />
   );

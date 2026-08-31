@@ -23,27 +23,10 @@ The palette is lean: red as the icon's accent color, black/charcoal for the text
 
 ## Alternative logo versions
 
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_VERMELHO_CLARO.png" alt="Horizontal logo, light red" />
-<figcaption>Horizontal version, light red</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/4x_BELLOFIXADORES_VERTICAL_VERMELHO_CLARO.png" alt="Vertical logo, light red" />
-<figcaption>Vertical version, light red</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_BRANCO.png" alt="Horizontal logo, white" />
-<figcaption>Horizontal version, white, for use on dark backgrounds</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/ICONE_B_P.png" alt="Standalone icon, monochrome" />
-<figcaption>Standalone icon, monochrome</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/ICONE_P_V.png" alt="Standalone icon, red on dark background" />
-<figcaption>Standalone icon, red on dark background</figcaption>
-</figure>
+```carousel
+/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_VERMELHO_CLARO.png | Horizontal, light red | The brand's primary signature, for extended applications.
+/projects/bello-pregos-fixadores/images/4x_BELLOFIXADORES_VERTICAL_VERMELHO_CLARO.png | Vertical, light red | Stacked version, for more square spaces.
+/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_BRANCO.png | Horizontal, white | For use on dark backgrounds.
+/projects/bello-pregos-fixadores/images/ICONE_B_P.png | Standalone icon, monochrome | The BFX acronym as an icon for smaller applications.
+/projects/bello-pregos-fixadores/images/ICONE_P_V.png | Standalone icon, red | Red on a dark background.
+```

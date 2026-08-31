@@ -120,34 +120,42 @@ Versão demo, dados fictícios (estrutura idêntica à real).
 
 ### Entrada e painel de máquinas
 
-<figure><img src="/projects/operational-app/images/01-inicio.png" alt="Tela inicial"><figcaption>Entrada: setor, responsável e turno. Única tela onde o operador seleciona algo sobre si.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/02-maquinas.png" alt="Painel de máquinas"><figcaption>Painel de máquinas: etapa no topo da fila, meta por hora, quantidade restante e as ações Iniciar, Filas, Reporte. Máquina sem fila mostra "sem trabalho atribuído".</figcaption></figure>
-<figure><img src="/projects/operational-app/images/03-maquina-operando.png" alt="Máquina operando"><figcaption>Máquina em produção: contador de tempo, operadores no tooltip, contagem regressiva pra próxima inspeção.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/04-inspecao-pendente.png" alt="Inspeção pendente"><figcaption>Quando a inspeção vence, o card fica bloqueado até a inspeção ser registrada.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/05-restante-estimado.png" alt="Restante estimado"><figcaption>Logo após um apontamento, a quantidade restante aparece com asterisco: estimativa local enquanto o Power Automate recalcula.</figcaption></figure>
+```carousel
+/projects/operational-app/images/01-inicio.png | Entrada: setor, responsável e turno. Única tela onde o operador seleciona algo sobre si.
+/projects/operational-app/images/02-maquinas.png | Painel de máquinas: etapa no topo da fila, meta por hora, quantidade restante e as ações Iniciar, Filas, Reporte. Máquina sem fila mostra "sem trabalho atribuído".
+/projects/operational-app/images/03-maquina-operando.png | Máquina em produção: contador de tempo, operadores no tooltip, contagem regressiva pra próxima inspeção.
+/projects/operational-app/images/04-inspecao-pendente.png | Quando a inspeção vence, o card fica bloqueado até a inspeção ser registrada.
+/projects/operational-app/images/05-restante-estimado.png | Logo após um apontamento, a quantidade restante aparece com asterisco: estimativa local enquanto o Power Automate recalcula.
+```
 
 ### Iniciar produção (assistente de 4 passos)
 
-<figure><img src="/projects/operational-app/images/06-iniciar-1-operadores.png" alt="Passo 1: operadores"><figcaption>1/4: quem está na máquina.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/07-iniciar-2-contador.png" alt="Passo 2: contador inicial"><figcaption>2/4 (Fabricação): contador inicial da máquina, com confirmação explícita.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/08-iniciar-3-lotes.png" alt="Passo 3: lotes"><figcaption>3/4 (Fabricação): lote(s) de matéria-prima usados na produção.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/09-iniciar-4-resumo.png" alt="Passo 4: resumo"><figcaption>4/4: resumo antes de iniciar.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/10-iniciar-5-resumo.png" alt="Resumo preenchido"><figcaption>Resumo com todos os dados preenchidos, botão Iniciar Produção.</figcaption></figure>
+```carousel
+/projects/operational-app/images/06-iniciar-1-operadores.png | 1/4: quem está na máquina.
+/projects/operational-app/images/07-iniciar-2-contador.png | 2/4 (Fabricação): contador inicial da máquina, com confirmação explícita.
+/projects/operational-app/images/08-iniciar-3-lotes.png | 3/4 (Fabricação): lote(s) de matéria-prima usados na produção.
+/projects/operational-app/images/09-iniciar-4-resumo.png | 4/4: resumo antes de iniciar.
+/projects/operational-app/images/10-iniciar-5-resumo.png | Resumo com todos os dados preenchidos, botão Iniciar Produção.
+```
 
 ### Inspeção de parâmetros
 
-<figure><img src="/projects/operational-app/images/11-inspecao-parametro.png" alt="Inspeção numérica"><figcaption>Parâmetro numérico, com atalho pro desenho técnico da peça.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/12-reporte-1-numerico.png" alt="Reporte numérico"><figcaption>Reporte de produção: parâmetro numérico.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/13-reporte-2-conformidade.png" alt="Reporte de conformidade"><figcaption>Parâmetro booleano: Conforme, N/A ou Não Conforme. O tipo de cada parâmetro vem do cadastro da máquina.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/14-reporte-3-comentarios.png" alt="Comentários"><figcaption>Comentários adicionais opcionais ao fim do reporte.</figcaption></figure>
+```carousel
+/projects/operational-app/images/11-inspecao-parametro.png | Parâmetro numérico, com atalho pro desenho técnico da peça.
+/projects/operational-app/images/12-reporte-1-numerico.png | Reporte de produção: parâmetro numérico.
+/projects/operational-app/images/13-reporte-2-conformidade.png | Parâmetro booleano: Conforme, N/A ou Não Conforme. O tipo de cada parâmetro vem do cadastro da máquina.
+/projects/operational-app/images/14-reporte-3-comentarios.png | Comentários adicionais opcionais ao fim do reporte.
+```
 
 ### Finalizar produção (assistente de 3 passos)
 
-<figure><img src="/projects/operational-app/images/15-finalizar-1-quantidades-vazio.png" alt="Passo 1: quantidades vazio"><figcaption>1/3: contador final, descartes e retrabalho, com exemplos no placeholder.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/16-finalizar-1-quantidades.png" alt="Passo 1: quantidades preenchidas"><figcaption>1/3 preenchido.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/17-finalizar-2-horarios.png" alt="Passo 2: horários"><figcaption>2/3: confirmação dos horários de início e fim.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/18-finalizar-3-resumo.png" alt="Passo 3: resumo"><figcaption>3/3: resumo do apontamento antes de gravar.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/19-loading.png" alt="Loading"><figcaption>Estado de carregamento durante a gravação.</figcaption></figure>
+```carousel
+/projects/operational-app/images/15-finalizar-1-quantidades-vazio.png | 1/3: contador final, descartes e retrabalho, com exemplos no placeholder.
+/projects/operational-app/images/16-finalizar-1-quantidades.png | 1/3 preenchido.
+/projects/operational-app/images/17-finalizar-2-horarios.png | 2/3: confirmação dos horários de início e fim.
+/projects/operational-app/images/18-finalizar-3-resumo.png | 3/3: resumo do apontamento antes de gravar.
+/projects/operational-app/images/19-loading.png | Estado de carregamento durante a gravação.
+```
 
 ## Fórmulas-chave
 

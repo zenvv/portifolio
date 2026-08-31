@@ -131,7 +131,7 @@ function Hero() {
       <div className="flex items-center gap-4">
         {/* <Images size="size-16" /> */}
         <div className="flex flex-col gap-0.5">
-          <h1 className="text-3xl cursor-default text-black dark:text-amber-400 font-semibold">
+          <h1 className="text-4xl cursor-default text-black dark:text-amber-400 font-semibold">
             <InteractiveGreeting text={t.hero.greeting} startDelay={0.1} />
           </h1>
           <motion.span
@@ -149,24 +149,21 @@ function Hero() {
         {t.hero.tagline}
       </p>
 
-      <div className="flex flex-wrap items-center gap-2 w-full justify-between">
-        <span className="flex gap-2 items-center">
-          <TransitionLink
-            to="/projects"
-            direction="forward"
-            size="lg"
-            variant={"outline"}
-            className="group px-4 relative isolate overflow-hidden  border border-amber-400! bg-amber-400! text-black gap-1.5 transition-colors duration-300 hover:bg-background!  hover:text-amber-400!"
-          >
-            <span className="relative z-10 inline-flex items-center gap-1.5 group-hover:shimmer  transition-all">
-              {t.hero.cta.viewProjects}
-              <ArrowRightIcon className="size-3.5" />
-            </span>
-          </TransitionLink>
+      <div className="flex flex-wrap items-center gap-2 w-full">
+        <TransitionLink
+          to="/projects"
+          direction="forward"
+          size="lg"
+          variant={"outline"}
+          className="group px-4 relative isolate overflow-hidden  border border-amber-400! bg-amber-400! text-black gap-1.5 transition-colors duration-300 hover:bg-background!  hover:text-amber-400!"
+        >
+          <span className="relative z-10 inline-flex items-center gap-1.5 group-hover:shimmer  transition-all">
+            {t.hero.cta.viewProjects}
+            <ArrowRightIcon className="size-3.5" />
+          </span>
+        </TransitionLink>
 
-          <DownloadCV className="" />
-        </span>
-
+        <DownloadCV className="" />
         <TransitionLink
           to="/about"
           direction="forward"

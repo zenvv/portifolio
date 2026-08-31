@@ -146,34 +146,42 @@ Demo version, fictional data (structure identical to the real one).
 
 ### Entry and machines panel
 
-<figure><img src="/projects/operational-app/images/01-inicio.png" alt="Home screen"><figcaption>Entry: sector, person in charge and shift. The only screen where the operator selects something about themselves.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/02-maquinas.png" alt="Machines panel"><figcaption>Machines panel: step at the top of the queue, hourly target, remaining quantity and the actions Start, Queues, Report. A machine with no queue shows "no work assigned".</figcaption></figure>
-<figure><img src="/projects/operational-app/images/03-maquina-operando.png" alt="Machine running"><figcaption>Machine in production: elapsed-time counter, operators in the tooltip, countdown to the next inspection.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/04-inspecao-pendente.png" alt="Inspection due"><figcaption>When the inspection falls due, the card is locked until the inspection is recorded.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/05-restante-estimado.png" alt="Estimated remaining"><figcaption>Right after a report, the remaining quantity shows with an asterisk: a local estimate while Power Automate recalculates.</figcaption></figure>
+```carousel
+/projects/operational-app/images/01-inicio.png | Entry: sector, person in charge and shift. The only screen where the operator selects something about themselves.
+/projects/operational-app/images/02-maquinas.png | Machines panel: step at the top of the queue, hourly target, remaining quantity and the actions Start, Queues, Report. A machine with no queue shows "no work assigned".
+/projects/operational-app/images/03-maquina-operando.png | Machine in production: elapsed-time counter, operators in the tooltip, countdown to the next inspection.
+/projects/operational-app/images/04-inspecao-pendente.png | When the inspection falls due, the card is locked until the inspection is recorded.
+/projects/operational-app/images/05-restante-estimado.png | Right after a report, the remaining quantity shows with an asterisk: a local estimate while Power Automate recalculates.
+```
 
 ### Start production (4-step wizard)
 
-<figure><img src="/projects/operational-app/images/06-iniciar-1-operadores.png" alt="Step 1: operators"><figcaption>1/4: who is at the machine.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/07-iniciar-2-contador.png" alt="Step 2: initial counter"><figcaption>2/4 (Fabrication): the machine's initial counter, with explicit confirmation.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/08-iniciar-3-lotes.png" alt="Step 3: batches"><figcaption>3/4 (Fabrication): raw-material batch(es) used in production.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/09-iniciar-4-resumo.png" alt="Step 4: summary"><figcaption>4/4: summary before starting.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/10-iniciar-5-resumo.png" alt="Filled summary"><figcaption>Summary with all data filled in, Start Production button.</figcaption></figure>
+```carousel
+/projects/operational-app/images/06-iniciar-1-operadores.png | 1/4: who is at the machine.
+/projects/operational-app/images/07-iniciar-2-contador.png | 2/4 (Fabrication): the machine's initial counter, with explicit confirmation.
+/projects/operational-app/images/08-iniciar-3-lotes.png | 3/4 (Fabrication): raw-material batch(es) used in production.
+/projects/operational-app/images/09-iniciar-4-resumo.png | 4/4: summary before starting.
+/projects/operational-app/images/10-iniciar-5-resumo.png | Summary with all data filled in, Start Production button.
+```
 
 ### Parameter inspection
 
-<figure><img src="/projects/operational-app/images/11-inspecao-parametro.png" alt="Numeric inspection"><figcaption>Numeric parameter, with a shortcut to the part's technical drawing.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/12-reporte-1-numerico.png" alt="Numeric report"><figcaption>Production report: numeric parameter.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/13-reporte-2-conformidade.png" alt="Conformity report"><figcaption>Boolean parameter: Conforming, N/A or Non-conforming. Each parameter's type comes from the machine register.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/14-reporte-3-comentarios.png" alt="Comments"><figcaption>Optional additional comments at the end of the report.</figcaption></figure>
+```carousel
+/projects/operational-app/images/11-inspecao-parametro.png | Numeric parameter, with a shortcut to the part's technical drawing.
+/projects/operational-app/images/12-reporte-1-numerico.png | Production report: numeric parameter.
+/projects/operational-app/images/13-reporte-2-conformidade.png | Boolean parameter: Conforming, N/A or Non-conforming. Each parameter's type comes from the machine register.
+/projects/operational-app/images/14-reporte-3-comentarios.png | Optional additional comments at the end of the report.
+```
 
 ### Finish production (3-step wizard)
 
-<figure><img src="/projects/operational-app/images/15-finalizar-1-quantidades-vazio.png" alt="Step 1: quantities empty"><figcaption>1/3: final counter, scrap and rework, with examples in the placeholder.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/16-finalizar-1-quantidades.png" alt="Step 1: quantities filled"><figcaption>1/3 filled in.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/17-finalizar-2-horarios.png" alt="Step 2: times"><figcaption>2/3: confirmation of the start and end times.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/18-finalizar-3-resumo.png" alt="Step 3: summary"><figcaption>3/3: report summary before saving.</figcaption></figure>
-<figure><img src="/projects/operational-app/images/19-loading.png" alt="Loading"><figcaption>Loading state while saving.</figcaption></figure>
+```carousel
+/projects/operational-app/images/15-finalizar-1-quantidades-vazio.png | 1/3: final counter, scrap and rework, with examples in the placeholder.
+/projects/operational-app/images/16-finalizar-1-quantidades.png | 1/3 filled in.
+/projects/operational-app/images/17-finalizar-2-horarios.png | 2/3: confirmation of the start and end times.
+/projects/operational-app/images/18-finalizar-3-resumo.png | 3/3: report summary before saving.
+/projects/operational-app/images/19-loading.png | Loading state while saving.
+```
 
 ## Key formulas
 

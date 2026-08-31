@@ -20,43 +20,14 @@ This app does **not** cover the purchase request itself or contact with the supp
 
 The demo video walks through the app's main flow, using a fictional dataset already loaded (identical structure to the real one, fully invented data).
 
-<figure>
-  <img src="/projects/bello-compras/images/01-listagem-pedidos.jpg" alt="Order listing">
-  <figcaption>Order listing, with filters by year, month, status, unit, due date and payment method.</figcaption>
-</figure>
-
-A new order is created by filling in the description, date, supplier, cost center, purchase category and total value.
-
-<figure>
-  <img src="/projects/bello-compras/images/02-criar-pedido.jpg" alt="Create order">
-  <figcaption>Order creation form, ready to submit.</figcaption>
-</figure>
-
-Once created, the order receives a payment method (in the example, installment credit). The system tracks the **percentage paid** until it reaches 100%, and only then can the order be completed.
-
-<figure>
-  <img src="/projects/bello-compras/images/03-forma-pagamento.jpg" alt="Payment method registered">
-  <figcaption>Payment method registered, with 100% of the order's value covered.</figcaption>
-</figure>
-
-Supplier registration follows the same logic: a listing with the main data and a creation form.
-
-<figure>
-  <img src="/projects/bello-compras/images/04-listagem-fornecedores.jpg" alt="Supplier listing">
-  <figcaption>Supplier listing, with tax ID, address, email, phone and materials/services.</figcaption>
-</figure>
-
-<figure>
-  <img src="/projects/bello-compras/images/05-criar-fornecedor.jpg" alt="Create supplier">
-  <figcaption>Supplier creation form.</figcaption>
-</figure>
-
-Finally, filtering by payment method confirms that the listing correctly reflects the registered data.
-
-<figure>
-  <img src="/projects/bello-compras/images/06-filtro-pagamento.jpg" alt="Filter by payment method">
-  <figcaption>Order listing filtered by "Installment Credit".</figcaption>
-</figure>
+```carousel
+/projects/bello-compras/images/01-listagem-pedidos.jpg | Order listing | Filters by year, month, status, unit, due date and payment method.
+/projects/bello-compras/images/02-criar-pedido.jpg | Create order | Description, date, supplier, cost center, purchase category and total value.
+/projects/bello-compras/images/03-forma-pagamento.jpg | Payment method registered | In the example, installment credit covering 100% of the value. The system tracks the percentage paid until it reaches 100%, and only then can the order be completed.
+/projects/bello-compras/images/04-listagem-fornecedores.jpg | Supplier listing | Tax ID, address, email, phone and materials/services. Same logic as the order listing.
+/projects/bello-compras/images/05-criar-fornecedor.jpg | Create supplier | Supplier creation form.
+/projects/bello-compras/images/06-filtro-pagamento.jpg | Filter by payment method | Listing filtered by "Installment Credit", confirming it reflects the registered data.
+```
 
 ## Technical architecture
 

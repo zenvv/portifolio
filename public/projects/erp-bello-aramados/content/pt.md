@@ -63,13 +63,11 @@ operacional da empresa de ponta a ponta:
 
 ## Capturas de tela
 
-| Dashboard do PCP                                                 | Pedidos do Comercial                                                     |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| ![Dashboard PCP](/projects/erp-bello-aramados/images/dashboard-pcp.png) | ![Pedidos Comercial](/projects/erp-bello-aramados/images/pedidos-comercial.png) |
-
-| Gestão de usuários e permissões (Admin)                         |
-| --------------------------------------------------------------- |
-| ![Usuários Admin](/projects/erp-bello-aramados/images/users-admin.png) |
+```carousel
+/projects/erp-bello-aramados/images/dashboard-pcp.png | Dashboard do PCP | Filas de programação de produção, atribuição de máquinas e apontamentos.
+/projects/erp-bello-aramados/images/pedidos-comercial.png | Pedidos do Comercial | Listagem de pedidos de clientes com tabela virtualizada e filtros na URL.
+/projects/erp-bello-aramados/images/users-admin.png | Usuários e permissões (Admin) | Gestão de usuários e RBAC granular por setor.
+```
 
 ## Stack
 

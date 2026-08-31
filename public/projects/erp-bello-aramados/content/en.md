@@ -68,13 +68,11 @@ covers the company's operational workflow end to end:
 
 ## Screenshots
 
-| PCP Dashboard                                                    | Sales Orders                                                        |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
-| ![PCP Dashboard](/projects/erp-bello-aramados/images/dashboard-pcp.png) | ![Sales Orders](/projects/erp-bello-aramados/images/pedidos-comercial.png) |
-
-| User & permissions management (Admin)                        |
-| ------------------------------------------------------------ |
-| ![Admin Users](/projects/erp-bello-aramados/images/users-admin.png) |
+```carousel
+/projects/erp-bello-aramados/images/dashboard-pcp.png | PCP Dashboard | Production scheduling queues, machine assignment and reports.
+/projects/erp-bello-aramados/images/pedidos-comercial.png | Sales Orders | Client order listing with a virtualized table and URL-synced filters.
+/projects/erp-bello-aramados/images/users-admin.png | User & permissions management (Admin) | User management and granular per-sector RBAC.
+```
 
 ## Stack
 

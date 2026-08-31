@@ -247,6 +247,25 @@ export const Projetos: Project[] = [
     featured: true,
   },
   {
+    index: 4,
+    slug: "bello-financeiro",
+    title: { en: "Finance App", pt: "App Financeiro" },
+    description: {
+      en: "(Demo) Internal app for Bello Aramados' Finance sector: centralizes everything the company has to pay — from the Purchasing queue, a manual entry or a forecast spreadsheet — and tracks bank balances alongside the entries.",
+      pt: "(Demo) App interno da Bello Aramados para o setor Financeiro: centraliza tudo que a empresa tem a pagar — vindo da fila de Compras, de um lançamento manual ou de uma planilha de previsão — e acompanha o saldo dos bancos junto com os lançamentos.",
+    },
+    shortDescription: {
+      en: "Accounts-payable and bank-balance control app",
+      pt: "App de contas a pagar e controle de saldo dos bancos",
+    },
+    createdAt: "Jun/2026",
+    tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
+    tags: ["Web", "Software"],
+    empresa: "Bello Aramados",
+    type: "powerapps",
+    featured: true,
+  },
+  {
     index: 6,
     slug: "bello-pregos-fixadores",
     title: { en: "Bello Prego & Fixadores", pt: "Bello Prego & Fixadores" },

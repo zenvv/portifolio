@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "components/ui/image.tsx"
+        ],
+        "createdAt": "2026-08-31T00:07:45.603Z",
+        "reason": "reusable <img> primitive: src is supplied by callers via ...props, not a placeholder"
+      }
+    ]
+  }
+}

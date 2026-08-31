@@ -134,14 +134,13 @@ function ProjectCard({
         <ArrowUpRightIcon className="size-3" />
       </span>
 
-      <div className="aspect-video w-full overflow-hidden shrink-0 border-b bg-muted">
-        <FallbackImage
-          candidates={getProjectBannerCandidates(projeto.slug)}
-          loading="lazy"
-          decoding="async"
-          className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
+      <FallbackImage
+        candidates={getProjectBannerCandidates(projeto.slug)}
+        loading="lazy"
+        decoding="async"
+        wrapperClassName="aspect-video w-full shrink-0 border-b"
+        className="transition-transform duration-300 group-hover:scale-105"
+      />
 
       <div className="flex flex-col gap-2 p-3.5 flex-1">
         <div className="flex flex-col gap-0.5">

@@ -2,6 +2,7 @@ import type { JSX } from "react";
 import type { ExtraProps } from "react-markdown";
 import CodeBlock from "@/components/markdown/CodeBlock";
 import MermaidDiagram from "@/components/markdown/MermaidDiagram";
+import MarkdownCarousel from "@/components/markdown/MarkdownCarousel";
 
 type PreProps = JSX.IntrinsicElements["pre"] & ExtraProps;
 type HastNode = NonNullable<PreProps["node"]>;
@@ -42,6 +43,10 @@ export default function MarkdownPre({ node, children, ...rest }: PreProps) {
 
   if (lang === "mermaid") {
     return <MermaidDiagram code={code} />;
+  }
+
+  if (lang === "carousel") {
+    return <MarkdownCarousel source={code} />;
   }
 
   return <CodeBlock code={code} lang={lang} />;

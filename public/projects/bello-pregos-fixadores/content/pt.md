@@ -23,27 +23,10 @@ A paleta é enxuta: vermelho como cor de destaque do ícone, preto/grafite para 
 
 ## Versões alternativas da logo
 
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_VERMELHO_CLARO.png" alt="Logo horizontal, vermelho claro" />
-<figcaption>Versão horizontal, vermelho claro</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/4x_BELLOFIXADORES_VERTICAL_VERMELHO_CLARO.png" alt="Logo vertical, vermelho claro" />
-<figcaption>Versão vertical, vermelho claro</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_BRANCO.png" alt="Logo horizontal, branca" />
-<figcaption>Versão horizontal, branca, para uso sobre fundos escuros</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/ICONE_B_P.png" alt="Ícone isolado, monocromático" />
-<figcaption>Ícone isolado, monocromático</figcaption>
-</figure>
-
-<figure>
-<img src="/projects/bello-pregos-fixadores/images/ICONE_P_V.png" alt="Ícone isolado, vermelho sobre fundo escuro" />
-<figcaption>Ícone isolado, vermelho sobre fundo escuro</figcaption>
-</figure>
+```carousel
+/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_VERMELHO_CLARO.png | Horizontal, vermelho claro | Assinatura principal da marca, para aplicações estendidas.
+/projects/bello-pregos-fixadores/images/4x_BELLOFIXADORES_VERTICAL_VERMELHO_CLARO.png | Vertical, vermelho claro | Versão empilhada, para espaços mais quadrados.
+/projects/bello-pregos-fixadores/images/1x_BELLOFIXADORES_HORIZONTAL_BRANCO.png | Horizontal, branca | Para uso sobre fundos escuros.
+/projects/bello-pregos-fixadores/images/ICONE_B_P.png | Ícone isolado, monocromático | A sigla BFX como ícone para aplicações menores.
+/projects/bello-pregos-fixadores/images/ICONE_P_V.png | Ícone isolado, vermelho | Vermelho sobre fundo escuro.
+```

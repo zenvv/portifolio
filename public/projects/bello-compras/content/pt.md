@@ -20,43 +20,14 @@ Esse app **não** cobre a requisição da compra em si nem o contato com o forne
 
 O vídeo de demonstração percorre o fluxo principal do app, já com uma base de dados fictícia carregada (estrutura idêntica à real, dados totalmente inventados).
 
-<figure>
-  <img src="/projects/bello-compras/images/01-listagem-pedidos.jpg" alt="Listagem de pedidos">
-  <figcaption>Listagem de pedidos, com filtros por ano, mês, status, unidade, vencimento e forma de pagamento.</figcaption>
-</figure>
-
-Um novo pedido é criado preenchendo descrição, data, fornecedor, centro de custo, categoria de compra e valor total.
-
-<figure>
-  <img src="/projects/bello-compras/images/02-criar-pedido.jpg" alt="Criar pedido">
-  <figcaption>Formulário de criação de pedido, pronto pra registrar.</figcaption>
-</figure>
-
-Depois de criado, o pedido recebe uma forma de pagamento (no exemplo, crédito parcelado). O sistema acompanha o **percentual pago** até bater 100%, e só então o pedido pode ser concluído.
-
-<figure>
-  <img src="/projects/bello-compras/images/03-forma-pagamento.jpg" alt="Forma de pagamento cadastrada">
-  <figcaption>Forma de pagamento cadastrada, com 100% do valor do pedido coberto.</figcaption>
-</figure>
-
-O cadastro de fornecedores segue a mesma lógica: uma listagem com os dados principais e um formulário de criação.
-
-<figure>
-  <img src="/projects/bello-compras/images/04-listagem-fornecedores.jpg" alt="Listagem de fornecedores">
-  <figcaption>Listagem de fornecedores, com CNPJ, endereço, e-mail, telefone e materiais/serviços.</figcaption>
-</figure>
-
-<figure>
-  <img src="/projects/bello-compras/images/05-criar-fornecedor.jpg" alt="Criar fornecedor">
-  <figcaption>Formulário de criação de fornecedor.</figcaption>
-</figure>
-
-Por fim, o filtro por forma de pagamento confirma que a listagem reflete corretamente os dados cadastrados.
-
-<figure>
-  <img src="/projects/bello-compras/images/06-filtro-pagamento.jpg" alt="Filtro por forma de pagamento">
-  <figcaption>Listagem de pedidos filtrada por "Crédito Parcelado".</figcaption>
-</figure>
+```carousel
+/projects/bello-compras/images/01-listagem-pedidos.jpg | Listagem de pedidos | Filtros por ano, mês, status, unidade, vencimento e forma de pagamento.
+/projects/bello-compras/images/02-criar-pedido.jpg | Criar pedido | Descrição, data, fornecedor, centro de custo, categoria de compra e valor total.
+/projects/bello-compras/images/03-forma-pagamento.jpg | Forma de pagamento cadastrada | No exemplo, crédito parcelado cobrindo 100% do valor. O sistema acompanha o percentual pago até bater 100%, e só então o pedido pode ser concluído.
+/projects/bello-compras/images/04-listagem-fornecedores.jpg | Listagem de fornecedores | CNPJ, endereço, e-mail, telefone e materiais/serviços. Mesma lógica da listagem de pedidos.
+/projects/bello-compras/images/05-criar-fornecedor.jpg | Criar fornecedor | Formulário de criação de fornecedor.
+/projects/bello-compras/images/06-filtro-pagamento.jpg | Filtro por forma de pagamento | Listagem filtrada por "Crédito Parcelado", confirmando que reflete os dados cadastrados.
+```
 
 ## Arquitetura técnica
 
