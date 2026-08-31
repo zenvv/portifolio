@@ -62,8 +62,33 @@ export const Projetos: Project[] = [
   },
   {
     index: 1,
+    slug: "bello-ecosystems",
+    title: {
+      en: "Bello App Ecosystem",
+      pt: "Ecossistema de Apps Bello",
+    },
+    description: {
+      en: "A set of six Power Apps for Bello Aramados that together work as a mini-ERP over SharePoint lists (no Dataverse). This post covers the three supporting apps — PPC Panel, Logistics and Engineering — each owning one step of a shared production data model.",
+      pt: "Um conjunto de seis Power Apps para a Bello Aramados que, juntos, funcionam como um mini-ERP sobre listas de SharePoint (sem Dataverse). Este post cobre os três apps de apoio — Painel PCP, Logística e Engenharia — cada um dono de uma etapa de um modelo de dados de produção compartilhado.",
+    },
+    shortDescription: {
+      en: "Six Power Apps working as a mini-ERP over SharePoint",
+      pt: "Seis Power Apps funcionando como um mini-ERP sobre SharePoint",
+    },
+    createdAt: "Apr/2026",
+    tecnologias: ["Power Apps", "Power Automate", "SharePoint", "Power Fx"],
+    tags: ["Web", "Software"],
+    empresa: "Bello Aramados",
+    type: "powerapps",
+    featured: true,
+  },
+  {
+    index: 2,
     slug: "operational-app",
-    title: { en: "Operational App", pt: "Aplicativo Operacional" },
+    title: {
+      en: "PA App - Operational Control",
+      pt: "PA App - Controle Operacional",
+    },
     description: {
       en: "Operational app for Bello Aramados, designed to register the operators' work and provide real-time updates on production status. The app enhances communication between the production team and management, ensuring efficient workflow and timely delivery of products.",
       pt: "Aplicativo operacional para a Bello Aramados, desenvolvido para registrar o trabalho dos operadores e fornecer atualizações em tempo real sobre o status da produção. O app melhora a comunicação entre a equipe de produção e a gestão, garantindo um fluxo de trabalho eficiente e a entrega pontual dos produtos.",
@@ -77,6 +102,44 @@ export const Projetos: Project[] = [
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
     link: null,
+    type: "powerapps",
+    featured: true,
+  },
+  {
+    index: 3,
+    slug: "bello-financeiro",
+    title: { en: "PA App - Finance", pt: "PA App - Financeiro" },
+    description: {
+      en: "(Demo) Internal app for Bello Aramados' Finance sector: centralizes everything the company has to pay — from the Purchasing queue, a manual entry or a forecast spreadsheet — and tracks bank balances alongside the entries.",
+      pt: "(Demo) App interno da Bello Aramados para o setor Financeiro: centraliza tudo que a empresa tem a pagar — vindo da fila de Compras, de um lançamento manual ou de uma planilha de previsão — e acompanha o saldo dos bancos junto com os lançamentos.",
+    },
+    shortDescription: {
+      en: "Accounts-payable and bank-balance control app",
+      pt: "App de contas a pagar e controle de saldo dos bancos",
+    },
+    createdAt: "Jun/2026",
+    tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
+    tags: ["Web", "Software"],
+    empresa: "Bello Aramados",
+    type: "powerapps",
+    featured: true,
+  },
+  {
+    index: 4,
+    slug: "bello-compras",
+    title: { en: "PA App - Purchasing", pt: "PA App - Compras" },
+    description: {
+      en: "Internal app for Bello Aramados' Purchasing sector: supplier registration, purchase order creation and tracking, and payment method control through confirmation with the finance sector.",
+      pt: "App interno da Bello Aramados para o setor de Compras: cadastro de fornecedores, criação e acompanhamento de pedidos de compra, e controle das formas de pagamento até a confirmação com o setor financeiro.",
+    },
+    shortDescription: {
+      en: "purchase order and supplier management app",
+      pt: "app de gestão de pedidos de compra e fornecedores",
+    },
+    createdAt: "Mai/2026",
+    tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
+    tags: ["Web", "Software"],
+    empresa: "Bello Aramados",
     type: "powerapps",
     featured: true,
   },
@@ -104,9 +167,28 @@ export const Projetos: Project[] = [
     featured: false,
   },
   {
-    index: 2,
+    index: 6,
+    slug: "bello-pregos-fixadores",
+    title: { en: "Bello Prego & Fixadores", pt: "Bello Prego & Fixadores" },
+    description: {
+      en: "Logomark",
+      pt: "Logomarca",
+    },
+    shortDescription: {
+      en: "logomark design",
+      pt: "design de logomarca",
+    },
+    createdAt: "May/2026",
+    tecnologias: ["Figma"],
+    tags: ["Design", "Figma"],
+    empresa: "Bello Aramados",
+    type: "design",
+    color: "#ED2C26",
+  },
+  {
+    index: 7,
     slug: "risk-analysis-app",
-    title: { en: "HSE App", pt: "App SSMA" },
+    title: { en: "PA App - HSE", pt: "PA App - SSMA" },
     description: {
       en: "Risk analysis app for Bello Aramados, designed to identify and assess potential risks in the production process. The app helps management make informed decisions and implement effective risk mitigation strategies.",
       pt: "App de análise de risco para a Bello Aramados, desenvolvido para identificar e avaliar os riscos potenciais no processo de produção. O app ajuda a gestão a tomar decisões informadas e implementar estratégias eficazes de mitigação de riscos.",
@@ -123,7 +205,7 @@ export const Projetos: Project[] = [
     featured: true,
   },
   {
-    index: 2,
+    index: 8,
     slug: "nfs-transporte",
     title: {
       en: "Automation of Invoices and Transportation Declarations",
@@ -145,7 +227,7 @@ export const Projetos: Project[] = [
     featured: true,
   },
   {
-    index: 2,
+    index: 9,
     slug: "rpa-sap-pyautogui",
     title: {
       en: "RPA with PyAutoGUI for SAP Report Extraction",
@@ -171,7 +253,7 @@ export const Projetos: Project[] = [
     featured: true,
   },
   {
-    index: 3,
+    index: 10,
     slug: "sferi",
     title: { en: "Sferi", pt: "Sferi" },
     description: {
@@ -201,7 +283,7 @@ export const Projetos: Project[] = [
     link: "https://sferi.vercel.app/",
   },
   {
-    index: 5,
+    index: 11,
     slug: "not-my-typo",
     title: { en: "Not My Typo", pt: "Not My Typo" },
     description: {
@@ -228,64 +310,7 @@ export const Projetos: Project[] = [
     featured: false,
   },
   {
-    index: 1,
-    slug: "bello-compras",
-    title: { en: "Purchasing App", pt: "App de Compras" },
-    description: {
-      en: "Internal app for Bello Aramados' Purchasing sector: supplier registration, purchase order creation and tracking, and payment method control through confirmation with the finance sector.",
-      pt: "App interno da Bello Aramados para o setor de Compras: cadastro de fornecedores, criação e acompanhamento de pedidos de compra, e controle das formas de pagamento até a confirmação com o setor financeiro.",
-    },
-    shortDescription: {
-      en: "purchase order and supplier management app",
-      pt: "app de gestão de pedidos de compra e fornecedores",
-    },
-    createdAt: "Mai/2026",
-    tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
-    tags: ["Web", "Software"],
-    empresa: "Bello Aramados",
-    type: "powerapps",
-    featured: true,
-  },
-  {
-    index: 4,
-    slug: "bello-financeiro",
-    title: { en: "Finance App", pt: "App Financeiro" },
-    description: {
-      en: "(Demo) Internal app for Bello Aramados' Finance sector: centralizes everything the company has to pay — from the Purchasing queue, a manual entry or a forecast spreadsheet — and tracks bank balances alongside the entries.",
-      pt: "(Demo) App interno da Bello Aramados para o setor Financeiro: centraliza tudo que a empresa tem a pagar — vindo da fila de Compras, de um lançamento manual ou de uma planilha de previsão — e acompanha o saldo dos bancos junto com os lançamentos.",
-    },
-    shortDescription: {
-      en: "Accounts-payable and bank-balance control app",
-      pt: "App de contas a pagar e controle de saldo dos bancos",
-    },
-    createdAt: "Jun/2026",
-    tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
-    tags: ["Web", "Software"],
-    empresa: "Bello Aramados",
-    type: "powerapps",
-    featured: true,
-  },
-  {
-    index: 6,
-    slug: "bello-pregos-fixadores",
-    title: { en: "Bello Prego & Fixadores", pt: "Bello Prego & Fixadores" },
-    description: {
-      en: "Logomark",
-      pt: "Logomarca",
-    },
-    shortDescription: {
-      en: "logomark design",
-      pt: "design de logomarca",
-    },
-    createdAt: "May/2026",
-    tecnologias: ["Figma"],
-    tags: ["Design", "Figma"],
-    empresa: "Bello Aramados",
-    type: "design",
-    color: "#ED2C26",
-  },
-  {
-    index: 7,
+    index: 12,
     slug: "mini-factory",
     title: { en: "Mini Factory", pt: "Mini Factory" },
     description: {

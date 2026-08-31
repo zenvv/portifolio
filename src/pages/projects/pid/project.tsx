@@ -18,7 +18,7 @@ import {
   InfoIcon,
 } from "@phosphor-icons/react";
 
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import MarkdownPre from "@/components/markdown/MarkdownPre";
@@ -29,6 +29,26 @@ import { ICON_PLACEHOLDER } from "@/lib/placeholders";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { renderRichText } from "@/lib/i18n/render-rich-text";
 import { Scales } from "@/src/components/ui/scales";
+
+/** Markdown links: in-app routes (`/projects/...`) navigate client-side with the
+ * view transition; anything else opens in a new tab. */
+const markdownComponents: Components = {
+  pre: MarkdownPre,
+  a: ({ href, children, ...rest }) => {
+    if (href && href.startsWith("/")) {
+      return (
+        <TransitionLink to={href} direction="forward" plain>
+          {children}
+        </TransitionLink>
+      );
+    }
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" {...rest}>
+        {children}
+      </a>
+    );
+  },
+};
 
 export default function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -177,7 +197,7 @@ export default function ProjectPage() {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
-            components={{ pre: MarkdownPre }}
+            components={markdownComponents}
           >
             {markdown}
           </ReactMarkdown>

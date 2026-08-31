@@ -213,10 +213,12 @@ function ProjectTypeToggle({
               key={type}
               data-project-type={type}
               value={type}
+              disabled={meta.disabled}
               onClick={() => onTypeChange(type)}
               className={cn(
                 "relative z-10 text-xs! h-7 gap-1.5 transition-colors",
                 "aria-pressed:bg-transparent data-pressed:bg-transparent",
+                "disabled:opacity-40 disabled:pointer-events-none",
                 isActive && meta.activeText,
               )}
             >

@@ -22,7 +22,7 @@ export const PROJECT_TYPE_FILTER_VALUES: ProjectTypeFilterValue[] = [
  */
 export const PROJECT_TYPE_META: Record<
   ProjectTypeFilterValue,
-  { icon?: IconComponent; activeBg: string; activeText: string }
+  { icon?: IconComponent; activeBg: string; activeText: string; disabled?: boolean }
 > = {
   all: { activeBg: "bg-foreground", activeText: "text-background" },
   web: { icon: GlobeIcon, activeBg: "bg-indigo-600", activeText: "text-white" },
@@ -40,6 +40,7 @@ export const PROJECT_TYPE_META: Record<
     icon: ChartBarIcon,
     activeBg: "bg-yellow-500",
     activeText: "text-yellow-950",
+    disabled: true,
   },
   design: {
     icon: PenNibIcon,
