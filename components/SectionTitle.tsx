@@ -34,8 +34,6 @@ export default function SectionTitle({
 }) {
   return (
     <div className={cn("flex w-full flex-col gap-2.5 relative h-10")}>
-      {/* <Scales className="inset-0 h-7.5" /> */}
-
       {divider && (
         <span className="border-b w-full h-px absolute inset-0 top-1/2 translate-y-1/2"></span>
       )}

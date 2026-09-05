@@ -3,7 +3,6 @@ import { Fragment, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language.provider";
 import TransitionLink from "@/components/TransitionLink";
 import DownloadCV from "./sidebar/DownloadCV";
-// import Images from "./sidebar/Images";
 import { ArrowRightIcon, UserListIcon } from "@phosphor-icons/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -129,7 +128,6 @@ function Hero() {
   return (
     <div className="flex flex-col gap-5 w-full justify-start items-start text-left ">
       <div className="flex items-center gap-4">
-        {/* <Images size="size-16" /> */}
         <div className="flex flex-col gap-0.5">
           <h1 className="text-6xl cursor-default text-black dark:text-amber-400 font-semibold">
             <InteractiveGreeting text={t.hero.greeting} startDelay={0.1} />

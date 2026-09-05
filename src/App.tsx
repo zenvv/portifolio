@@ -3,7 +3,6 @@ import { Outlet } from "react-router";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/i18n/language.provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-// import Sidebar from "@/components/sidebar/Sidebar";
 import Navbar from "@/components/sidebar/Navbar";
 import { prefetchRoute } from "@/src/route-prefetch";
 

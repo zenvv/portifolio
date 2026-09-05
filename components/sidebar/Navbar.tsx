@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import Avatar from "@/components/sidebar/Avatar";
 import ContactLinks, {
   CompactContactLinks,
 } from "@/components/sidebar/Contact";
@@ -17,7 +16,6 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import Logo from "./Logo";
-// import Links from "@/components/sidebar/Links";
 
 function Navbar() {
   const { t } = useLanguage();
@@ -27,7 +25,6 @@ function Navbar() {
     <header className="sticky top-0 z-[500] backdrop-blur-2xl bg-background/60 border-b">
       <div className="relative mx-auto flex w-full max-w-full items-center justify-between gap-4 p-4 lg:max-w-5xl">
         <Logo />
-        {/* <Links /> */}
         <CompactContactLinks />
         <span className="flex items-center gap-2">
           <LangSelector />
