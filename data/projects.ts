@@ -72,8 +72,8 @@ export const Projetos: Project[] = [
       pt: "Um conjunto de seis Power Apps para a Bello Aramados que, juntos, funcionam como um mini-ERP sobre listas de SharePoint (sem Dataverse). Este post cobre os três apps de apoio — Painel PCP, Logística e Engenharia — cada um dono de uma etapa de um modelo de dados de produção compartilhado.",
     },
     shortDescription: {
-      en: "Six Power Apps working as a mini-ERP over SharePoint",
-      pt: "Seis Power Apps funcionando como um mini-ERP sobre SharePoint",
+      en: "6 Power Apps working as a mini-ERP over SharePoint",
+      pt: "6 Power Apps funcionando como um mini-ERP sobre SharePoint",
     },
     createdAt: "Apr/2026",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint", "Power Fx"],

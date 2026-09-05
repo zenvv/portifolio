@@ -129,7 +129,7 @@ function ProjectCard({
       )}
       style={{ transitionDelay: visible ? `${(index % 6) * 70}ms` : "0ms" }}
     >
-      <span className="pointer-events-none absolute right-2.5 top-2.5 z-10 inline-flex items-center gap-1 rounded-md border bg-background/60 backdrop-blur-2xl px-2.5 py-1 text-[0.65rem] font-medium text-foreground opacity-0 -translate-y-1 scale-95 shadow-sm transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
+      <span className="pointer-events-none absolute right-2 top-2 z-10 inline-flex items-center gap-1 rounded-sm border bg-background px-2.5 py-1 text-[0.65rem] font-medium text-foreground opacity-0 -translate-y-1 scale-95 shadow-sm transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
         {t.projects.readMore}
         <ArrowUpRightIcon className="size-3" />
       </span>

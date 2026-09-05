@@ -9,9 +9,7 @@ export function ThemeSwitcher() {
     <Button
       variant={"ghost"}
       size="icon-sm"
-      className={
-        "active:rotate-45 active:not-aria-[haspopup]:translate-y-0 active:scale-95 rounded-full"
-      }
+      className={" active:scale-95"}
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       <SunDimIcon className="dark:hidden block transition-all scale-100 dark:scale-0 rotate-360 " />

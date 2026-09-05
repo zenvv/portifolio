@@ -8,14 +8,14 @@ import { ArrowRightIcon, UserListIcon } from "@phosphor-icons/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const DEFAULT_STRETCH = 80;
-const DEFAULT_WEIGHT = 600;
+const DEFAULT_STRETCH = 60;
+const DEFAULT_WEIGHT = 500;
 /** Furthest letters shrink down to this while hovering — thinner/more condensed than the resting state. */
 const MIN_STRETCH = 75;
-const MIN_WEIGHT = 200;
+const MIN_WEIGHT = 100;
 /** The hovered letter itself reaches this — the widest/boldest the font supports. */
 const PEAK_STRETCH = 100;
-const PEAK_WEIGHT = 800;
+const PEAK_WEIGHT = 900;
 /** Effect strength by distance (in characters) from the hovered letter: 100/75/50/25/0%. */
 const FALLOFF = [1, 0.75, 0.5, 0.25];
 
@@ -100,11 +100,11 @@ function InteractiveGreeting({
               ) : (
                 <motion.span
                   className="inline-block"
-                  initial={{ y: "110%" }}
+                  initial={{ y: "120%" }}
                   animate={{ y: 0 }}
                   transition={{
-                    duration: 0.55,
-                    delay: startDelay + wi * 0.06,
+                    duration: 0.5,
+                    delay: startDelay + wi * 0,
                     ease: EASE,
                   }}
                 >
@@ -127,11 +127,11 @@ function Hero() {
   const roleDelay = reduceMotion ? 0 : 0.1 + greetingWordCount * 0.06 + 0.1;
 
   return (
-    <div className="flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 w-full justify-start items-start text-left ">
       <div className="flex items-center gap-4">
         {/* <Images size="size-16" /> */}
         <div className="flex flex-col gap-0.5">
-          <h1 className="text-4xl cursor-default text-black dark:text-amber-400 font-semibold">
+          <h1 className="text-6xl cursor-default text-black dark:text-amber-400 font-semibold">
             <InteractiveGreeting text={t.hero.greeting} startDelay={0.1} />
           </h1>
           <motion.span
@@ -145,11 +145,11 @@ function Hero() {
         </div>
       </div>
 
-      <p className="text-sm text-muted-foreground tracking-tight max-w-xl">
+      <p className="text-sm text-muted-foreground tracking-tight max-w-md text-pretty">
         {t.hero.tagline}
       </p>
 
-      <div className="flex flex-wrap items-center gap-2 w-full">
+      <div className="flex flex-wrap items-center justify-start gap-2 w-full">
         <TransitionLink
           to="/projects"
           direction="forward"

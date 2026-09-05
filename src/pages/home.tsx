@@ -18,7 +18,7 @@ export default function HomePage() {
 
   return (
     <div className="h-full w-full relative flex flex-col gap-0 flex-1 overflow-x-clip">
-      <GlassBadge className="absolute -right-42 -top-38 size-160 -rotate-35 dark:opacity-15" />
+      <GlassBadge className="absolute -right-42 -top-38 size-160 -rotate-35 dark:opacity-20" />
       <span className="relative z-10 h-10 bg-background">
         <Scales />
       </span>
