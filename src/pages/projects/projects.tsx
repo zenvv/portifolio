@@ -2,6 +2,7 @@ import { useLanguage } from "@/lib/i18n/language.provider";
 import { ArrowLeftIcon, MagicWandIcon } from "@phosphor-icons/react";
 import { useMemo, useState } from "react";
 
+import FeaturedBanner from "./components/FeaturedBanner";
 import ProjectCard from "./components/ProjectCard";
 import ProjectsEmptyState from "./components/ProjectsEmptyState";
 import ProjectsFilterPanel from "./components/ProjectsFilterPanel";
@@ -105,7 +106,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="flex-1 flex flex-col ">
-      <span className="flex w-full items-start flex-col justify-between mb-6 gap-4">
+      <span className="flex w-full items-start flex-col justify-between mb-0 gap-4">
         <div className="p-2 border-b w-full flex justify-start items-center gap-4">
           <TransitionLink
             to="/"
@@ -119,6 +120,8 @@ export default function ProjectsPage() {
       </span>
 
       <div className="p-0 pt-0 max-w-full flex-1 flex flex-col gap-6">
+        <FeaturedBanner className="border-b pb-4" />
+
         <ProjectsFilterPanel
           t={t}
           search={search}

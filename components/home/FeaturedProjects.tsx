@@ -1,9 +1,9 @@
 import { useLanguage } from "@/lib/i18n/language.provider";
 import ProjectCard from "@/src/pages/projects/components/ProjectCard";
-import { Projetos } from "@/data/projects";
+import { FeaturedProjetos } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
-const featuredProjects = Projetos.filter((proj) => proj.featured).slice(0, 3);
+const featuredProjects = FeaturedProjetos;
 
 export default function FeaturedProjects({
   className,

@@ -28,8 +28,19 @@ export type Project = {
   link?: string | null;
   color?: string | null;
   repo?: string | null;
-  featured?: boolean;
 };
+
+/**
+ * Slugs of the projects shown — in this exact order — in the home "Featured
+ * Projects" grid and the projects-page featured banner. This ordered list is
+ * the single place to curate them; a project's "featured" status is derived
+ * purely from membership here (see {@link FeaturedProjetos}).
+ */
+export const FEATURED_SLUGS = [
+  "erp-bello-aramados",
+  "nailly",
+  "operational-app",
+] as const;
 
 export const Projetos: Project[] = [
   {
@@ -57,9 +68,7 @@ export const Projetos: Project[] = [
     empresa: "Bello Aramados",
     link: "https://bello-sge-demo.vercel.app",
     type: "web",
-    repo: "https://www.github.com/zenvv/bello-sge-demo",
-    featured: true,
-  },
+    repo: "https://www.github.com/zenvv/bello-sge-demo",  },
   {
     index: 1,
     slug: "bello-ecosystems",
@@ -79,9 +88,7 @@ export const Projetos: Project[] = [
     tecnologias: ["Power Apps", "Power Automate", "SharePoint", "Power Fx"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
-    type: "powerapps",
-    featured: true,
-  },
+    type: "powerapps",  },
   {
     index: 2,
     slug: "operational-app",
@@ -102,9 +109,7 @@ export const Projetos: Project[] = [
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
     link: null,
-    type: "powerapps",
-    featured: true,
-  },
+    type: "powerapps",  },
   {
     index: 3,
     slug: "bello-financeiro",
@@ -121,9 +126,7 @@ export const Projetos: Project[] = [
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
-    type: "powerapps",
-    featured: true,
-  },
+    type: "powerapps",  },
   {
     index: 4,
     slug: "bello-compras",
@@ -140,9 +143,7 @@ export const Projetos: Project[] = [
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
-    type: "powerapps",
-    featured: true,
-  },
+    type: "powerapps",  },
   {
     index: 5,
     slug: "bello-website",
@@ -163,9 +164,7 @@ export const Projetos: Project[] = [
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
     link: "https://belloaramados.com/",
-    type: "web",
-    featured: false,
-  },
+    type: "web",  },
   {
     index: 6,
     slug: "bello-pregos-fixadores",
@@ -201,9 +200,7 @@ export const Projetos: Project[] = [
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Centro Tecnológico Randon",
-    type: "powerapps",
-    featured: true,
-  },
+    type: "powerapps",  },
   {
     index: 8,
     slug: "nfs-transporte",
@@ -223,9 +220,7 @@ export const Projetos: Project[] = [
     tecnologias: ["Microsoft Forms", "Power Automate", "SharePoint Lists"],
     tags: ["Microsoft", "Automation"],
     empresa: "Centro Tecnológico Randon",
-    type: "automation",
-    featured: true,
-  },
+    type: "automation",  },
   {
     index: 9,
     slug: "rpa-sap-pyautogui",
@@ -249,9 +244,7 @@ export const Projetos: Project[] = [
       en: "* Illustrative simulation of an RPA workflow (**Python** + **PyAutoGUI**) I built to pull reports from an ERP system, consolidate the data, and refresh a **Power BI dashboard**. Fully autonomous, ~10 min end-to-end. The original recording can't be shared due to a _data confidentiality agreement_, so I recreated the process in an abstract form.",
       pt: "* Simulação ilustrativa do fluxo de uma automação RPA (**Python + PyAutoGUI**) que desenvolvi para extrair relatórios de um ERP, consolidar os dados e atualizar um **dashboard no Power BI**. 100% autônoma, ~10 min de execução. O vídeo original não pode ser divulgado por _cláusula de confidencialidade de dados_, então recriei o processo de forma abstrata.",
     },
-    type: "automation",
-    featured: true,
-  },
+    type: "automation",  },
   {
     index: 10,
     slug: "sferi",
@@ -277,7 +270,6 @@ export const Projetos: Project[] = [
       "jsPDF",
     ],
     tags: ["Web", "Software"],
-    featured: true,
     type: "web",
     repo: "https://github.com/zenvv/sferi",
     link: "https://sferi.vercel.app/",
@@ -306,9 +298,7 @@ export const Projetos: Project[] = [
     tags: ["Web", "Software"],
     type: "web",
     repo: "https://github.com/zenvv/not-my-typo",
-    link: "https://not-my-typo.vercel.app/",
-    featured: false,
-  },
+    link: "https://not-my-typo.vercel.app/",  },
   {
     index: 12,
     slug: "mini-factory",
@@ -327,4 +317,61 @@ export const Projetos: Project[] = [
     type: "design",
     color: "#FF5400",
   },
+  {
+    index: 13,
+    slug: "nailly",
+    title: { en: "Nailly", pt: "Nailly" },
+    description: {
+      en: "Scheduling and finance PWA for a self-employed manicurist. A continuous time-band agenda, database-enforced no-overlap booking, batch payments allocated across appointments, recurring clients, a public request form with an approval queue, and Web Push — Next.js 16 on Supabase, with RLS as the security boundary.",
+      pt: "PWA de agenda e financeiro para uma manicure autônoma. Agenda como faixa contínua de tempo, agendamento sem sobreposição garantido por constraint no banco, pagamento em lote alocado entre atendimentos, clientes recorrentes, formulário público com fila de aprovação e Web Push — Next.js 16 sobre Supabase, com RLS como fronteira de segurança.",
+    },
+    shortDescription: {
+      en: "Scheduling + finance PWA for a self-employed manicurist",
+      pt: "PWA de agenda e financeiro para uma manicure autônoma",
+    },
+    createdAt: "Set/2026",
+    tecnologias: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Supabase",
+      "PostgreSQL",
+      "Row-Level Security",
+      "Edge Functions",
+      "PWA",
+      "Web Push",
+      "Vercel",
+      "date-fns",
+      "react-hook-form",
+      "Zod",
+    ],
+    tags: ["Web", "Software"],
+    empresa: "",
+    type: "web",
+    // App real fica atrás de login; o link aponta para o formulário público de
+    // reserva de uma instância de demonstração (dados fictícios).
+    link: "https://nailly-ten.vercel.app/agendar/atelie-aline-demo",
+    repo: null,
+    color: "#394B35",
+    imageCaption: {
+      en: "* Demo instance with fictional data — structure identical to production. Public booking form at /agendar/atelie-aline-demo.",
+      pt: "* Instância de demonstração com dados fictícios — estrutura idêntica à de produção. Formulário público de reserva em /agendar/atelie-aline-demo.",
+    },
+  },
 ];
+
+const projectBySlug = new Map(Projetos.map((p) => [p.slug, p]));
+
+/**
+ * The featured projects, resolved from {@link FEATURED_SLUGS} and kept in that
+ * order. Used by the home "Featured Projects" grid and the projects-page
+ * featured banner.
+ */
+export const FeaturedProjetos: Project[] = FEATURED_SLUGS.map((slug) => {
+  const project = projectBySlug.get(slug);
+  if (!project) {
+    throw new Error(`FEATURED_SLUGS references an unknown project slug: "${slug}"`);
+  }
+  return project;
+});

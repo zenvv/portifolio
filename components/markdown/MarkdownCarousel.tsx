@@ -1,15 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { CaretLeftIcon, CaretRightIcon, XIcon } from "@phosphor-icons/react";
 
 import { cn } from "@/lib/utils";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 type Slide = { src: string; title?: string; description?: string };
 
@@ -75,7 +69,6 @@ export default function MarkdownCarousel({ source }: { source: string }) {
 
   const active = slides[selected];
   const activeText = active?.title ?? active?.description;
-  const openSlide = openIndex === null ? null : slides[openIndex];
 
   return (
     <div className="not-prose my-6">
@@ -127,40 +120,185 @@ export default function MarkdownCarousel({ source }: { source: string }) {
         </span>
       </div>
 
-      <Dialog
-        open={openIndex !== null}
-        onOpenChange={(open) => !open && setOpenIndex(null)}
-      >
-        <DialogContent className="max-w-[calc(100%-2rem)] gap-0 sm:max-w-3xl lg:max-w-4xl p-0 overflow-hidden rounded-lg">
-          {openSlide && (
+      <Lightbox
+        slides={slides}
+        index={openIndex}
+        onIndexChange={setOpenIndex}
+        onClose={() => setOpenIndex(null)}
+      />
+    </div>
+  );
+}
+
+/** Full-screen image viewer in the spirit of Google Photos / X / Dribbble:
+ * always a dark scrim (no blur, both themes), the image sized purely by its
+ * height (~78vh), no frame, click-to-zoom, edge-anchored chrome. */
+function Lightbox({
+  slides,
+  index,
+  onIndexChange,
+  onClose,
+}: {
+  slides: Slide[];
+  index: number | null;
+  onIndexChange: (i: number) => void;
+  onClose: () => void;
+}) {
+  // Zoom is tracked per-index so navigating to another image always lands at
+  // 100% without a reset effect.
+  const [zoomedIndex, setZoomedIndex] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const open = index !== null;
+  const slide = index === null ? null : slides[index];
+  const zoomed = index !== null && zoomedIndex === index;
+  const hasPrev = index !== null && index > 0;
+  const hasNext = index !== null && index < slides.length - 1;
+
+  const goTo = useCallback(
+    (next: number) => {
+      setZoomedIndex(null);
+      scrollRef.current?.scrollTo({ top: 0 });
+      onIndexChange(next);
+    },
+    [onIndexChange],
+  );
+  const goPrev = useCallback(() => {
+    if (index !== null && index > 0) goTo(index - 1);
+  }, [index, goTo]);
+  const goNext = useCallback(() => {
+    if (index !== null && index < slides.length - 1) goTo(index + 1);
+  }, [index, slides.length, goTo]);
+
+  // Arrow-key navigation (Escape is handled by the dialog primitive).
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, goPrev, goNext]);
+
+  return (
+    <DialogPrimitive.Root
+      open={open}
+      onOpenChange={(next) => !next && onClose()}
+    >
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Backdrop className="fixed inset-0 z-50 bg-black/70 duration-150 data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0" />
+        <DialogPrimitive.Popup className="fixed inset-0 z-50 outline-none duration-150 data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0">
+          {slide && (
             <>
-              <div className="p-6 border-b">
-                <DialogHeader className="gap-0">
-                  <DialogTitle>
-                    {openSlide.title ??
-                      `Imagem ${(openIndex ?? 0) + 1} de ${slides.length}`}
-                  </DialogTitle>
-                  {openSlide.description && (
-                    <DialogDescription>
-                      {openSlide.description}
-                    </DialogDescription>
-                  )}
-                </DialogHeader>
-              </div>
-              <span
-                className={cn("max-h-[70vh] w-full rounded-none p-4", IMAGE_BG)}
+              {/* Scroll + click-to-close surface. The image drives its own
+               * size; empty space around it dismisses. */}
+              <div
+                ref={scrollRef}
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) onClose();
+                }}
+                className="absolute inset-0 flex justify-center overflow-x-hidden overflow-y-auto overscroll-contain py-[11dvh]"
               >
                 <img
-                  src={openSlide.src}
-                  alt={openSlide.title ?? openSlide.description ?? ""}
-                  className={cn("object-contain")}
+                  src={slide.src}
+                  alt={slide.title ?? slide.description ?? ""}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setZoomedIndex(zoomed ? null : index);
+                  }}
+                  draggable={false}
+                  className={cn(
+                    "w-auto max-w-none shrink-0 select-none transition-[height] duration-200 ease-out",
+                    IMAGE_BG,
+                    zoomed
+                      ? "h-[156dvh] cursor-zoom-out"
+                      : "h-[78dvh] cursor-zoom-in",
+                  )}
                 />
-              </span>
+              </div>
+
+              {/* Faint top scrim so the chrome stays legible over a light
+               * image. */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-black/40 to-transparent" />
+
+              {/* Title + description — top-left of the screen. */}
+              {(slide.title || slide.description) && (
+                <div className="pointer-events-none absolute top-0 left-0 max-w-[min(90vw,34rem)] p-4 sm:p-6">
+                  <DialogPrimitive.Title className="font-heading text-sm font-medium text-white drop-shadow-sm">
+                    {slide.title ?? `Imagem ${(index ?? 0) + 1} de ${slides.length}`}
+                  </DialogPrimitive.Title>
+                  {slide.description && (
+                    <DialogPrimitive.Description className="mt-1 text-xs leading-snug text-white/70 drop-shadow-sm">
+                      {slide.description}
+                    </DialogPrimitive.Description>
+                  )}
+                </div>
+              )}
+              {!slide.title && !slide.description && (
+                <DialogPrimitive.Title className="sr-only">
+                  Imagem {(index ?? 0) + 1} de {slides.length}
+                </DialogPrimitive.Title>
+              )}
+
+              {/* Close — top-right of the screen. */}
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Fechar"
+                className="absolute top-3 right-3 z-10 grid size-10 place-items-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:top-4 sm:right-4"
+              >
+                <XIcon className="size-5" weight="bold" />
+              </button>
+
+              {/* Prev / next — anchored to the screen edges. */}
+              {slides.length > 1 && (
+                <>
+                  <EdgeButton
+                    direction="prev"
+                    disabled={!hasPrev}
+                    onClick={goPrev}
+                  />
+                  <EdgeButton
+                    direction="next"
+                    disabled={!hasNext}
+                    onClick={goNext}
+                  />
+                </>
+              )}
             </>
           )}
-        </DialogContent>
-      </Dialog>
-    </div>
+        </DialogPrimitive.Popup>
+      </DialogPrimitive.Portal>
+    </DialogPrimitive.Root>
+  );
+}
+
+function EdgeButton({
+  direction,
+  disabled,
+  onClick,
+}: {
+  direction: "prev" | "next";
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  const Icon = direction === "prev" ? CaretLeftIcon : CaretRightIcon;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={direction === "prev" ? "Imagem anterior" : "Próxima imagem"}
+      className={cn(
+        "absolute top-1/2 z-10 grid size-11 -translate-y-1/2 place-items-center rounded-full",
+        "text-white/80 transition-colors hover:bg-white/10 hover:text-white",
+        "disabled:pointer-events-none disabled:opacity-0",
+        direction === "prev" ? "left-2 sm:left-4" : "right-2 sm:right-4",
+      )}
+    >
+      <Icon className="size-6" weight="bold" />
+    </button>
   );
 }
 
