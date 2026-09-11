@@ -13,8 +13,8 @@ import SectionTitle from "@/components/SectionTitle";
 import { useLanguage } from "@/lib/i18n/language.provider";
 
 export default function HomePage() {
-  usePageMeta(DEFAULT_TITLE, DEFAULT_DESCRIPTION);
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  usePageMeta(DEFAULT_TITLE[locale], DEFAULT_DESCRIPTION[locale]);
 
   return (
     <div className="h-full w-full relative flex flex-col gap-0 flex-1 overflow-x-clip">

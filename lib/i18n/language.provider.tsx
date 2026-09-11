@@ -1,72 +1,29 @@
 import * as React from "react";
-import { locales, translations, type Locale } from "./translations";
-
-const STORAGE_KEY = "zeni-locale";
+import { useLocation } from "react-router";
+import { translations, type Locale } from "./translations";
+import { localeFromPath } from "./paths";
 
 type LanguageContextValue = {
   locale: Locale;
-  setLocale: (locale: Locale) => void;
   t: (typeof translations)[Locale];
 };
 
 const LanguageContext = React.createContext<LanguageContextValue | null>(null);
 
-function isLocale(value: string | null): value is Locale {
-  return !!value && (locales as string[]).includes(value);
-}
-
-function detectLocale(): Locale {
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (isLocale(stored)) return stored;
-  return window.navigator.language.toLowerCase().startsWith("pt") ? "pt" : "en";
-}
-
-// module-level store so useSyncExternalStore can read localStorage without
-// setState-in-effect: the server snapshot always resolves to "en" and the
-// client re-renders once after hydration with the detected/stored locale
-let cachedLocale: Locale | null = null;
-const listeners = new Set<() => void>();
-
-function getSnapshot(): Locale {
-  if (cachedLocale === null) {
-    cachedLocale = detectLocale();
-  }
-  return cachedLocale;
-}
-
-function getServerSnapshot(): Locale {
-  return "en";
-}
-
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  return () => listeners.delete(listener);
-}
-
-function commitLocale(next: Locale) {
-  cachedLocale = next;
-  window.localStorage.setItem(STORAGE_KEY, next);
-  listeners.forEach((listener) => listener());
-}
-
+/** The site's locale is a pure function of the URL ("/en/..." vs
+ * everything else) so that what a crawler fetches for a given path always
+ * matches what a visitor sees — see lib/i18n/paths.ts. */
 function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const locale = React.useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  );
+  const { pathname } = useLocation();
+  const locale = localeFromPath(pathname);
 
   React.useEffect(() => {
-    document.documentElement.lang = locale;
+    document.documentElement.lang = locale === "en" ? "en" : "pt-BR";
   }, [locale]);
 
-  const setLocale = React.useCallback((next: Locale) => {
-    commitLocale(next);
-  }, []);
-
   const value = React.useMemo(
-    () => ({ locale, setLocale, t: translations[locale] }),
-    [locale, setLocale],
+    () => ({ locale, t: translations[locale] }),
+    [locale],
   );
 
   return (

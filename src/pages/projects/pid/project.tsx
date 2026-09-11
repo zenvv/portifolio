@@ -26,7 +26,7 @@ import MarkdownPre from "@/components/markdown/MarkdownPre";
 import MarkdownSkeleton from "@/components/markdown/MarkdownSkeleton";
 import NotFoundPage from "@/src/pages/not-found";
 import { Projetos } from "@/data/projects";
-import { usePageMeta } from "@/lib/use-page-meta";
+import { usePageMeta, DEFAULT_TITLE } from "@/lib/use-page-meta";
 import { renderRichText } from "@/lib/i18n/render-rich-text";
 import { Scales } from "@/src/components/ui/scales";
 
@@ -57,7 +57,7 @@ export default function ProjectPage() {
   const projeto = Projetos.find((p) => p.slug === slug);
 
   usePageMeta(
-    projeto ? `zenvv / ${projeto.title[locale]}` : "zenvv / portfólio",
+    projeto ? `zenvv / ${projeto.title[locale]}` : DEFAULT_TITLE[locale],
     projeto?.description[locale],
   );
 

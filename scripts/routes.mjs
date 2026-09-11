@@ -10,19 +10,36 @@ import { createServer } from "vite";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export const root = resolve(__dirname, "..");
 
-/** Loads `Projetos` from data/projects.ts via Vite's SSR module loader, so
- * this plain Node script can import path-aliased TS without extra tooling. */
-export async function loadProjects() {
+/** Loads `Projetos` (data/projects.ts) and the site-wide default title/
+ * description (lib/use-page-meta.ts) via Vite's SSR module loader, so this
+ * plain Node script can import path-aliased TS — and stay in sync with what
+ * the client renders — without extra build tooling. */
+export async function loadContent() {
   const server = await createServer({ root, server: { middlewareMode: true } });
   const { Projetos } = await server.ssrLoadModule("/data/projects.ts");
+  const { DEFAULT_TITLE, DEFAULT_DESCRIPTION } = await server.ssrLoadModule(
+    "/lib/use-page-meta.ts",
+  );
   await server.close();
-  return Projetos;
+  return { Projetos, DEFAULT_TITLE, DEFAULT_DESCRIPTION };
 }
 
-/** All routes that should exist as a static, crawlable page: the static
- * pages plus one per project. */
-export function getRoutePaths(projetos) {
+/** Every PT (unprefixed) route: the static pages plus one per project. */
+export function getPtRoutePaths(projetos) {
   const staticRoutes = ["/", "/projects"];
   const projectRoutes = projetos.map((p) => `/projects/${p.slug}`);
   return [...staticRoutes, ...projectRoutes];
+}
+
+/** Prefixes a PT path with "/en" — see lib/i18n/paths.ts, the client-side
+ * equivalent of this mapping. */
+export function toEnPath(ptPath) {
+  return ptPath === "/" ? "/en" : `/en${ptPath}`;
+}
+
+/** All routes that should exist as a static, crawlable page: every PT route
+ * plus its "/en" counterpart. */
+export function getRoutePaths(projetos) {
+  const ptRoutes = getPtRoutePaths(projetos);
+  return [...ptRoutes, ...ptRoutes.map(toEnPath)];
 }

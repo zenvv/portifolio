@@ -13,10 +13,13 @@ export const loadRoute = {
   notFound: () => import("./pages/not-found"),
 };
 
-/** Warm the JS chunk for `to` before the user commits to navigating there. */
+/** Warm the JS chunk for `to` before the user commits to navigating there.
+ * The chunk is the same regardless of the "/en" locale prefix, so that's
+ * stripped before matching. */
 export function prefetchRoute(to: string) {
-  if (to === "/") void loadRoute.home();
-  else if (to === "/about") void loadRoute.about();
-  else if (to === "/projects") void loadRoute.projects();
-  else if (to.startsWith("/projects/")) void loadRoute.project();
+  const path = to.replace(/^\/en(?=\/|$)/, "") || "/";
+  if (path === "/") void loadRoute.home();
+  else if (path === "/about") void loadRoute.about();
+  else if (path === "/projects") void loadRoute.projects();
+  else if (path.startsWith("/projects/")) void loadRoute.project();
 }

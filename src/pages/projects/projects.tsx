@@ -14,7 +14,11 @@ import { Companies } from "@/data/experience";
 import { TECH_TYPES } from "@/data/stack";
 import { canonicalTechName, getTechType } from "@/lib/tech-icons";
 import type { ProjectTypeFilterValue } from "@/lib/project-type-meta";
-import { usePageMeta } from "@/lib/use-page-meta";
+import {
+  usePageMeta,
+  PROJECTS_TITLE,
+  PROJECTS_DESCRIPTION,
+} from "@/lib/use-page-meta";
 import { Scales } from "@/src/components/ui/scales";
 
 const COMPANY_GROUPS = ["Bello Aramados", "Centro Tecnológico Randon"] as const;
@@ -31,12 +35,7 @@ function companyGroupOf(empresa: string | undefined) {
 
 export default function ProjectsPage() {
   const { locale, t } = useLanguage();
-  usePageMeta(
-    "zenvv / projetos",
-    locale === "pt"
-      ? "Projetos de desenvolvimento, automação e design de Willian Zeni (zenvv)."
-      : "Development, automation and design projects by Willian Zeni (zenvv).",
-  );
+  usePageMeta(PROJECTS_TITLE[locale], PROJECTS_DESCRIPTION[locale]);
 
   const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] =

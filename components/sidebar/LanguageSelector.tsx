@@ -1,18 +1,27 @@
-import type { Locale } from "@/lib/i18n/translations";
+import { useLocation, useNavigate } from "react-router";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import Flag from "react-world-flags";
 import { useLanguage } from "@/lib/i18n/language.provider";
+import { localizePath } from "@/lib/i18n/paths";
 
 function LangSelector() {
-  const { locale, setLocale, t } = useLanguage();
+  const { locale, t } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <ToggleGroup
       value={[locale === "pt" ? "PT" : "EN"]}
       onValueChange={(value) => {
         const next = value[0] as "EN" | "PT" | undefined;
-        if (next)
-          setLocale(next === "PT" ? ("pt" as Locale) : ("en" as Locale));
+        if (!next) return;
+        const targetLocale = next === "PT" ? "pt" : "en";
+        navigate(
+          localizePath(location.pathname, targetLocale) +
+            location.search +
+            location.hash,
+          { viewTransition: true },
+        );
       }}
       aria-label={t.nav.languageSelection}
       spacing={0.1}
