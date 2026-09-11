@@ -17,16 +17,30 @@ export const root = resolve(__dirname, "..");
 export async function loadContent() {
   const server = await createServer({ root, server: { middlewareMode: true } });
   const { Projetos } = await server.ssrLoadModule("/data/projects.ts");
-  const { DEFAULT_TITLE, DEFAULT_DESCRIPTION } = await server.ssrLoadModule(
-    "/lib/use-page-meta.ts",
-  );
+  const pageMeta = await server.ssrLoadModule("/lib/use-page-meta.ts");
   await server.close();
-  return { Projetos, DEFAULT_TITLE, DEFAULT_DESCRIPTION };
+  const {
+    DEFAULT_TITLE,
+    DEFAULT_DESCRIPTION,
+    PROJECTS_TITLE,
+    PROJECTS_DESCRIPTION,
+    ABOUT_TITLE,
+    ABOUT_DESCRIPTION,
+  } = pageMeta;
+  return {
+    Projetos,
+    DEFAULT_TITLE,
+    DEFAULT_DESCRIPTION,
+    PROJECTS_TITLE,
+    PROJECTS_DESCRIPTION,
+    ABOUT_TITLE,
+    ABOUT_DESCRIPTION,
+  };
 }
 
 /** Every PT (unprefixed) route: the static pages plus one per project. */
 export function getPtRoutePaths(projetos) {
-  const staticRoutes = ["/", "/projects"];
+  const staticRoutes = ["/", "/about", "/projects"];
   const projectRoutes = projetos.map((p) => `/projects/${p.slug}`);
   return [...staticRoutes, ...projectRoutes];
 }

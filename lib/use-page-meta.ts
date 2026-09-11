@@ -19,6 +19,14 @@ const PROJECTS_DESCRIPTION: Record<Locale, string> = {
   pt: "Projetos de desenvolvimento, automação e design de Willian Zeni (zenvv).",
   en: "Development, automation and design projects by Willian Zeni (zenvv).",
 };
+const ABOUT_TITLE: Record<Locale, string> = {
+  pt: "zenvv / sobre",
+  en: "zenvv / about",
+};
+const ABOUT_DESCRIPTION: Record<Locale, string> = {
+  pt: "Sobre Willian Zeni (zenvv): experiência, educação e um pouco mais.",
+  en: "About Willian Zeni (zenvv): experience, education and a bit more.",
+};
 
 // Updates <title>/<meta description>/<link canonical> on route change.
 // This SPA has no SSR/prerendering, so this only affects the browser tab
@@ -61,4 +69,6 @@ export {
   DEFAULT_DESCRIPTION,
   PROJECTS_TITLE,
   PROJECTS_DESCRIPTION,
+  ABOUT_TITLE,
+  ABOUT_DESCRIPTION,
 };

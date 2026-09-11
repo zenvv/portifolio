@@ -37,7 +37,15 @@ const DEFAULT_OG_IMAGE = {
   en: { url: `${SITE_URL}/images/og-card-en.png`, width: 1200, height: 630 },
 };
 
-const { Projetos, DEFAULT_TITLE, DEFAULT_DESCRIPTION } = await loadContent();
+const {
+  Projetos,
+  DEFAULT_TITLE,
+  DEFAULT_DESCRIPTION,
+  PROJECTS_TITLE,
+  PROJECTS_DESCRIPTION,
+  ABOUT_TITLE,
+  ABOUT_DESCRIPTION,
+} = await loadContent();
 
 const BANNER_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "gif", "svg"];
 
@@ -163,12 +171,15 @@ const pageDescriptors = [
     image: null,
   },
   {
+    ptPath: "/about",
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
+    image: null,
+  },
+  {
     ptPath: "/projects",
-    title: { pt: "zenvv / projetos", en: "zenvv / projects" },
-    description: {
-      pt: "Projetos de desenvolvimento, automação e design de Willian Zeni (zenvv).",
-      en: "Development, automation and design projects by Willian Zeni (zenvv).",
-    },
+    title: PROJECTS_TITLE,
+    description: PROJECTS_DESCRIPTION,
     image: null,
   },
   ...Projetos.map((p) => ({

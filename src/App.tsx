@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/i18n/language.provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,6 +20,36 @@ export default function App() {
     );
     return () => cancelIdleCallback(id);
   }, []);
+
+  // Scrolls to a "#section" target after navigating there, e.g. the header's
+  // "Contact" nav link pointing at "/#contato" from another page — the
+  // target route's chunk may still be loading when this runs, so poll
+  // briefly instead of assuming the element already exists.
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.slice(1);
+    let cancelled = false;
+    let elapsed = 0;
+    const step = 100;
+    const timeoutMs = 3000;
+
+    function tryScroll() {
+      if (cancelled) return;
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      elapsed += step;
+      if (elapsed < timeoutMs) setTimeout(tryScroll, step);
+    }
+    tryScroll();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [pathname, hash]);
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">

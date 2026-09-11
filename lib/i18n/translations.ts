@@ -9,6 +9,9 @@ export const translations = {
       cv: "Download CV",
       menu: "Menu",
       theme: "Theme",
+      about: "About",
+      projects: "Projects",
+      contact: "Contact",
     },
     easterEgg: "🎉 me at my birthday :)",
     hero: {
@@ -112,6 +115,9 @@ export const translations = {
       cv: "Baixar Currículo",
       menu: "Menu",
       theme: "Tema",
+      about: "Sobre",
+      projects: "Projetos",
+      contact: "Contato",
     },
     easterEgg: "🎉 eu no meu aniversário :)",
     hero: {

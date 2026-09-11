@@ -29,7 +29,7 @@ export default function HomePage() {
         <ImpactStats />
         <FeaturedProjects />
       </span>
-      <span className="relative z-10 flex-1 border-b">
+      <span id="contato" className="relative z-10 flex-1 border-b scroll-mt-20">
         <SectionTitle title={t.contact.heading} align="center" />
         <span className="p-6 w-full flex items-center justify-center pb-8">
           <ContactLinks layout="row" />

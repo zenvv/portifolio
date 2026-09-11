@@ -12,19 +12,18 @@ import SectionTitle from "@/components/SectionTitle";
 import { Companies } from "@/data/experience";
 import { EducationList } from "@/data/education";
 import { PROFILE_PHOTOS } from "@/data/photos";
-import { usePageMeta } from "@/lib/use-page-meta";
+import {
+  usePageMeta,
+  ABOUT_TITLE,
+  ABOUT_DESCRIPTION,
+} from "@/lib/use-page-meta";
 import { Scales } from "@/src/components/ui/scales";
 import DownloadCV from "@/components/sidebar/DownloadCV";
 
 export default function AboutPage() {
   const { locale, t } = useLanguage();
 
-  usePageMeta(
-    "zenvv / sobre",
-    locale === "pt"
-      ? "Sobre Willian Zeni (zenvv): experiência, educação e um pouco mais."
-      : "About Willian Zeni (zenvv): experience, education and a bit more.",
-  );
+  usePageMeta(ABOUT_TITLE[locale], ABOUT_DESCRIPTION[locale]);
 
   return (
     <div className="flex-1 flex flex-col">
