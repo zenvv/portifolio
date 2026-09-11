@@ -17,6 +17,7 @@ export const root = resolve(__dirname, "..");
 export async function loadContent() {
   const server = await createServer({ root, server: { middlewareMode: true } });
   const { Projetos } = await server.ssrLoadModule("/data/projects.ts");
+  const { StackList } = await server.ssrLoadModule("/data/stack.ts");
   const pageMeta = await server.ssrLoadModule("/lib/use-page-meta.ts");
   await server.close();
   const {
@@ -29,6 +30,7 @@ export async function loadContent() {
   } = pageMeta;
   return {
     Projetos,
+    StackList,
     DEFAULT_TITLE,
     DEFAULT_DESCRIPTION,
     PROJECTS_TITLE,

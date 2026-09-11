@@ -39,6 +39,7 @@ const DEFAULT_OG_IMAGE = {
 
 const {
   Projetos,
+  StackList,
   DEFAULT_TITLE,
   DEFAULT_DESCRIPTION,
   PROJECTS_TITLE,
@@ -46,6 +47,17 @@ const {
   ABOUT_TITLE,
   ABOUT_DESCRIPTION,
 } = await loadContent();
+
+// Matches the home hero's role line (lib/i18n/translations.ts hero.label),
+// Title-cased for schema.org instead of the hero's all-lowercase-then-CSS-
+// uppercase display string.
+const JOB_TITLE = {
+  pt: "Desenvolvedor de Software · UI/UX Designer",
+  en: "Software Developer · UI/UX Designer",
+};
+// Every technology actually shown in the site's stack list (data/stack.ts),
+// deduplicated — not a hand-picked subset.
+const KNOWS_ABOUT = JSON.stringify([...new Set(StackList.map((s) => s.name))]);
 
 const BANNER_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "gif", "svg"];
 
@@ -150,9 +162,10 @@ function renderHead({ path, alternatePath, locale, title, description, image }) 
         "@type": "Person",
         "name": "Willian Zeni",
         "alternateName": "zenvv",
-        "jobTitle": "Software Developer",
+        "jobTitle": "${JOB_TITLE[locale]}",
         "url": "${SITE_URL}/",
         "image": "${PERSON_IMAGE}",
+        "knowsAbout": ${KNOWS_ABOUT},
         "sameAs": [
           "https://www.github.com/zenvv",
           "https://www.linkedin.com/in/willian-z-327bba186/"
