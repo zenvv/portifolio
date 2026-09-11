@@ -26,7 +26,16 @@ import {
 
 const distDir = resolve(root, "dist");
 const SITE_URL = "https://zenvv.dev";
-const DEFAULT_IMAGE = `${SITE_URL}/images/me.png`;
+// Real photo — used only for the JSON-LD Person.image, a distinct field
+// from the share-preview card below.
+const PERSON_IMAGE = `${SITE_URL}/images/me.png`;
+// Share-preview default (see scripts/og-template.mjs / `npm run og`): one
+// rendered PNG per language, since the card's text is rasterized into the
+// image itself. Used whenever a route has no project banner of its own.
+const DEFAULT_OG_IMAGE = {
+  pt: { url: `${SITE_URL}/images/og-card.png`, width: 1200, height: 630 },
+  en: { url: `${SITE_URL}/images/og-card-en.png`, width: 1200, height: 630 },
+};
 
 const { Projetos, DEFAULT_TITLE, DEFAULT_DESCRIPTION } = await loadContent();
 
@@ -90,7 +99,17 @@ function renderHead({ path, alternatePath, locale, title, description, image }) 
   const url = `${SITE_URL}${path}`;
   const ptUrl = locale === "pt" ? url : `${SITE_URL}${alternatePath}`;
   const enUrl = locale === "en" ? url : `${SITE_URL}${alternatePath}`;
-  const img = absoluteUrl(image) ?? DEFAULT_IMAGE;
+  const defaultOg = DEFAULT_OG_IMAGE[locale];
+  const img = absoluteUrl(image) ?? defaultOg.url;
+  // Only the generated default card has known, fixed dimensions — a
+  // project's own banner is an arbitrary screenshot, so claiming 1200x630
+  // for it would be wrong and could make platforms crop it badly.
+  const imgDimensions = image
+    ? ""
+    : `
+    <meta property="og:image:width" content="${defaultOg.width}" />
+    <meta property="og:image:height" content="${defaultOg.height}" />
+    <meta property="og:image:alt" content="${escapeHtml(title)}" />`;
   const safeTitle = escapeHtml(title);
   const safeDescription = escapeHtml(description);
   const ogLocale = locale === "en" ? "en_US" : "pt_BR";
@@ -108,7 +127,7 @@ function renderHead({ path, alternatePath, locale, title, description, image }) 
     <meta property="og:title" content="${safeTitle}" />
     <meta property="og:description" content="${safeDescription}" />
     <meta property="og:url" content="${url}" />
-    <meta property="og:image" content="${img}" />
+    <meta property="og:image" content="${img}" />${imgDimensions}
     <meta property="og:locale" content="${ogLocale}" />
     <meta property="og:locale:alternate" content="${ogLocaleAlternate}" />
 
@@ -125,7 +144,7 @@ function renderHead({ path, alternatePath, locale, title, description, image }) 
         "alternateName": "zenvv",
         "jobTitle": "Software Developer",
         "url": "${SITE_URL}/",
-        "image": "${DEFAULT_IMAGE}",
+        "image": "${PERSON_IMAGE}",
         "sameAs": [
           "https://www.github.com/zenvv",
           "https://www.linkedin.com/in/willian-z-327bba186/"
