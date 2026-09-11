@@ -28,12 +28,41 @@ import NotFoundPage from "@/src/pages/not-found";
 import { Projetos } from "@/data/projects";
 import { usePageMeta, DEFAULT_TITLE } from "@/lib/use-page-meta";
 import { renderRichText } from "@/lib/i18n/render-rich-text";
+import { slugify } from "@/lib/slug";
 import { Scales } from "@/src/components/ui/scales";
+import TableOfContents from "@/components/markdown/TableOfContents";
+import { useRef, type ReactNode } from "react";
+
+/** Flattens a heading's children into its plain text, for slugifying. */
+function headingText(children: ReactNode): string {
+  if (typeof children === "string" || typeof children === "number") {
+    return String(children);
+  }
+  if (Array.isArray(children)) return children.map(headingText).join("");
+  if (
+    children &&
+    typeof children === "object" &&
+    "props" in children &&
+    children.props &&
+    typeof children.props === "object" &&
+    "children" in children.props
+  ) {
+    return headingText((children.props as { children: ReactNode }).children);
+  }
+  return "";
+}
 
 /** Markdown links: in-app routes (`/projects/...`) navigate client-side with the
- * view transition; anything else opens in a new tab. */
+ * view transition; anything else opens in a new tab. h2s get a slugified id
+ * (and scroll-mt so the sticky header doesn't cover the target) for
+ * TableOfContents to link to. */
 const markdownComponents: Components = {
   pre: MarkdownPre,
+  h2: ({ children, ...rest }) => (
+    <h2 id={slugify(headingText(children))} className="scroll-mt-24" {...rest}>
+      {children}
+    </h2>
+  ),
   a: ({ href, children, ...rest }) => {
     if (href && href.startsWith("/")) {
       return (
@@ -53,6 +82,7 @@ const markdownComponents: Components = {
 export default function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
   const { locale, t } = useLanguage();
+  const markdownRef = useRef<HTMLDivElement>(null);
 
   const projeto = Projetos.find((p) => p.slug === slug);
 
@@ -190,14 +220,23 @@ export default function ProjectPage() {
       {markdownLoading ? (
         <MarkdownSkeleton />
       ) : markdown ? (
-        <div className="text-sm text-muted-foreground border-t pt-12 mt-0 p-6 prose max-w-full flex-1 min-w-0">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
-            components={markdownComponents}
+        <div className="flex w-full items-start gap-8 border-t pt-12">
+          <div
+            ref={markdownRef}
+            className="text-sm text-muted-foreground mt-0 min-w-0 max-w-full flex-1 px-6 pb-6 prose"
           >
-            {markdown}
-          </ReactMarkdown>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              components={markdownComponents}
+            >
+              {markdown}
+            </ReactMarkdown>
+          </div>
+          <TableOfContents
+            containerRef={markdownRef}
+            title={t.projects.tableOfContents}
+          />
         </div>
       ) : (
         <span className="p-4 w-full flex text-muted-foreground text-mono text-xs font-light">
