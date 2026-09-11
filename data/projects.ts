@@ -52,8 +52,8 @@ export const Projetos: Project[] = [
       pt: "(Demo) ERP personalizado em Next.js para a Bello Aramados: produção, pedidos, compras e financeiro, com RBAC granular e integração via Microsoft Graph.",
     },
     shortDescription: {
-      en: "Custom ERP for production, sales, finance and tax area",
-      pt: "ERP personalizado para produção, comercial, financeiro e fiscal",
+      en: "ERP with 6 areas, 7 SharePoint sites and ~18 config-generated screens",
+      pt: "ERP com 6 áreas, 7 sites SharePoint e ~18 telas geradas por configuração",
     },
     createdAt: "2026-06",
     tecnologias: [
@@ -101,8 +101,8 @@ export const Projetos: Project[] = [
       pt: "Aplicativo operacional para a Bello Aramados, desenvolvido para registrar o trabalho dos operadores e fornecer atualizações em tempo real sobre o status da produção. O app melhora a comunicação entre a equipe de produção e a gestão, garantindo um fluxo de trabalho eficiente e a entrega pontual dos produtos.",
     },
     shortDescription: {
-      en: "Real-time industrial production tracking app for operators",
-      pt: "Apontamentos e acompanhamento de produção industrial em tempo real para operadores",
+      en: "Brought FIFO to the shop floor (order → work order → queue → production), built for 30+ operators with little tech familiarity",
+      pt: "Levou o PCP para FIFO (pedido → ordem → fila → produção), pensado para 30+ operadores sem afinidade com tecnologia",
     },
     createdAt: "2026-03",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
@@ -326,8 +326,8 @@ export const Projetos: Project[] = [
       pt: "PWA de agenda e financeiro para uma manicure autônoma. Agenda como faixa contínua de tempo, agendamento sem sobreposição garantido por constraint no banco, pagamento em lote alocado entre atendimentos, clientes recorrentes, formulário público com fila de aprovação e Web Push — Next.js 16 sobre Supabase, com RLS como fronteira de segurança.",
     },
     shortDescription: {
-      en: "Scheduling + finance PWA for a self-employed manicurist",
-      pt: "PWA de agenda e financeiro para uma manicure autônoma",
+      en: "Scheduling and batch-payment finance for 20–40 regulars — a PWA for a self-employed manicurist",
+      pt: "Agenda e financeiro em lote para 20–40 clientes fixas — PWA para uma manicure autônoma",
     },
     createdAt: "2026-09",
     tecnologias: [
