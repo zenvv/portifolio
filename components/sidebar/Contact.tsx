@@ -38,7 +38,7 @@ const socials: SocialsType[] = [
   },
   {
     id: 3,
-    label: "(54) 99158-0442",
+    label: "WhatsApp",
     icon: WhatsappLogoIcon,
     link: "tel:54991580442",
   },
