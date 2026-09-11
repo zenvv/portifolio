@@ -12,21 +12,16 @@
 // Uses Vite's SSR module loader so it can import data/projects.ts (TS,
 // path-aliased) from a plain Node script without extra build tooling.
 import { writeFileSync, readFileSync, mkdirSync, existsSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import { createServer } from "vite";
+import { resolve, join } from "node:path";
+import { root, loadProjects, getRoutePaths } from "./routes.mjs";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = resolve(__dirname, "..");
 const distDir = resolve(root, "dist");
 const SITE_URL = "https://zenvv.dev";
 const DEFAULT_IMAGE = `${SITE_URL}/images/me.png`;
 const DEFAULT_DESCRIPTION =
   "Portfólio de Willian Zeni (zenvv), desenvolvedor full-stack com foco em automação de processos, integração de sistemas corporativos e desenvolvimento web.";
 
-const server = await createServer({ root, server: { middlewareMode: true } });
-const { Projetos } = await server.ssrLoadModule("/data/projects.ts");
-await server.close();
+const Projetos = await loadProjects();
 
 const BANNER_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "gif", "svg"];
 
@@ -42,9 +37,7 @@ function findProjectBanner(slug) {
 
 // --- sitemap.xml ---
 
-const staticRoutes = ["/", "/projects"];
-const projectRoutes = Projetos.map((p) => `/projects/${p.slug}`);
-const allRoutes = [...staticRoutes, ...projectRoutes];
+const allRoutes = getRoutePaths(Projetos);
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
