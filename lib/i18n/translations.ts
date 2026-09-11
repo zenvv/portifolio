@@ -24,6 +24,9 @@ export const translations = {
       projects: {
         title: "Featured Projects",
       },
+      impact: {
+        title: "By the numbers",
+      },
       stack: {
         learningBadge: "learning",
         types: {
@@ -123,6 +126,9 @@ export const translations = {
       },
       projects: {
         title: "Projetos em Destaque",
+      },
+      impact: {
+        title: "Em números",
       },
       stack: {
         learningBadge: "estudando",

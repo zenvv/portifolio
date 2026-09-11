@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import StackSection from "@/components/home/Stack";
+import ImpactStats from "@/components/home/ImpactStats";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
 import GlassBadge from "@/components/home/GlassBadge";
 import {
@@ -25,6 +26,7 @@ export default function HomePage() {
       <span className="relative z-10 my-0 flex-1 gap-8 flex flex-col w-full p-6 min-h-full shrink-0 border-t bg-linear-to-t from-background dark:via-background to-transparent">
         <Hero />
         <StackSection />
+        <ImpactStats />
         <FeaturedProjects />
       </span>
       <span className="relative z-10 flex-1 border-b">

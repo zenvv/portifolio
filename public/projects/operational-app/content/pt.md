@@ -2,14 +2,15 @@
      Foco em bullets, tabelas, Mermaid e imagens. Power Automate fundido no "Fluxo principal".
      Todas as 19 telas incluídas. Revisar tom e cortes. -->
 
-App de chão de fábrica da unidade de Piracicaba. Mostra pra cada máquina o que produzir agora, na ordem certa, e registra cada apontamento já descontando do que falta. Roda em tablet, usado pela operação inteira da fábrica.
+App de chão de fábrica da unidade de Piracicaba. Mostra pra cada máquina o que produzir agora, na ordem certa, e registra cada apontamento já descontando do que falta. Roda em tablet, usado por 30+ operadores diariamente em toda a fábrica.
 
 ## Contexto
 
 - Não existia controle de produção no chão de fábrica.
 - O que existia era uma planilha de Excel que cruzava pedidos, produtos e quantidades, mas o resultado não chegava a quem estava na máquina.
 - O operador não tinha como saber qual pedido priorizar, quanto já tinha sido feito, nem quando parar pra inspeção.
-- Público: operadores de produção sem familiaridade com tecnologia. A maior parte das decisões de projeto foi sobre **o que tirar da tela**.
+- A solução não foi só o app: reorganizei o próprio processo do PCP pra seguir FIFO estrito (pedido → ordem de produção → fila → produção), pra que a fila materializada em `Filas` já refletisse a prioridade real de produção — o app é a ponta visível desse redesenho.
+- Público: 30+ operadores de produção por dia, sem familiaridade com tecnologia. A maior parte das decisões de projeto foi sobre **o que tirar da tela**.
 
 ## O que o app faz
 
