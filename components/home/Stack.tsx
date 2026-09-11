@@ -4,7 +4,6 @@ import { getTechIcon, getSolidTechIcon } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
 import TechIcon from "@/components/TechIcon";
 import { Button } from "../ui/button";
-import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 import {
   Dialog,
   DialogContent,
@@ -70,44 +69,31 @@ function TechIconSwap({
   );
 }
 
-/** icon-only tile (solid by default), name + colored icon revealed via tooltip; used on sm+ */
+/** Icon + name pill, name always visible — same visual pattern as the tech
+ * chips on project cards and the project detail page, so the hero stack
+ * row doesn't introduce a new one. */
 function FeaturedTileDesktop({ tech }: { tech: (typeof StackList)[number] }) {
-  const { t } = useLanguage();
   const icon = getTechIcon(tech.name);
 
   return (
-    <Tooltip>
-      <TooltipTrigger
-        className={cn(
-          "group relative flex size-8 shrink-0 items-center justify-center hover:opacity-100 opacity-60 transition-all ",
-        )}
-        render={<a href={tech.link} target="_blank" rel="noreferrer"></a>}
-      >
-        {icon ? (
-          <TechIconSwap
-            name={tech.name}
-            invert={false}
-            className="size-6 shrink-0 transition-all"
-          />
-        ) : null}
-
-        {tech.learning ? (
-          <span className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-primary" />
-        ) : null}
-      </TooltipTrigger>
-
-      <TooltipContent side="bottom" align="center">
-        <span className="flex items-center gap-1.5">
-          {icon ? <TechIcon icon={icon} className="size-3.5" /> : null}
-          {tech.name}
-          {tech.learning ? (
-            <span className="text-muted-foreground text-[0.6rem] uppercase tracking-wide">
-              · {t.hero.stack.learningBadge}
-            </span>
-          ) : null}
-        </span>
-      </TooltipContent>
-    </Tooltip>
+    <a
+      href={tech.link}
+      target="_blank"
+      rel="noreferrer"
+      className={cn(
+        "group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-transparent px-2.5 py-1 text-xs leading-none text-muted-foreground opacity-70 transition-all hover:border-border hover:text-foreground hover:opacity-100",
+      )}
+    >
+      {icon ? (
+        <TechIconSwap
+          name={tech.name}
+          invert={false}
+          className="size-3.5 shrink-0 transition-all"
+        />
+      ) : null}
+      <span className="whitespace-nowrap">{tech.name}</span>
+      {tech.learning ? <LearningBadge /> : null}
+    </a>
   );
 }
 
