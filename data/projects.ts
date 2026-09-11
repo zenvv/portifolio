@@ -17,7 +17,7 @@ export type Project = {
   description: Record<Locale, string>;
   /** Short, one-line pitch (max ~1 sentence), e.g. "figma-inspired vector designing tool". */
   shortDescription: Record<Locale, string>;
-  /** Free-form "Mês/Ano" string, e.g. "Mar/2024". */
+  /** ISO "YYYY-MM" string, e.g. "2024-03". Format for display with `formatProjectDate`. */
   createdAt: string;
   tecnologias: string[];
   tags: string[];
@@ -55,7 +55,7 @@ export const Projetos: Project[] = [
       en: "Custom ERP for production, sales, finance and tax area",
       pt: "ERP personalizado para produção, comercial, financeiro e fiscal",
     },
-    createdAt: "Jun/2026",
+    createdAt: "2026-06",
     tecnologias: [
       "Next.js",
       "MSAL",
@@ -84,7 +84,7 @@ export const Projetos: Project[] = [
       en: "6 Power Apps working as a mini-ERP over SharePoint",
       pt: "6 Power Apps funcionando como um mini-ERP sobre SharePoint",
     },
-    createdAt: "Apr/2026",
+    createdAt: "2026-04",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint", "Power Fx"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
@@ -104,7 +104,7 @@ export const Projetos: Project[] = [
       en: "Real-time industrial production tracking app for operators",
       pt: "Apontamentos e acompanhamento de produção industrial em tempo real para operadores",
     },
-    createdAt: "Mar/2026",
+    createdAt: "2026-03",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
@@ -122,7 +122,7 @@ export const Projetos: Project[] = [
       en: "Accounts-payable and bank-balance control app",
       pt: "App de contas a pagar e controle de saldo dos bancos",
     },
-    createdAt: "Jun/2026",
+    createdAt: "2026-06",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
@@ -139,7 +139,7 @@ export const Projetos: Project[] = [
       en: "purchase order and supplier management app",
       pt: "app de gestão de pedidos de compra e fornecedores",
     },
-    createdAt: "Mai/2026",
+    createdAt: "2026-05",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
@@ -159,7 +159,7 @@ export const Projetos: Project[] = [
       en: "Institutional website redesign",
       pt: "Redesign do site institucional",
     },
-    createdAt: "Feb/2026",
+    createdAt: "2026-02",
     tecnologias: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
@@ -177,7 +177,7 @@ export const Projetos: Project[] = [
       en: "logomark design",
       pt: "design de logomarca",
     },
-    createdAt: "May/2026",
+    createdAt: "2026-05",
     tecnologias: ["Figma"],
     tags: ["Design", "Figma"],
     empresa: "Bello Aramados",
@@ -196,7 +196,7 @@ export const Projetos: Project[] = [
       en: "-todo-",
       pt: "Analises de Riscos de Teste, Serviços de Ferramentaria, Licenças Ambientais, Gestão de Pessoas e Indicadores.",
     },
-    createdAt: "Mar/2025",
+    createdAt: "2025-03",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint"],
     tags: ["Web", "Software"],
     empresa: "Centro Tecnológico Randon",
@@ -216,7 +216,7 @@ export const Projetos: Project[] = [
       en: "Cut a 6h manual invoice/declaration cycle down to ~15-30min",
       pt: "Reduziu um ciclo manual de notas/declarações de 6h para ~15-30min",
     },
-    createdAt: "Apr/2022",
+    createdAt: "2022-04",
     tecnologias: ["Microsoft Forms", "Power Automate", "SharePoint Lists"],
     tags: ["Microsoft", "Automation"],
     empresa: "Centro Tecnológico Randon",
@@ -236,7 +236,7 @@ export const Projetos: Project[] = [
       en: "RPA that pulls SAP reports and refreshes a Power BI dashboard",
       pt: "RPA que extrai relatórios do SAP e atualiza um dashboard Power BI",
     },
-    createdAt: "May/2024",
+    createdAt: "2024-05",
     tecnologias: ["Python", "SAP ERP/HANA", "Excel", "Power BI"],
     tags: ["Microsoft", "Automation"],
     empresa: "Centro Tecnológico Randon",
@@ -257,7 +257,7 @@ export const Projetos: Project[] = [
       en: "Figma-inspired vector designing tool",
       pt: "Ferramenta de design vetorial inspirada no Figma",
     },
-    createdAt: "Agu/2026",
+    createdAt: "2026-08",
     tecnologias: [
       "Vite",
       "React",
@@ -286,7 +286,7 @@ export const Projetos: Project[] = [
       en: "MonkeyType inspired mini-game",
       pt: "Mini-game inspirado no MonkeyType",
     },
-    createdAt: "Jul/2026",
+    createdAt: "2026-07",
     tecnologias: [
       "Vite",
       "React",
@@ -311,7 +311,7 @@ export const Projetos: Project[] = [
       en: "logomark design",
       pt: "design de logomarca",
     },
-    createdAt: "Apr/2025",
+    createdAt: "2025-04",
     tecnologias: ["Figma"],
     tags: ["Design", "Figma"],
     type: "design",
@@ -329,7 +329,7 @@ export const Projetos: Project[] = [
       en: "Scheduling + finance PWA for a self-employed manicurist",
       pt: "PWA de agenda e financeiro para uma manicure autônoma",
     },
-    createdAt: "Set/2026",
+    createdAt: "2026-09",
     tecnologias: [
       "Next.js",
       "TypeScript",

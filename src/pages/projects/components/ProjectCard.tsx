@@ -17,6 +17,7 @@ import TechIcon from "@/components/TechIcon";
 import FallbackImage from "@/components/FallbackImage";
 import { getSolidTechIcon, getTechIcon } from "@/lib/tech-icons";
 import { getProjectBannerCandidates } from "@/lib/project-content";
+import { formatProjectDate } from "@/lib/project-date";
 import type { Project } from "@/data/projects";
 
 const MAX_VISIBLE_TECHS = 3;
@@ -166,7 +167,7 @@ function ProjectCard({
         {!compact ? (
           <div className="flex items-center justify-between gap-2 mt-auto pt-2">
             <span className="text-[0.65rem] text-muted-foreground/70 font-mono uppercase tracking-tight shrink-0">
-              {projeto.createdAt}
+              {formatProjectDate(projeto.createdAt, locale)}
             </span>
 
             <span className="flex items-center gap-1.5">

@@ -88,7 +88,6 @@ export default function MarkdownCarousel({ source }: { source: string }) {
                 <img
                   src={slide.src}
                   alt={slide.title ?? slide.description ?? ""}
-                  loading="lazy"
                   className={cn(
                     "h-56 w-auto object-contain transition-opacity group-hover:opacity-90 sm:h-72",
                     IMAGE_BG,

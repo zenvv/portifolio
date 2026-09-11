@@ -97,9 +97,9 @@ export default function ProjectsPage() {
       .map((group) => ({
         group,
         label: group === PERSONAL_GROUP ? t.projects.groups.personal : group,
-        items: filteredProjects.filter(
-          (p) => companyGroupOf(p.empresa) === group,
-        ),
+        items: filteredProjects
+          .filter((p) => companyGroupOf(p.empresa) === group)
+          .sort((a, b) => b.createdAt.localeCompare(a.createdAt)),
       }))
       .filter((g) => g.items.length > 0);
   }, [filteredProjects, t]);

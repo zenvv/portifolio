@@ -1,10 +1,13 @@
 import { useEffect, useState, type ComponentProps } from "react";
 import { Img } from "@/components/ui/image";
+import { cn } from "@/lib/utils";
 
 /**
  * Renders the first candidate URL that loads successfully, trying the next
  * one on error (e.g. `banner.jpg` vs `banner.png`). Shows a skeleton while a
- * candidate is loading; renders nothing once every candidate has failed.
+ * candidate is loading; once every candidate has failed (or none were given),
+ * fills the same box with a static gradient placeholder instead of leaving a
+ * gap.
  */
 export default function FallbackImage({
   candidates,
@@ -23,7 +26,18 @@ export default function FallbackImage({
     setIndex(0);
   }, [key]);
 
-  if (index >= candidates.length) return null;
+  if (index >= candidates.length) {
+    return (
+      <span
+        role="img"
+        aria-label={imgProps.alt}
+        className={cn(
+          "block bg-linear-to-br from-muted to-muted/40",
+          wrapperClassName,
+        )}
+      />
+    );
+  }
 
   return (
     <Img

@@ -8,6 +8,7 @@ import {
 } from "@/lib/project-content";
 import { useLanguage } from "@/lib/i18n/language.provider";
 import { getTechIcon } from "@/lib/tech-icons";
+import { formatProjectDate } from "@/lib/project-date";
 import { Button } from "@/components/ui/button";
 import TechIcon from "@/components/TechIcon";
 import FallbackImage from "@/components/FallbackImage";
@@ -25,7 +26,6 @@ import MarkdownPre from "@/components/markdown/MarkdownPre";
 import MarkdownSkeleton from "@/components/markdown/MarkdownSkeleton";
 import NotFoundPage from "@/src/pages/not-found";
 import { Projetos } from "@/data/projects";
-import { ICON_PLACEHOLDER } from "@/lib/placeholders";
 import { usePageMeta } from "@/lib/use-page-meta";
 import { renderRichText } from "@/lib/i18n/render-rich-text";
 import { Scales } from "@/src/components/ui/scales";
@@ -89,10 +89,7 @@ export default function ProjectPage() {
         <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:items-center sm:gap-4 sm:text-left pb-0">
           {projeto.type == "web" || projeto.type == "powerapps" ? (
             <FallbackImage
-              candidates={[
-                ...getProjectIconCandidates(projeto.slug),
-                ICON_PLACEHOLDER,
-              ]}
+              candidates={getProjectIconCandidates(projeto.slug)}
               wrapperClassName="size-10 sm:size-8 shrink-0 rounded-sm"
               className="object-contain"
             />
@@ -110,7 +107,7 @@ export default function ProjectPage() {
               ) : (
                 <span>{t.projects.personalProject}</span>
               )}{" "}
-              ∙ {projeto.createdAt}
+              ∙ {formatProjectDate(projeto.createdAt, locale)}
             </span>
           </div>
           <div className="flex w-full items-center gap-2 sm:w-auto">

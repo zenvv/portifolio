@@ -15,7 +15,7 @@ export const nailly: Project = {
     en: "Scheduling + finance PWA for a self-employed manicurist",
     pt: "PWA de agenda e financeiro para uma manicure autônoma",
   },
-  createdAt: "Set/2026",
+  createdAt: "2026-09",
   tecnologias: [
     "Next.js",
     "TypeScript",
