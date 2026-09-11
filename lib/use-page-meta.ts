@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import type { Locale } from "./i18n/translations";
 
-// The EN copy here is a literal translation of the PT original, not new
-// claims — kept provisional until Phase 3.3 rewrites both with a concrete
-// number from the project pages.
 const DEFAULT_TITLE: Record<Locale, string> = {
-  pt: "zenvv / portfólio",
-  en: "zenvv / portfolio",
+  pt: "Willian Zeni — Desenvolvedor Full-Stack | Automação e Integração de Sistemas",
+  en: "Willian Zeni — Full-Stack Developer | Automation & Systems Integration",
 };
+// Descriptions lead with a number already published on a project page
+// (nfs-transporte's shortDescription), not a new claim.
 const DEFAULT_DESCRIPTION: Record<Locale, string> = {
-  pt: "Portfólio de Willian Zeni (zenvv), desenvolvedor full-stack com foco em automação de processos, integração de sistemas corporativos e desenvolvimento web.",
-  en: "Portfolio of Willian Zeni (zenvv), a full-stack developer focused on process automation, enterprise systems integration and web development.",
+  pt: "Desenvolvedor full-stack focado em automação e integração de sistemas — já reduziu um ciclo manual de notas fiscais de 6h para 15–30min.",
+  en: "Full-stack developer focused on automation and systems integration — cut a manual invoice cycle from 6h down to 15-30min.",
 };
 const PROJECTS_TITLE: Record<Locale, string> = {
   pt: "zenvv / projetos",
