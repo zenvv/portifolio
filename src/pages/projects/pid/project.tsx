@@ -31,7 +31,13 @@ import { renderRichText } from "@/lib/i18n/render-rich-text";
 import { slugify } from "@/lib/slug";
 import { Scales } from "@/src/components/ui/scales";
 import TableOfContents from "@/components/markdown/TableOfContents";
+import ProblemSolution from "@/src/pages/projects/components/ProblemSolution";
+import { PROBLEM_SOLUTION } from "@/lib/project-problem-solution";
 import { useRef, type ReactNode } from "react";
+
+/** Below this length, a project's documentation is short enough to read
+ * end-to-end without a jump-to-section index. */
+const TOC_MIN_MARKDOWN_LENGTH = 6000;
 
 /** Flattens a heading's children into its plain text, for slugifying. */
 function headingText(children: ReactNode): string {
@@ -99,6 +105,8 @@ export default function ProjectPage() {
   if (!projeto) {
     return <NotFoundPage />;
   }
+
+  const problemSolution = PROBLEM_SOLUTION[projeto.slug]?.[locale];
 
   return (
     <div className="flex flex-col gap-0 max-w-full min-w-0">
@@ -217,6 +225,14 @@ export default function ProjectPage() {
         )}
       </span>
 
+      {problemSolution ? (
+        <ProblemSolution
+          problem={problemSolution.problem}
+          solution={problemSolution.solution}
+          t={t}
+        />
+      ) : null}
+
       {markdownLoading ? (
         <MarkdownSkeleton />
       ) : markdown ? (
@@ -233,10 +249,12 @@ export default function ProjectPage() {
               {markdown}
             </ReactMarkdown>
           </div>
-          <TableOfContents
-            containerRef={markdownRef}
-            title={t.projects.tableOfContents}
-          />
+          {markdown.length > TOC_MIN_MARKDOWN_LENGTH ? (
+            <TableOfContents
+              containerRef={markdownRef}
+              title={t.projects.tableOfContents}
+            />
+          ) : null}
         </div>
       ) : (
         <span className="p-4 w-full flex text-muted-foreground text-mono text-xs font-light">

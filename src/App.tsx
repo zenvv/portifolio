@@ -8,12 +8,11 @@ import { prefetchRoute } from "@/src/route-prefetch";
 
 export default function App() {
   // Once the landing page is interactive and the browser is idle, warm the
-  // chunks for the two routes a first-time visitor is most likely to open next.
+  // chunk for the route a first-time visitor is most likely to open next.
   useEffect(() => {
     if (typeof requestIdleCallback !== "function") return;
     const id = requestIdleCallback(
       () => {
-        prefetchRoute("/about");
         prefetchRoute("/projects");
       },
       { timeout: 3000 },

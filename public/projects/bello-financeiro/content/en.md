@@ -6,14 +6,6 @@
 
 # Finance
 
-Finance-sector app for Bello Aramados. Centralizes everything the company has to pay — whether it comes from the Purchasing queue, a manual entry or a forecast spreadsheet — and tracks bank balances alongside the entries.
-
-## Context
-
-- Finance had no way to compile what came in from Purchasing.
-- Invoice, boleto and payment receipt were scattered, with no link to the purchase that originated them.
-- There was no standardized way to build the accounts-payable forecast, nor to see bank balance and statement next to the entries.
-
 ## What the app does
 
 - **Payments:** a single list (`Controle de Pagamentos`), grouped by due week, filterable by year, week, payment method, status, overdue and forecast.

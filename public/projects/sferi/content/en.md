@@ -13,7 +13,7 @@
 
 [sferi](https://sferi.vercel.app) is a Figma-inspired design tool (shapes, frames, typography, gradients, image fills, groups, layers, the works) built from scratch on the HTML canvas, via [Konva](http://konvajs.org/), as a personal deep-dive into how canvas-based editors actually work under the hood: hit-testing, transforms, clipping, undo history, all of it.
 
-##
+## Screenshots
 
 ![Empty canvas, dark mode](/projects/sferi/images/1-overview.png)
 

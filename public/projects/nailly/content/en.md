@@ -3,28 +3,6 @@
      instance with fictional data (structure identical to production).
      DB table/column names kept in Portuguese — they're real schema identifiers. -->
 
-**Scheduling and finance** app for a self-employed manicurist. A mobile-first
-PWA, used almost 100% on an Android phone, between one client and the next. It
-replaces Google Calendar + informal WhatsApp billing with a single tool built
-for the real workflow of someone who sees ~6–8 clients a day and gets paid in
-batches.
-
-## Context
-
-- The user is a middle-aged manicurist, tired, with her hands busy. Not a dev,
-  not a "persona": a real person who today **forgets appointments** and
-  **can't remember whether she already charged someone**.
-- The work is already mentally heavy (hours talking to people). The app exists
-  to **take load off her head**, not add to it.
-- Single scoping test: _does this reduce her mental load?_ If not, it's out. If a
-  screen needs more than two taps for its most common task, it's wrong.
-- She serves 20–40 regulars, on weekly / biweekly / monthly recurrence. Three
-  are home visits. She **gets paid in batches** — R$ 180 at once covering the
-  month's 4 sessions — not per appointment.
-- Two surfaces, two audiences: **her panel** (authenticated, opened dozens of
-  times a day) and a **public form** for new clients to request a slot (picture
-  a 65-year-old, in a hurry, on street 4G).
-
 ## What the app does
 
 - **The day as a continuous time band** — every appointment takes height

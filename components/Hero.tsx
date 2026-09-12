@@ -163,7 +163,7 @@ function Hero() {
 
         <DownloadCV className="" />
         <TransitionLink
-          to="/about"
+          to="/#sobre-mim"
           direction="forward"
           variant="ghost"
           size="lg"

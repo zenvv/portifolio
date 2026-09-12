@@ -2,13 +2,7 @@
 
 App interno da Bello Aramados para o setor de Compras: **cadastro de fornecedores**, **criação e acompanhamento de pedidos de compra**, e **controle das formas de pagamento** até a confirmação com o setor financeiro.
 
-## Contexto
-
-Antes desse app, o setor de Compras da Bello Aramados **não tinha um controle estruturado**. Cada compra era registrada de forma manual, sem sistema próprio, e o processo foi montado com base em ferramentas usadas em outras empresas, de ramos diferentes do da Bello. Faltava um jeito simples e direto de acompanhar pedidos em andamento e o status de cada pagamento.
-
-## Solução
-
-O app cobre o ciclo de uma compra dentro do setor: **cadastro de fornecedores**, **criação e edição de pedidos**, e **controle de pagamentos**.
+## Como funciona
 
 Cada pedido pode ter várias formas de pagamento associadas (por exemplo, metade em boleto e metade em cartão). O comportamento muda conforme a forma escolhida: **boleto** exige anexar o arquivo pro financeiro processar, **pix** pode ser marcado como pago (com comprovante anexado) ou aguardando, e pagamentos em **cartão** pedem o cartão usado. Quando é **crédito parcelado**, o analista informa o número de parcelas: cada parcela vira uma linha própria na lista `Fila de Pagamentos` do setor financeiro (via automação), mas no setor de Compras o registro continua sendo uma única linha.
 

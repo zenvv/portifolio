@@ -60,6 +60,7 @@ export default function SongsBanner({ className }: { className?: string }) {
         title={`${t.hero.songs.title}!`}
         icon={<MusicNotesIcon className="size-3.5" />}
         className=""
+        titleLevel="h3"
       />
       <SongsCarousel />
     </div>

@@ -23,6 +23,7 @@ export default function SectionTitle({
   divider = true,
   className,
   titleClassName,
+  titleLevel: TitleTag = "h2",
 }: {
   title: ReactNode;
   subtitle?: ReactNode;
@@ -31,6 +32,9 @@ export default function SectionTitle({
   divider?: boolean;
   className?: string;
   titleClassName?: string;
+  /** Heading level for `title` — defaults to h2; pass "h3" when this section
+   * nests under another SectionTitle's h2 (e.g. inside a larger region). */
+  titleLevel?: "h2" | "h3";
 }) {
   return (
     <div className={cn("flex w-full flex-col gap-2.5 relative h-10")}>
@@ -47,14 +51,14 @@ export default function SectionTitle({
       >
         <span className="inline-flex items-center gap-1.5">
           {icon}
-          <h2
+          <TitleTag
             className={cn(
               "text-base font-semibold leading-none text-foreground",
               titleClassName,
             )}
           >
             {title}
-          </h2>
+          </TitleTag>
         </span>
         {subtitle ? (
           <p className="text-xs leading-snug text-muted-foreground">

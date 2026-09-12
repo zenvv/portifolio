@@ -13,9 +13,8 @@ import {
 import { useLanguage } from "@/lib/i18n/language.provider";
 
 const LINKS = [
-  { to: "/about", direction: "forward" as const, key: "about" as const },
+  { to: "/", direction: "backward" as const, key: "home" as const },
   { to: "/projects", direction: "forward" as const, key: "projects" as const },
-  { to: "/#contato", direction: "forward" as const, key: "contact" as const },
 ];
 
 const LINK_CLASS =

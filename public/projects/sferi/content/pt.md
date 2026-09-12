@@ -17,7 +17,7 @@ tudo isso) construída do zero sobre o HTML canvas, via [Konva](http://konvajs.o
 como um mergulho pessoal em como editores baseados em canvas realmente funcionam por
 baixo dos panos: hit-testing, transformações, clipping, histórico de undo, tudo.
 
-##
+## Capturas de tela
 
 ![Canvas vazio, modo escuro](/projects/sferi/images/1-overview.png)
 

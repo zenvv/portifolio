@@ -2,28 +2,6 @@
      uma manicure autônoma. Screenshots em ./images/ capturados de uma instância
      de demonstração com dados fictícios (estrutura idêntica à de produção). -->
 
-App de **agenda e controle financeiro** para uma manicure autônoma. PWA,
-mobile-first, usado quase 100% num Android, entre um atendimento e outro. Ele
-substitui o Google Agenda + a cobrança informal no WhatsApp por uma ferramenta
-só, feita para o fluxo real de uma profissional que atende ~6–8 clientes por
-dia e recebe em lote.
-
-## Contexto
-
-- A usuária é uma manicure de meia-idade, cansada, com as mãos ocupadas. Não é
-  dev, não é "persona": é uma pessoa real que hoje **esquece agendamentos** e
-  **não lembra se já cobrou**.
-- O trabalho já é mentalmente pesado (horas conversando com gente). O app existe
-  para **tirar carga da cabeça dela**, não adicionar.
-- Critério de escopo único: _isso reduz a carga mental dela?_ Se não, não entra.
-  Se uma tela exige mais de dois toques para a tarefa mais comum, está errada.
-- Ela atende entre 20 e 40 clientes fixas, com recorrência semanal, quinzenal ou
-  mensal. Três são a domicílio. **Recebe pagamento em lote** — R$ 180 de uma vez
-  cobrindo as 4 sessões do mês — e não por atendimento.
-- Duas telas, dois públicos: o **painel dela** (autenticado, aberto dezenas de
-  vezes por dia) e um **formulário público** para clientes novas pedirem
-  horário (uma pessoa de 65 anos, com pressa, no 4G da rua).
-
 ## O que o app faz
 
 - **Agenda como faixa contínua de tempo** — cada atendimento ocupa altura

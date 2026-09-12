@@ -73,6 +73,7 @@ export default function PhotoMasonry({
         align="center"
         title={t.about.photosTitle}
         icon={<ImagesIcon />}
+        titleLevel="h3"
       />
 
       <div className="relative">

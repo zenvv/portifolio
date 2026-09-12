@@ -2,13 +2,7 @@
 
 Internal app for Bello Aramados' Purchasing sector: **supplier registration**, **purchase order creation and tracking**, and **payment method control** through confirmation with the finance sector.
 
-## Context
-
-Before this app, Bello Aramados' Purchasing sector **had no structured control**. Every purchase was registered manually, with no dedicated system, and the process had been assembled from tools borrowed from other companies in different industries than Bello's. There was no simple, direct way to track orders in progress and the status of each payment.
-
-## Solution
-
-The app covers the full cycle of a purchase within the sector: **supplier registration**, **order creation and editing**, and **payment control**.
+## How it works
 
 Each order can have several payment methods attached to it (for example, half by boleto and half by card). Behavior changes depending on the method chosen: **boleto** requires attaching the file for finance to process, **pix** can be marked as paid (with a receipt attached) or pending, and **card** payments require the card used. When it's **installment credit**, the analyst enters the number of installments: each installment becomes its own row in the finance sector's `Fila de Pagamentos` (Payment Queue) list (via automation), but within Purchasing the record stays a single row.
 

@@ -132,6 +132,7 @@ export default function CompanySection({
         align="center"
         title={t.about.companiesTitle}
         icon={<HeadCircuitIcon />}
+        titleLevel="h3"
       />
       <div className="flex flex-col gap-3 p-4">
         {companies.map((company) => (

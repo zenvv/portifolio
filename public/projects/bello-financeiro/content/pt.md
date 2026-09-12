@@ -5,14 +5,6 @@
 
 # Financeiro
 
-App do setor financeiro da Bello Aramados. Centraliza tudo que a empresa tem a pagar, venha da fila do setor de Compras, de um lançamento manual ou de uma planilha de previsão, e acompanha o saldo dos bancos junto com os lançamentos.
-
-## Contexto
-
-- O financeiro não tinha como compilar o que entrava vindo de Compras.
-- Nota fiscal, boleto e comprovante ficavam soltos, sem vínculo com a compra que os originou.
-- Não havia forma padronizada de montar a previsão de contas a pagar nem de ver saldo e extrato dos bancos junto dos lançamentos.
-
 ## O que o app faz
 
 - **Pagamentos:** lista única (`Controle de Pagamentos`), agrupada por semana de vencimento, com filtro por ano, semana, forma de pagamento, situação, vencido e previsto.

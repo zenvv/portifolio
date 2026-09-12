@@ -96,6 +96,7 @@ export default function EducationSection({
         align="center"
         title={t.about.educationTitle}
         icon={<GraduationCapIcon />}
+        titleLevel="h3"
       />
       <div className="flex flex-col gap-2 p-4">
         {education.map((edu) => (

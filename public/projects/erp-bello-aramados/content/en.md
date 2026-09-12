@@ -26,11 +26,6 @@ with two plants. It is a web application used by office and factory-office staff
 always in Portuguese, with no public sign-up: accounts are the company's own
 Microsoft 365 accounts.
 
-Before it, each sector ran its process on a mix of spreadsheets, isolated Power
-Apps and dozens of Power Automate flows gluing one sector to the next. The SGE
-unifies the master data (CRUD) and the **flow tracking** of those sectors in a
-single interface, keeping an order's traceability from the sale to the cash desk.
-
 ## What the system does
 
 | Area          | What it does in the system                                                                                                     |

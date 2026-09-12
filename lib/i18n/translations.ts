@@ -9,9 +9,8 @@ export const translations = {
       cv: "Download CV",
       menu: "Menu",
       theme: "Theme",
-      about: "About",
+      home: "Home",
       projects: "Projects",
-      contact: "Contact",
     },
     easterEgg: "🎉 me at my birthday :)",
     hero: {
@@ -50,6 +49,34 @@ export const translations = {
         title: "Some songs that I jam to",
       },
     },
+    capabilities: {
+      title: "What I do",
+      items: {
+        development: {
+          title: "Software development",
+          description:
+            "Web applications and internal systems — like Bello Aramados' ERP and Nailly's scheduling PWA.",
+        },
+        automation: {
+          title: "Automation & Power Platform",
+          description:
+            "Process automation with Power Apps, Power Automate and Power Fx — like Bello Aramados' Power Apps ecosystem.",
+        },
+        data: {
+          title: "Data & integrations",
+          description:
+            "Microsoft Graph API and SharePoint integrations, Power BI dashboards, and Python automations pulling ERP data.",
+        },
+        design: {
+          title: "UI/UX & design",
+          description:
+            "Interfaces and visual identity, from the Bello Aramados institutional website redesign to logomarks in Figma.",
+        },
+      },
+    },
+    cta: {
+      viewAllProjects: "View all projects",
+    },
     projects: {
       startTitle: "Featured",
       endTitle: "Projects",
@@ -63,6 +90,8 @@ export const translations = {
       notFoundDescription: "We couldn't find a project with this address.",
       clientTitle: "Built for",
       personalProject: "Personal project",
+      problem: "Problem",
+      solution: "Solution",
       types: {
         all: "All",
         web: "Web",
@@ -86,7 +115,6 @@ export const translations = {
       },
     },
     about: {
-      backToHome: "Back to homepage",
       intro:
         "Brazilian **Full-Stack Developer** with hands-on experience across **corporate systems integration**, **process automation**, the **Microsoft Power Platform**, **SharePoint/Graph API**, and **ReactJS**. I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments — from mapping a broken workflow to shipping the tool that fixes it.",
       companiesWebsite: "View Company Website",
@@ -116,9 +144,8 @@ export const translations = {
       cv: "Baixar Currículo",
       menu: "Menu",
       theme: "Tema",
-      about: "Sobre",
+      home: "Início",
       projects: "Projetos",
-      contact: "Contato",
     },
     easterEgg: "🎉 eu no meu aniversário :)",
     hero: {
@@ -157,6 +184,34 @@ export const translations = {
         title: "Algumas músicas que eu curto",
       },
     },
+    capabilities: {
+      title: "O que eu faço",
+      items: {
+        development: {
+          title: "Desenvolvimento de software",
+          description:
+            "Aplicações web e sistemas internos — como o ERP da Bello Aramados e o PWA de agenda da Nailly.",
+        },
+        automation: {
+          title: "Automação & Power Platform",
+          description:
+            "Automação de processos com Power Apps, Power Automate e Power Fx — como o ecossistema de Power Apps da Bello Aramados.",
+        },
+        data: {
+          title: "Dados & integrações",
+          description:
+            "Integrações via Microsoft Graph API e SharePoint, dashboards em Power BI e automações em Python extraindo dados de ERP.",
+        },
+        design: {
+          title: "UI/UX & design",
+          description:
+            "Interfaces e identidade visual, do redesign do site institucional da Bello Aramados a logomarcas em Figma.",
+        },
+      },
+    },
+    cta: {
+      viewAllProjects: "Ver todos os projetos",
+    },
     projects: {
       startTitle: "Projetos de",
       endTitle: "em Destaque",
@@ -170,6 +225,8 @@ export const translations = {
       notFoundDescription: "Não encontramos um projeto neste endereço.",
       clientTitle: "Construído para",
       personalProject: "Projeto pessoal",
+      problem: "Problema",
+      solution: "Solução",
       types: {
         all: "Tudo",
         web: "Web",
@@ -193,7 +250,6 @@ export const translations = {
       },
     },
     about: {
-      backToHome: "Voltar à Página Inicial",
       intro:
         "Desenvolvedor Full-Stack, com atuação prática em **integração de sistemas corporativos**, **automação de processos**, **Microsoft Power Platform**, **SharePoint/Graph API** e **ReactJS**. Combino desenvolvimento de software, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais — do mapeamento de um fluxo quebrado até a entrega da ferramenta que resolve.",
       companiesTitle: "Experiência",

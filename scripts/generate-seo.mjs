@@ -44,8 +44,6 @@ const {
   DEFAULT_DESCRIPTION,
   PROJECTS_TITLE,
   PROJECTS_DESCRIPTION,
-  ABOUT_TITLE,
-  ABOUT_DESCRIPTION,
 } = await loadContent();
 
 // Matches the home hero's role line (lib/i18n/translations.ts hero.label),
@@ -181,12 +179,6 @@ const pageDescriptors = [
     ptPath: "/",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    image: null,
-  },
-  {
-    ptPath: "/about",
-    title: ABOUT_TITLE,
-    description: ABOUT_DESCRIPTION,
     image: null,
   },
   {

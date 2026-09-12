@@ -20,14 +20,8 @@ export async function loadContent() {
   const { StackList } = await server.ssrLoadModule("/data/stack.ts");
   const pageMeta = await server.ssrLoadModule("/lib/use-page-meta.ts");
   await server.close();
-  const {
-    DEFAULT_TITLE,
-    DEFAULT_DESCRIPTION,
-    PROJECTS_TITLE,
-    PROJECTS_DESCRIPTION,
-    ABOUT_TITLE,
-    ABOUT_DESCRIPTION,
-  } = pageMeta;
+  const { DEFAULT_TITLE, DEFAULT_DESCRIPTION, PROJECTS_TITLE, PROJECTS_DESCRIPTION } =
+    pageMeta;
   return {
     Projetos,
     StackList,
@@ -35,14 +29,15 @@ export async function loadContent() {
     DEFAULT_DESCRIPTION,
     PROJECTS_TITLE,
     PROJECTS_DESCRIPTION,
-    ABOUT_TITLE,
-    ABOUT_DESCRIPTION,
   };
 }
 
-/** Every PT (unprefixed) route: the static pages plus one per project. */
+/** Every PT (unprefixed) route: the static pages plus one per project.
+ * "/about" is intentionally excluded: it's a client-side redirect into the
+ * home page's "Sobre mim" section, not a distinct page worth its own
+ * sitemap/prerendered entry (see src/pages/about/about.tsx). */
 export function getPtRoutePaths(projetos) {
-  const staticRoutes = ["/", "/about", "/projects"];
+  const staticRoutes = ["/", "/projects"];
   const projectRoutes = projetos.map((p) => `/projects/${p.slug}`);
   return [...staticRoutes, ...projectRoutes];
 }

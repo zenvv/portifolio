@@ -2,25 +2,6 @@
      original Portuguese because they're real identifiers in the system; prose
      is translated. Keep the two files in sync. -->
 
-Shop-floor app for the Piracicaba plant. For every machine it shows what to
-produce now, in the right order, and records each report already subtracting it
-from what's left. Runs on a tablet, used by 30+ operators daily across the plant.
-
-## Context
-
-- There was no production control on the shop floor.
-- What existed was an Excel spreadsheet cross-referencing orders, products and
-  quantities, but the result never reached the person at the machine.
-- The operator had no way to know which order to prioritize, how much had
-  already been done, or when to stop for inspection.
-- The fix wasn't just the app: I redesigned the PCP process itself to follow
-  strict FIFO (order → work order → queue → production), so the queue
-  materialized in `Filas` already reflects real production priority — the app
-  is the visible edge of that redesign.
-- Audience: 30+ production operators a day, with no familiarity with
-  technology. Most of the design decisions were about **what to take off the
-  screen**.
-
 ## What the app does
 
 - Consumes a **production queue** per machine (list `Filas`), assembled and

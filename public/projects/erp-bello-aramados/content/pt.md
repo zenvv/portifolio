@@ -26,12 +26,6 @@ uma aplicação web usada por funcionários de escritório e de escritório de f
 sempre em português, sem cadastro público: as contas são as próprias contas
 Microsoft 365 da empresa.
 
-Antes dele, cada setor tocava seu processo em uma mistura de planilhas, apps de
-Power Apps isolados e dezenas de flows de Power Automate colando um setor no
-outro. O SGE unifica o cadastro (CRUD) e o **acompanhamento de fluxo** desses
-setores numa interface só, com a rastreabilidade de um pedido preservada da venda
-até o caixa.
-
 ## O que o sistema faz
 
 | Área           | O que faz no sistema                                                                                                          |
