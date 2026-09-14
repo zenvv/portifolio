@@ -1,4 +1,4 @@
-<!-- RASCUNHO Claude v2 — versão enxuta (feedback: v1 tava longa/densa demais).
+<!-- RASCUNHO Claude v2, versão enxuta (feedback: v1 tava longa/densa demais).
      Foco em bullets, tabelas, Mermaid e imagens. Power Automate fundido no "Fluxo principal".
      Todas as 19 telas incluídas. Revisar tom e cortes. -->
 

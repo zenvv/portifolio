@@ -98,7 +98,7 @@ export const StackList: stackTypes[] = [
   },
   {
     index: 14,
-    name: "Microsoft Power BI",
+    name: "Power BI",
     link: "https://www.microsoft.com/pt-br/power-platform/products/power-bi",
     type: "data",
     featured: true,
@@ -108,10 +108,11 @@ export const StackList: stackTypes[] = [
     name: "Excel",
     link: "https://www.microsoft.com/pt-br/microsoft-365/excel",
     type: "data",
+    featured: true,
   },
   {
     index: 16,
-    name: "Sharepoint",
+    name: "SharePoint Lists",
     link: "https://www.microsoft.com/pt-br/microsoft-365/microsoft-lists",
     type: "data",
   },
@@ -119,14 +120,14 @@ export const StackList: stackTypes[] = [
   // automation
   {
     index: 17,
-    name: "Microsoft Power Apps",
+    name: "Power Apps",
     link: "https://www.microsoft.com/pt-br/power-platform/products/power-apps",
     type: "automation",
     featured: true,
   },
   {
     index: 18,
-    name: "Microsoft Power Automate",
+    name: "Power Automate",
     link: "https://www.microsoft.com/pt-br/power-platform/products/power-automate",
     type: "automation",
     featured: true,
@@ -156,7 +157,7 @@ export const StackList: stackTypes[] = [
     learning: true,
   },
   { index: 25, name: "Vercel", link: "https://vercel.com/", type: "tools" },
-  { index: 26, name: "Zod", link: "https://zod.dev/", type: "tools" },
+  { index: 28, name: "Zod", link: "https://zod.dev/", type: "tools" },
   {
     index: 27,
     name: "Zustand",

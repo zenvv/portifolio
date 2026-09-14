@@ -2,7 +2,7 @@
  * Route chunk loaders, shared between the router (which wraps them in
  * `React.lazy`) and `TransitionLink` (which fires them on hover/focus so the
  * chunk is already in memory by the time the user clicks). Keep this module
- * free of component imports — it must stay a leaf so `TransitionLink` can
+ * free of component imports: it must stay a leaf so `TransitionLink` can
  * import it without pulling the router graph back in.
  */
 export const loadRoute = {

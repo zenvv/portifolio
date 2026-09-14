@@ -15,7 +15,7 @@ function DownloadCV({ className }: { className?: string }) {
       variant="outline"
       size="lg"
       render={<a href={cvHref} download />}
-      className={cn("gap-2", className)}
+      className={cn("gap-2 sm:w-auto w-64", className)}
     >
       <ReadCvLogoIcon className="size-4" />
       {t.nav.cv}

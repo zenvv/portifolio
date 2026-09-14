@@ -1,4 +1,5 @@
 import { useEffect, useState, type RefObject } from "react";
+import { createPortal } from "react-dom";
 import { ListBulletsIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,28 +7,17 @@ import {
   SheetTrigger,
   SheetContent,
   SheetHeader,
-  SheetTitle,
   SheetClose,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 type Heading = { id: string; text: string };
 
-/** Sticky index of a project page's `<h2>` sections: an inline list on
- * wide viewports (xl+, where the fixed-width content shell has room to
- * spare) and a Sheet drawer everywhere else, so the reading column never
- * narrows on anything but the widest screens.
- *
- * Reads headings from the rendered DOM rather than the markdown source so
- * it only ever lists real h2s (not lines that look like one inside a
- * fenced code block), and always matches the ids MarkdownH2 assigned. */
-export default function TableOfContents({
-  containerRef,
-  title,
-}: {
-  containerRef: RefObject<HTMLElement | null>;
-  title: string;
-}) {
+/** Reads a project page's `<h2>` sections from the rendered DOM (rather than
+ * the markdown source, so it only ever lists real h2s, never a line that
+ * looks like one inside a fenced code block) and tracks which is currently
+ * in view. */
+function useHeadings(containerRef: RefObject<HTMLElement | null>) {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -52,64 +42,112 @@ export default function TableOfContents({
     return () => observer.disconnect();
   }, [containerRef]);
 
+  return { headings, activeId };
+}
+
+/** The plain index content, no positioning of its own, meant to sit inside
+ * a fixed rail alongside {@link ArticleImageIndex}. */
+export default function TableOfContents({
+  containerRef,
+  title,
+}: {
+  containerRef: RefObject<HTMLElement | null>;
+  title: string;
+}) {
+  const { headings, activeId } = useHeadings(containerRef);
+
   if (headings.length === 0) return null;
 
   return (
-    <>
-      <nav
-        aria-label={title}
-        className="sticky top-20 hidden h-fit w-52 shrink-0 flex-col gap-0.5 self-start xl:flex"
-      >
-        {headings.map((h) => (
-          <a
-            key={h.id}
-            href={`#${h.id}`}
-            className={cn(
-              "truncate rounded-md px-3 py-1.5 text-xs transition-colors",
-              activeId === h.id
-                ? "bg-muted font-medium text-foreground"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            {h.text}
-          </a>
-        ))}
-      </nav>
+    <nav aria-label={title} className="flex w-full flex-col gap-0.5 border-l">
+      <span className="px-3 pb-1.5 font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground/60">
+        {title}
+      </span>
+      {headings.map((h) => (
+        <a
+          key={h.id}
+          href={`#${h.id}`}
+          className={cn(
+            "truncate px-3 py-1.5 font-mono text-xs transition-colors -ml-px border-l",
+            activeId === h.id
+              ? "border-primary font-medium text-foreground"
+              : "border-transparent text-muted-foreground hover:text-foreground",
+          )}
+        >
+          {h.text}
+        </a>
+      ))}
+    </nav>
+  );
+}
 
-      <Sheet>
+/** The mobile equivalent: a fixed FAB opening a Sheet drawer. Independent of
+ * the desktop fixed rail: always rendered, hides itself above `xl` via CSS.
+ * The trigger is portaled straight to `document.body` (rather than left in
+ * the article's DOM position) so it stays pinned to the viewport corner
+ * regardless of any transformed ancestor upstream (a scroll-reveal
+ * `motion.div` mid-animation, for instance) and carries a z-index above the
+ * sticky `Navbar` (`z-[500]`) so it never ends up painted under the footer
+ * or any other in-flow section. */
+export function TableOfContentsMobile({
+  containerRef,
+  title,
+}: {
+  containerRef: RefObject<HTMLElement | null>;
+  title: string;
+}) {
+  const { headings, activeId } = useHeadings(containerRef);
+  const [open, setOpen] = useState(false);
+
+  if (headings.length === 0) return null;
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      {createPortal(
         <SheetTrigger
           render={
             <Button
-              variant="outline"
+              variant="default"
               size="icon-lg"
-              className="fixed right-6 bottom-6 z-40 rounded-full shadow-lg xl:hidden"
+              className={cn(
+                "fixed bg-foreground hover:bg-foreground text-background right-6 bottom-6 z-600 shadow-lg shadow-black/20 transition-opacity xl:hidden",
+                open && "pointer-events-none opacity-0",
+              )}
               aria-label={title}
             />
           }
         >
           <ListBulletsIcon className="size-5" />
-        </SheetTrigger>
-        <SheetContent side="right">
-          <SheetHeader>
-            <SheetTitle>{title}</SheetTitle>
-          </SheetHeader>
-          <nav className="flex flex-col gap-1 p-4 pt-0">
-            {headings.map((h) => (
-              <SheetClose
-                key={h.id}
-                render={
-                  <a
-                    href={`#${h.id}`}
-                    className="rounded-md px-3 py-2 text-sm text-foreground hover:bg-muted"
-                  />
-                }
-              >
-                {h.text}
-              </SheetClose>
-            ))}
-          </nav>
-        </SheetContent>
-      </Sheet>
-    </>
+        </SheetTrigger>,
+        document.body,
+      )}
+      <SheetContent side="right" className="gap-0">
+        <SheetHeader className="border-b pb-3">
+          <span className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground/60">
+            {title}
+          </span>
+        </SheetHeader>
+        <nav className="flex flex-col overflow-y-auto p-2">
+          {headings.map((h) => (
+            <SheetClose
+              key={h.id}
+              render={
+                <a
+                  href={`#${h.id}`}
+                  className={cn(
+                    "truncate border-l px-3 py-2.5 font-mono text-xs transition-colors",
+                    activeId === h.id
+                      ? "border-primary font-medium text-foreground"
+                      : "border-transparent text-muted-foreground hover:text-foreground",
+                  )}
+                />
+              }
+            >
+              {h.text}
+            </SheetClose>
+          ))}
+        </nav>
+      </SheetContent>
+    </Sheet>
   );
 }

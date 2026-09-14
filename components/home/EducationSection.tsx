@@ -26,9 +26,9 @@ function EducationRow({
   const hasActivities = activities.length > 0;
 
   return (
-    <div className="flex flex-col border rounded-lg p-3.5 hover:bg-card transition-colors">
+    <div className="flex flex-col border-t py-3 first:border-t-0 first:pt-0">
       <div className="flex items-center gap-3">
-        <span className="flex items-center justify-center size-8 border bg-background shrink-0 overflow-hidden rounded-sm text-muted-foreground">
+        <span className="flex items-center justify-center size-7 shrink-0 overflow-hidden rounded-sm text-muted-foreground">
           {education.icon ? (
             <img
               src={education.icon}
@@ -40,11 +40,11 @@ function EducationRow({
           )}
         </span>
         <div className="flex flex-col min-w-0 flex-1">
-          <span className="text-sm font-medium truncate">
+          <span className="text-sm font-semibold truncate">
             {education.institution}
           </span>
           <span className="text-xs text-muted-foreground">
-            {education.degree[locale]} · {education.start[locale]} —{" "}
+            {education.degree[locale]} · {education.start[locale]}–
             {education.end[locale]}
           </span>
         </div>
@@ -93,12 +93,12 @@ export default function EducationSection({
   return (
     <div className="flex flex-col gap-3 w-full ">
       <SectionTitle
-        align="center"
+        align="start"
         title={t.about.educationTitle}
         icon={<GraduationCapIcon />}
         titleLevel="h3"
       />
-      <div className="flex flex-col gap-2 p-4">
+      <div className="flex flex-col gap-2 pt-1">
         {education.map((edu) => (
           <EducationRow key={edu.index} education={edu} locale={locale} t={t} />
         ))}

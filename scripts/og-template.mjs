@@ -4,7 +4,7 @@
 // watermark used behind the hero (public/logo-badge-dark.png), the hero's
 // amber-400 accent, and the same font pairing as the rest of the site
 // (Bricolage Grotesque for headings/body, Azeret Mono for the uppercase
-// label) — see scripts/generate-og.mjs, which rasterizes this to PNG.
+// label); see scripts/generate-og.mjs, which rasterizes this to PNG.
 import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -35,7 +35,7 @@ function toBase64(relativePath) {
  * @param {string} opts.title - Big headline, e.g. "Willian Zeni".
  * @param {string} opts.subtitle - Uppercase mono label under the title.
  * @param {string[]} opts.taglineLines - 1-2 lines of body copy (caller
- *   controls the wrap — this stays a template, not a layout engine).
+ *   controls the wrap; this stays a template, not a layout engine).
  */
 export function buildOgSvg({ title, subtitle, taglineLines }) {
   const badgeB64 = toBase64("public/logo-badge-dark.png");

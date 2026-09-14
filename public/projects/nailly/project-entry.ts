@@ -8,8 +8,8 @@ export const nailly: Project = {
   slug: "nailly",
   title: { en: "Nailly", pt: "Nailly" },
   description: {
-    en: "Scheduling and finance PWA for a self-employed manicurist. A continuous time-band agenda, database-enforced no-overlap booking, batch payments allocated across appointments, recurring clients, a public request form with an approval queue, and Web Push — Next.js 16 on Supabase, with RLS as the security boundary.",
-    pt: "PWA de agenda e financeiro para uma manicure autônoma. Agenda como faixa contínua de tempo, agendamento sem sobreposição garantido por constraint no banco, pagamento em lote alocado entre atendimentos, clientes recorrentes, formulário público com fila de aprovação e Web Push — Next.js 16 sobre Supabase, com RLS como fronteira de segurança.",
+    en: "Scheduling and finance PWA for a self-employed manicurist. A continuous time-band agenda, database-enforced no-overlap booking, batch payments allocated across appointments, recurring clients, a public request form with an approval queue, and Web Push. Built on Next.js 16 and Supabase, with RLS as the security boundary.",
+    pt: "PWA de agenda e financeiro para uma manicure autônoma. Agenda como faixa contínua de tempo, agendamento sem sobreposição garantido por constraint no banco, pagamento em lote alocado entre atendimentos, clientes recorrentes, formulário público com fila de aprovação e Web Push. Construído em Next.js 16 sobre Supabase, com RLS como fronteira de segurança.",
   },
   shortDescription: {
     en: "Scheduling + finance PWA for a self-employed manicurist",
@@ -42,7 +42,7 @@ export const nailly: Project = {
   color: "#394B35",
   featured: true,
   imageCaption: {
-    en: "* Demo instance with fictional data — structure identical to production. Public booking form at /agendar/atelie-aline-demo.",
-    pt: "* Instância de demonstração com dados fictícios — estrutura idêntica à de produção. Formulário público de reserva em /agendar/atelie-aline-demo.",
+    en: "* Demo instance with fictional data (structure identical to production). Public booking form at /agendar/atelie-aline-demo.",
+    pt: "* Instância de demonstração com dados fictícios (estrutura idêntica à de produção). Formulário público de reserva em /agendar/atelie-aline-demo.",
   },
 };

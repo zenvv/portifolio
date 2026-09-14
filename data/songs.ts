@@ -7,15 +7,7 @@ export type songsTypes = {
 };
 
 export const Songs: songsTypes[] = [
-  {
-    index: 1,
-    name: "Slide Away",
-    artist: "Oasis",
-    artwork:
-      "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273580abb98fc826cfe362a65cb",
-    spotifyLink:
-      "https://open.spotify.com/track/62L8HlrCQLvBHKfpu8iqLa?si=6b6e68511db342f0",
-  },
+  
   {
     index: 2,
     name: "Shoegaze",
@@ -61,24 +53,7 @@ export const Songs: songsTypes[] = [
     spotifyLink:
       "https://open.spotify.com/track/5ZYXmLKf2GPYcCHCIYpxg4?si=1f0b635397374059",
   },
-  {
-    index: 7,
-    name: "When You Know",
-    artist: "Neck Deep",
-    artwork:
-      "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a278953d20b499818ed7dae",
-    spotifyLink:
-      "https://open.spotify.com/track/3DaSurzbFuzWE45tQm1TO5?si=b2420b97d8b14e76",
-  },
-  {
-    index: 8,
-    name: "Willing and Able",
-    artist: "Noah Kahan",
-    artwork:
-      "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273c39789e2dbdad5af5736e07a",
-    spotifyLink:
-      "https://open.spotify.com/track/7jlbl2gATw4SwhzbwPGHmS?si=734019b97571414a",
-  },
+
   {
     index: 9,
     name: "Last Goodbye",
@@ -88,13 +63,5 @@ export const Songs: songsTypes[] = [
     spotifyLink:
       "https://open.spotify.com/track/0y5CnV2idm2KkQEudDjfDT?si=1ea6fec133934ecd",
   },
-  {
-    index: 10,
-    name: "Carnaval",
-    artist: "Daparte",
-    artwork:
-      "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273f5f7a8a0a7ef894da27cad25",
-    spotifyLink:
-      "https://open.spotify.com/track/3CqkKaVRKHBwTyGCc3okLP?si=905230c5b9844fa8",
-  },
+ 
 ];

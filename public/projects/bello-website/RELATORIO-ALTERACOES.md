@@ -1,4 +1,4 @@
-# Bello Aramados — Relatório de Alterações do Site
+# Bello Aramados: Relatório de Alterações do Site
 
 **Versão anterior → Nova versão** · Documento para revisão (base do PDF de entrega)
 
@@ -7,7 +7,7 @@
 ## Visão geral
 
 O site da Bello Aramados passou por uma **repaginação visual completa**. A estrutura de
-páginas, os endereços (URLs) e o conteúdo continuam os mesmos — o que mudou foi a
+páginas, os endereços (URLs) e o conteúdo continuam os mesmos: o que mudou foi a
 **aparência, a organização das informações e a experiência de navegação**, especialmente
 no celular.
 
@@ -27,8 +27,8 @@ de contato contra spam, suporte a idiomas, acessibilidade e otimização para bu
   preencher) e com proteção anti-spam.
 - Site inteiro adaptado para leitura em celular e para navegação por teclado/leitor de tela.
 
-> **Como ler os comparativos:** em cada seção, a imagem mostra **Antes — Site Antigo** à
-> esquerda e **Depois — Site Atual** à direita.
+> **Como ler os comparativos:** em cada seção, a imagem mostra **Antes: Site Antigo** à
+> esquerda e **Depois: Site Atual** à direita.
 
 ---
 
@@ -71,7 +71,7 @@ de contato contra spam, suporte a idiomas, acessibilidade e otimização para bu
 
 ## 2. Página Inicial (Home)
 
-![Comparativo Home — desktop](_screenshots/comparativo/home--desktop.png)
+![Comparativo Home, desktop](_screenshots/comparativo/home--desktop.png)
 
 **O que mudou:**
 
@@ -80,11 +80,11 @@ de contato contra spam, suporte a idiomas, acessibilidade e otimização para bu
 - **Setores de atuação:** a grade de categorias (Ventilação, Avicultura, Automotivo,
   Gastronomia, Armazenagem, Energia Solar) foi redesenhada, mais limpa e com ícones.
 - **Nova seção institucional** (substitui um carrossel de imagens que era pouco informativo):
-  - **Processos de solda** — Solda Ponto, Solda Projeção e Solda MIG, com vídeo curto real
+  - **Processos de solda**: Solda Ponto, Solda Projeção e Solda MIG, com vídeo curto real
     da produção.
-  - **Materiais** — Aço Carbono, Aço Inox e Aço Galvanizado.
-  - **Diferenciais** — "Equipe qualificada" e "Qualidade garantida".
-  - **Unidades** — cartões de Caxias do Sul e Piracicaba com foto e link "Onde encontrar".
+  - **Materiais**: Aço Carbono, Aço Inox e Aço Galvanizado.
+  - **Diferenciais**: "Equipe qualificada" e "Qualidade garantida".
+  - **Unidades**: cartões de Caxias do Sul e Piracicaba com foto e link "Onde encontrar".
 - Botão de chamada alterado de "Sobre" para **"Saiba mais"**.
 
 *Referência técnica:* `application/modules/home/views/home.php`,
@@ -95,7 +95,7 @@ de contato contra spam, suporte a idiomas, acessibilidade e otimização para bu
 
 ## 3. Página Sobre
 
-![Comparativo Sobre — desktop](_screenshots/comparativo/sobre--desktop.png)
+![Comparativo Sobre, desktop](_screenshots/comparativo/sobre--desktop.png)
 
 **O que mudou:**
 
@@ -115,7 +115,7 @@ de contato contra spam, suporte a idiomas, acessibilidade e otimização para bu
 
 ## 4. Página Serviços
 
-![Comparativo Serviços — desktop](_screenshots/comparativo/servicos--desktop.png)
+![Comparativo Serviços, desktop](_screenshots/comparativo/servicos--desktop.png)
 
 **O que mudou:**
 
@@ -136,7 +136,7 @@ de contato contra spam, suporte a idiomas, acessibilidade e otimização para bu
 
 ## 5. Página Produtos
 
-![Comparativo Produtos — desktop](_screenshots/comparativo/produtos--desktop.png)
+![Comparativo Produtos, desktop](_screenshots/comparativo/produtos--desktop.png)
 
 **O que mudou:**
 
@@ -159,7 +159,7 @@ de contato contra spam, suporte a idiomas, acessibilidade e otimização para bu
 
 ## 6. Página Contato
 
-![Comparativo Contato — desktop](_screenshots/comparativo/contato--desktop.png)
+![Comparativo Contato, desktop](_screenshots/comparativo/contato--desktop.png)
 
 **O que mudou:**
 

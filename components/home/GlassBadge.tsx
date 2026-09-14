@@ -7,7 +7,7 @@ import { useTheme } from "@/components/theme-provider";
  *
  * This used to be a live three.js render (two stacked `GlassObject`s). It's
  * completely static, so it's now just a pre-rendered PNG per theme
- * (`/public/logo-badge-{light,dark}.png`) — no WebGL, no ~700 KB of three.js,
+ * (`/public/logo-badge-{light,dark}.png`), no WebGL, no ~700 KB of three.js,
  * no render loop. Re-bake the PNGs with the temp `/__capture` route if the
  * look ever needs to change.
  */

@@ -1,4 +1,4 @@
-// U+0300-U+036F: Combining Diacritical Marks — what NFD normalization
+// U+0300-U+036F: Combining Diacritical Marks, what NFD normalization
 // splits an accented letter into (e.g. "ç" -> "c" + COMBINING CEDILLA).
 // Built from char codes rather than a literal range in the source.
 const COMBINING_MARKS_START = 0x0300;

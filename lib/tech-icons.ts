@@ -39,15 +39,19 @@ export const TECH_ICONS: Record<string, TechIcon> = {
   MySQL: "devicon:mysql",
   PostgreSQL: "devicon:postgresql",
   "Microsoft Fabric": "thesvg-color:microsoft-fabric",
-  "Microsoft Power BI": "logos:microsoft-power-bi",
+  "Power BI": "logos:microsoft-power-bi",
   Excel: "selfhst:microsoft-excel",
-  Sharepoint: "selfhst:microsoft-sharepoint",
+  "SharePoint Lists": "selfhst:microsoft-sharepoint",
+  "SQL Server": "selfhst:microsoft-sql-server",
 
   // automation
-  "Microsoft Power Apps": PowerAppsIcon,
-  "Microsoft Power Automate": "selfhst:microsoft-power-automate",
+  "Power Apps": PowerAppsIcon,
+  "Power Automate": "selfhst:microsoft-power-automate",
+  "Power Fx": "qlementine-icons:fx-16",
+  "Microsoft Forms": "selfhst:microsoft-forms",
   "Microsoft Graph API": MsGraphIcon,
   N8N: "selfhst:n8n",
+  PWA: "logos:pwa",
 
   // microsoft
   "Microsoft Entra ID": "selfhst:microsoft-entra-id",
@@ -113,15 +117,19 @@ export const SOLID_TECH_ICONS: Record<string, TechIcon> = {
   MySQL: "lineicons:mysql",
   PostgreSQL: "simple-icons:postgresql",
   "Microsoft Fabric": MicrosoftFabricIcon,
-  "Microsoft Power BI": "simple-icons:powerbi",
+  "Power BI": "simple-icons:powerbi",
   Excel: "simple-icons:microsoftexcel",
-  Sharepoint: "simple-icons:microsoftsharepoint",
+  "SharePoint Lists": "simple-icons:microsoftsharepoint",
+  "SQL Server": "selfhst:microsoft-sql-server-light",
 
   // automation
-  "Microsoft Power Apps": PowerAppsIconSolid,
-  "Microsoft Power Automate": PowerAutomateIconSolid,
+  "Power Apps": PowerAppsIconSolid,
+  "Power Automate": PowerAutomateIconSolid,
+  "Power Fx": "qlementine-icons:fx-16",
+  "Microsoft Forms": "selfhst:microsoft-forms-2016-light",
   "Microsoft Graph API": MsGraphIconSolid,
   N8N: "simple-icons:n8n",
+  PWA: "famicons:logo-pwa",
 
   // microsoft
   MSAL: MsalIconSolid,
@@ -146,13 +154,13 @@ export const SOLID_TECH_ICONS: Record<string, TechIcon> = {
 
 /** Alternate spellings used in project tech chips, mapped to a TECH_ICONS key. */
 const TECH_ALIASES: Record<string, string> = {
-  SharePoint: "Sharepoint",
-  "SharePoint Lists": "Sharepoint",
-  "Sharepoint Lists": "Sharepoint",
+  Sharepoint: "SharePoint Lists",
+  SharePoint: "SharePoint Lists",
+  "Sharepoint Lists": "SharePoint Lists",
   TailwindCSS: "Tailwind CSS",
-  "Power Apps": "Microsoft Power Apps",
-  "Power Automate": "Microsoft Power Automate",
-  "Power BI": "Microsoft Power BI",
+  "Microsoft Power Apps": "Power Apps",
+  "Microsoft Power Automate": "Power Automate",
+  "Microsoft Power BI": "Power BI",
   SAP: "SAP ERP/HANA",
   "SAP ERP": "SAP ERP/HANA",
   "SAP S4/HANA": "SAP ERP/HANA",
@@ -176,7 +184,7 @@ export function getSolidTechIcon(name: string): TechIcon | undefined {
   );
 }
 
-/** Canonical display name for a raw tech string; collapses spelling variants (e.g. "SharePoint Lists" -> "Sharepoint"). */
+/** Canonical display name for a raw tech string; collapses spelling variants (e.g. "SharePoint" -> "SharePoint Lists"). */
 export function canonicalTechName(name: string): string {
   return TECH_ALIASES[name] ?? name;
 }
@@ -189,9 +197,12 @@ const STACK_TECH_TYPES: Record<string, techType> = Object.fromEntries(
 const EXTRA_TECH_TYPES: Record<string, techType> = {
   MSAL: "microsoft",
   "Microsoft Forms": "microsoft",
+  "Power Fx": "microsoft",
+  "SharePoint Lists": "data",
+  "SQL Server": "data",
+  PWA: "tools",
   Konva: "tools",
   GSAP: "tools",
-  jsPDF: "tools",
   "shadcn/ui": "tools",
 };
 

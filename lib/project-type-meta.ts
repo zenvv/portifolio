@@ -3,6 +3,7 @@ import {
   GlobeIcon,
   GraphIcon,
   PenNibIcon,
+  PuzzlePieceIcon,
 } from "@phosphor-icons/react";
 import PowerAppsIconSolid from "@/lib/icons/PowerAppsIconSolid";
 import type { IconComponent } from "@/lib/tech-icons";
@@ -22,29 +23,38 @@ export const PROJECT_TYPE_FILTER_VALUES: ProjectTypeFilterValue[] = [
  */
 export const PROJECT_TYPE_META: Record<
   ProjectTypeFilterValue,
-  { icon?: IconComponent; activeBg: string; activeText: string; disabled?: boolean }
+  {
+    icon?: IconComponent;
+    activeBg: string;
+    activeText: string;
+    disabled?: boolean;
+  }
 > = {
-  all: { activeBg: "bg-foreground", activeText: "text-background" },
-  web: { icon: GlobeIcon, activeBg: "bg-indigo-600", activeText: "text-white" },
+  all: {
+    icon: PuzzlePieceIcon,
+    activeBg: "bg-foreground",
+    activeText: "text-background",
+  },
+  web: { icon: GlobeIcon, activeBg: "bg-[#b4637a]", activeText: "text-white" },
   powerapps: {
     icon: PowerAppsIconSolid,
-    activeBg: "bg-pink-600",
+    activeBg: "bg-[#907aa9]",
     activeText: "text-white",
   },
   automation: {
     icon: GraphIcon,
-    activeBg: "bg-blue-600",
+    activeBg: "bg-[#286983]",
     activeText: "text-white",
   },
   bi: {
     icon: ChartBarIcon,
-    activeBg: "bg-yellow-500",
+    activeBg: "bg-[#ea9d34]",
     activeText: "text-yellow-950",
-    disabled: true,
+    disabled: false,
   },
   design: {
     icon: PenNibIcon,
-    activeBg: "bg-teal-600",
+    activeBg: "bg-[#56949f]",
     activeText: "text-white",
   },
 };

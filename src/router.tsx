@@ -1,7 +1,6 @@
 import type { ComponentType } from "react";
 import { createBrowserRouter } from "react-router";
 import App from "./App";
-import PageSkeleton from "@/components/PageSkeleton";
 import { loadRoute } from "./route-prefetch";
 
 /**
@@ -17,7 +16,7 @@ const page =
   });
 
 /** The site pages, mounted once at the root (PT, unprefixed) and once under
- * "/en" — see lib/i18n/paths.ts, which derives the locale purely from
+ * "/en"; see lib/i18n/paths.ts, which derives the locale purely from
  * whichever of these two subtrees matched. */
 const pages = () => [
   { index: true, lazy: page(loadRoute.home) },
@@ -29,7 +28,6 @@ const pages = () => [
 export const router = createBrowserRouter([
   {
     element: <App />,
-    HydrateFallback: PageSkeleton,
     children: [
       ...pages(),
       { path: "en", children: pages() },

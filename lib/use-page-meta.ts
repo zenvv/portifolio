@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import type { Locale } from "./i18n/translations";
 
 const DEFAULT_TITLE: Record<Locale, string> = {
-  pt: "Willian Zeni — Desenvolvedor Full-Stack | Automação e Integração de Sistemas",
-  en: "Willian Zeni — Full-Stack Developer | Automation & Systems Integration",
+  pt: "Willian Zeni | Desenvolvedor Full-Stack | Automação e Integração de Sistemas",
+  en: "Willian Zeni | Full-Stack Developer | Automation & Systems Integration",
 };
 // Descriptions lead with a number already published on a project page
 // (nfs-transporte's shortDescription), not a new claim.
 const DEFAULT_DESCRIPTION: Record<Locale, string> = {
-  pt: "Desenvolvedor full-stack focado em automação e integração de sistemas — já reduziu um ciclo manual de notas fiscais de 6h para 15–30min.",
-  en: "Full-stack developer focused on automation and systems integration — cut a manual invoice cycle from 6h down to 15-30min.",
+  pt: "Desenvolvedor full-stack focado em automação e integração de sistemas. Já reduziu um ciclo manual de notas fiscais de 6h para 15–30min.",
+  en: "Full-stack developer focused on automation and systems integration. Cut a manual invoice cycle from 6h down to 15-30min.",
 };
 const PROJECTS_TITLE: Record<Locale, string> = {
   pt: "zenvv / projetos",
@@ -22,7 +22,7 @@ const PROJECTS_DESCRIPTION: Record<Locale, string> = {
 
 // Updates <title>/<meta description>/<link canonical> on route change.
 // This SPA has no SSR/prerendering, so this only affects the browser tab
-// and JS-executing crawlers (e.g. Googlebot) — see the note in index.html
+// and JS-executing crawlers (e.g. Googlebot); see the note in index.html
 // about why social preview bots won't see this.
 export function usePageMeta(title: string, description?: string) {
   useEffect(() => {

@@ -2,7 +2,7 @@
      apps: pcp, logistica, engenharia. Flagships (compras, financeiro,
      controle-operacional) have their own post. Images in ./images/. -->
 
-# App ecosystem — Bello Aramados
+# App ecosystem: Bello Aramados
 
 Bello Aramados is a metalworks producing wire, wire mesh, grates and screens,
 with two plants. Over the course of the project I built **six Power Apps** that,

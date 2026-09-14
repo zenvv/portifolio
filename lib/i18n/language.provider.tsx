@@ -12,7 +12,7 @@ const LanguageContext = React.createContext<LanguageContextValue | null>(null);
 
 /** The site's locale is a pure function of the URL ("/en/..." vs
  * everything else) so that what a crawler fetches for a given path always
- * matches what a visitor sees — see lib/i18n/paths.ts. */
+ * matches what a visitor sees. See lib/i18n/paths.ts. */
 function LanguageProvider({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
   const locale = localeFromPath(pathname);

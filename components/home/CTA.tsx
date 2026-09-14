@@ -17,7 +17,7 @@ export default function CTA({ className }: { className?: string }) {
       <TransitionLink
         to="/projects"
         direction="forward"
-        variant="outline"
+        variant="default"
         size="lg"
         className="gap-1.5"
       >

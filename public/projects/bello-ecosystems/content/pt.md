@@ -2,7 +2,7 @@
      curadoria: pcp, logistica, engenharia. Flagships (compras, financeiro,
      controle-operacional) têm post próprio. Imagens em ./imagens/. -->
 
-# Ecossistema de apps — Bello Aramados
+# Ecossistema de apps: Bello Aramados
 
 A Bello Aramados é uma metalúrgica de arames, aramados, grades e telas, com duas unidades. Ao longo do projeto construí **seis apps Power Apps** que, juntos, funcionam como um mini-ERP: comercial, engenharia, planejamento, chão de fábrica, logística e o lado financeiro (compras e pagamentos).
 

@@ -26,10 +26,8 @@ export const translations = {
       projects: {
         title: "Featured Projects",
       },
-      impact: {
-        title: "By the numbers",
-      },
       stack: {
+        title: "Tech stack",
         learningBadge: "learning",
         types: {
           languages: "Languages",
@@ -43,7 +41,7 @@ export const translations = {
           other: "Other",
         },
         showAll: "Show all",
-        allTitle: "All technologies",
+        showLess: "Show less",
       },
       songs: {
         title: "Some songs that I jam to",
@@ -55,12 +53,12 @@ export const translations = {
         development: {
           title: "Software development",
           description:
-            "Web applications and internal systems — like Bello Aramados' ERP and Nailly's scheduling PWA.",
+            "Web applications and internal systems, like Bello Aramados' ERP and Nailly's scheduling PWA.",
         },
         automation: {
           title: "Automation & Power Platform",
           description:
-            "Process automation with Power Apps, Power Automate and Power Fx — like Bello Aramados' Power Apps ecosystem.",
+            "Process automation with Power Apps, Power Automate and Power Fx, like Bello Aramados' Power Apps ecosystem.",
         },
         data: {
           title: "Data & integrations",
@@ -78,20 +76,25 @@ export const translations = {
       viewAllProjects: "View all projects",
     },
     projects: {
-      startTitle: "Featured",
-      endTitle: "Projects",
+      title: "Projects",
       readMore: "Read more",
       open: "Open",
       goToProject: "Open Project",
       backToProjects: "Back to projects",
       tableOfContents: "Contents",
+      imageIndex: "Images",
       backToHome: "Back to homepage",
+      backToTop: "Back to top",
+      filterByType: "Filter by type",
+      previousProject: "Previous project",
+      nextProject: "Next project",
       notFound: "Project not found",
       notFoundDescription: "We couldn't find a project with this address.",
       clientTitle: "Built for",
       personalProject: "Personal project",
       problem: "Problem",
       solution: "Solution",
+      problemSolutionTitle: "From problem to solution",
       types: {
         all: "All",
         web: "Web",
@@ -103,12 +106,6 @@ export const translations = {
       groups: {
         personal: "Personal Projects",
       },
-      filters: {
-        searchPlaceholder: "Search projects...",
-        technologies: "Technologies",
-        company: "Company",
-        clearAll: "Clear filters",
-      },
       empty: {
         title: "No projects match this filter",
         description: "Try adjusting or clearing the filters above.",
@@ -116,18 +113,15 @@ export const translations = {
     },
     about: {
       intro:
-        "Brazilian **Full-Stack Developer** with hands-on experience across **corporate systems integration**, **process automation**, the **Microsoft Power Platform**, **SharePoint/Graph API**, and **ReactJS**. I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments — from mapping a broken workflow to shipping the tool that fixes it.",
+        "Brazilian **Full-Stack Developer** with hands-on experience across **corporate systems integration**, **process automation**, the **Microsoft Power Platform**, **SharePoint/Graph API**, and **ReactJS**. I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments, from mapping a broken workflow to shipping the tool that fixes it.",
       companiesWebsite: "View Company Website",
       companiesTitle: "Experience",
       showActivities: "Show activities",
       hideActivities: "Hide activities",
       educationTitle: "Education",
-      personalTitle: "About me - Personally",
-      personalBlurb:
-        "Hi, I'm Willian! Outside of work I'm a huge music lover — especially good old rock n' roll — but I'm into pretty much everything, from hip-hop to folk, emo to MPB (Brazilian pop). In my free time I like studying, reading, and occasionally sketching some doodles (haha). I got into software because I've always had a creative mind, constantly coming up with solutions to problems I noticed — today, combining that creativity with UI/UX design and automating repetitive processes is what I enjoy doing most.",
-      photosTitle: "Some snapshots of my life",
-      showMorePhotos: "Show more photos",
-      showLessPhotos: "Show less photos",
+      personalEyebrow: "Off the clock",
+      personalTeaser:
+        "A lover of music, doodles, visual interfaces, and cats. I have a mild coffee addiction and I'm constantly coming up with new ideas.",
     },
     notFound: {
       title: "Page not found",
@@ -136,6 +130,21 @@ export const translations = {
     },
     contact: {
       heading: "Contact",
+      subheading: "Pick whichever's easiest for you: I check all of these! :)",
+      captions: {
+        github: "See my repositories",
+        linkedin: "Connect with me",
+        whatsapp: "Send a message",
+      },
+    },
+    impact: {
+      heading: "My track record",
+      processes: "automated processes",
+      apps: "apps built in Power Platform",
+      flows: "automation flows",
+      reductionLabel: "Process time cut",
+      reduction1: "invoices & transport declarations",
+      reduction2: "risk analyses",
     },
   },
   pt: {
@@ -161,10 +170,8 @@ export const translations = {
       projects: {
         title: "Projetos em Destaque",
       },
-      impact: {
-        title: "Em números",
-      },
       stack: {
+        title: "Stack de tecnologias",
         learningBadge: "estudando",
         types: {
           languages: "Linguagens",
@@ -178,7 +185,7 @@ export const translations = {
           other: "Outros",
         },
         showAll: "Mostrar todos",
-        allTitle: "Todas as tecnologias",
+        showLess: "Mostrar menos",
       },
       songs: {
         title: "Algumas músicas que eu curto",
@@ -190,12 +197,12 @@ export const translations = {
         development: {
           title: "Desenvolvimento de software",
           description:
-            "Aplicações web e sistemas internos — como o ERP da Bello Aramados e o PWA de agenda da Nailly.",
+            "Aplicações web e sistemas internos, como o ERP da Bello Aramados e o PWA de agenda da Nailly.",
         },
         automation: {
           title: "Automação & Power Platform",
           description:
-            "Automação de processos com Power Apps, Power Automate e Power Fx — como o ecossistema de Power Apps da Bello Aramados.",
+            "Automação de processos com Power Apps, Power Automate e Power Fx, como o ecossistema de Power Apps da Bello Aramados.",
         },
         data: {
           title: "Dados & integrações",
@@ -213,20 +220,25 @@ export const translations = {
       viewAllProjects: "Ver todos os projetos",
     },
     projects: {
-      startTitle: "Projetos de",
-      endTitle: "em Destaque",
+      title: "Projetos",
       readMore: "Ler mais",
       open: "Abrir",
       goToProject: "Abrir Projeto",
       backToProjects: "Voltar aos projetos",
       tableOfContents: "Sumário",
+      imageIndex: "Imagens",
       backToHome: "Voltar à Página Inicial",
+      backToTop: "Voltar ao topo",
+      filterByType: "Filtrar por tipo",
+      previousProject: "Projeto anterior",
+      nextProject: "Próximo projeto",
       notFound: "Projeto não encontrado",
       notFoundDescription: "Não encontramos um projeto neste endereço.",
       clientTitle: "Construído para",
       personalProject: "Projeto pessoal",
       problem: "Problema",
       solution: "Solução",
+      problemSolutionTitle: "Do problema à solução",
       types: {
         all: "Tudo",
         web: "Web",
@@ -238,12 +250,6 @@ export const translations = {
       groups: {
         personal: "Projetos Pessoais",
       },
-      filters: {
-        searchPlaceholder: "Buscar projetos...",
-        technologies: "Tecnologias",
-        company: "Empresa",
-        clearAll: "Limpar filtros",
-      },
       empty: {
         title: "Nenhum projeto encontrado com esse filtro",
         description: "Tente ajustar ou limpar os filtros acima.",
@@ -251,18 +257,15 @@ export const translations = {
     },
     about: {
       intro:
-        "Desenvolvedor Full-Stack, com atuação prática em **integração de sistemas corporativos**, **automação de processos**, **Microsoft Power Platform**, **SharePoint/Graph API** e **ReactJS**. Combino desenvolvimento de software, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais — do mapeamento de um fluxo quebrado até a entrega da ferramenta que resolve.",
+        "Desenvolvedor Full-Stack, com atuação prática em **integração de sistemas corporativos**, **automação de processos**, **Microsoft Power Platform**, **SharePoint/Graph API** e **ReactJS**. Combino desenvolvimento de software, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais, do mapeamento de um fluxo quebrado até a entrega da ferramenta que resolve.",
       companiesTitle: "Experiência",
       companiesWebsite: "Ver website da empresa",
       showActivities: "Mostrar atividades desenvolvidas",
       hideActivities: "Ocultar atividades",
       educationTitle: "Educação",
-      personalTitle: "Sobre mim - pessoalmente",
-      personalBlurb:
-        "Oi, eu sou o Willian! Fora do trabalho sou um amante de música — especialmente o bom e velho rock n' roll — mas curto ouvir de tudo, do hip-hop ao folk, do emo à MPB. No tempo livre gosto de estudar, ler e, às vezes, desenhar uns rabiscos (hahaha). Me interessei pela área de software porque sempre tive uma mente criativa, sempre inventando soluções pros problemas que via — hoje, unir essa criatividade com design de interface/UX e automação de processos repetitivos é o que mais gosto de fazer.",
-      photosTitle: "Alguns registros da minha vida",
-      showMorePhotos: "Exibir mais fotos",
-      showLessPhotos: "Exibir menos fotos",
+      personalEyebrow: "Fora do expediente",
+      personalTeaser:
+        "Amante de música, rabiscos, interfaces visuais e gatos. Tenho um leve vício em café e estou toda hora pensando em ideias novas.",
     },
     notFound: {
       title: "Página não encontrada",
@@ -271,6 +274,22 @@ export const translations = {
     },
     contact: {
       heading: "Contato",
+      subheading:
+        "Escolhe o que for mais fácil pra ti: eu confiro todos esses canais! :)",
+      captions: {
+        github: "Ver meus repositórios",
+        linkedin: "Conectar comigo",
+        whatsapp: "Enviar mensagem",
+      },
+    },
+    impact: {
+      heading: "Meu desempenho",
+      processes: "processos automatizados",
+      apps: "apps em Power Platform",
+      flows: "fluxos de automação",
+      reductionLabel: "Redução de tempo de processo",
+      reduction1: "notas fiscais e declarações",
+      reduction2: "análises de risco",
     },
   },
 } as const satisfies Record<Locale, unknown>;

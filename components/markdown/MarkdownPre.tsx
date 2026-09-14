@@ -18,7 +18,7 @@ function getPlainText(node: HastNode | HastChild): string {
 }
 
 /** Fenced code blocks (```lang) are rendered with real syntax highlighting or,
- * for `mermaid`, an actual diagram — everything else falls back to a plain
+ * for `mermaid`, an actual diagram; everything else falls back to a plain
  * <pre>. See CodeBlock/MermaidDiagram and the .md-code-block rules in
  * index.css for the visual side of this. */
 export default function MarkdownPre({ node, children, ...rest }: PreProps) {

@@ -1,9 +1,9 @@
 // Renders the share-preview PNG(s) from scripts/og-template.mjs. Run
-// manually with `npm run og` — this is NOT part of `npm run build`; the
+// manually with `npm run og`; this is NOT part of `npm run build`. The
 // PNGs are committed like any other static asset and only regenerated when
 // the copy or design changes.
 //
-// With no flags, renders both site-wide default cards (PT and EN — the
+// With no flags, renders both site-wide default cards (PT and EN: the
 // card has real rasterized text, so each language needs its own image):
 //   public/images/og-card.png, public/images/og-card-en.png
 //
@@ -65,13 +65,13 @@ if (args.title) {
   });
 } else {
   // Same numbers as lib/use-page-meta.ts's DEFAULT_DESCRIPTION, hand-wrapped
-  // for the card's fixed width — this script has no app build step in its
+  // for the card's fixed width; this script has no app build step in its
   // path, so it can't import that at runtime the way generate-seo.mjs does.
   renderCard({
     title: "Willian Zeni",
     subtitle: "Desenvolvedor Full-Stack · UI/UX Designer",
     taglineLines: [
-      "Automação e integração de sistemas —",
+      "Automação e integração de sistemas,",
       "reduziu um ciclo manual de 6h para 15–30min",
     ],
     outPath: "public/images/og-card.png",
@@ -80,7 +80,7 @@ if (args.title) {
     title: "Willian Zeni",
     subtitle: "Full-Stack Developer · UI/UX Designer",
     taglineLines: [
-      "Automation and systems integration —",
+      "Automation and systems integration,",
       "cut a manual cycle from 6h down to 15-30min",
     ],
     outPath: "public/images/og-card-en.png",

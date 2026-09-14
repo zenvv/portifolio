@@ -1,15 +1,15 @@
 <!-- Post de projeto do portfólio (zenvv.dev). Redesign do site institucional
      da Bello Aramados. Imagens comparativas em ./images/. -->
 
-# Website Institucional — Bello Aramados
+# Website Institucional: Bello Aramados
 
-Redesign completo do site institucional da **Bello Aramados**, metalúrgica de arames, aramados, grades e telas com duas unidades (Caxias do Sul e Piracicaba). A estrutura de páginas, os endereços (URLs) e o conteúdo continuam os mesmos — o que mudou foi a **aparência, a organização das informações e a experiência de navegação**, especialmente no celular. Stack: **PHP (CodeIgniter)** no backend, **CSS puro** e JavaScript pontual no frontend.
+Redesign completo do site institucional da **Bello Aramados**, metalúrgica de arames, aramados, grades e telas com duas unidades (Caxias do Sul e Piracicaba). A estrutura de páginas, os endereços (URLs) e o conteúdo continuam os mesmos: o que mudou foi a **aparência, a organização das informações e a experiência de navegação**, especialmente no celular. Stack: **PHP (CodeIgniter)** no backend, **CSS puro** e JavaScript pontual no frontend.
 
 ## Contexto
 
 Cerca de **90% das alterações são de layout e design**. O restante é bastidor: proteção do formulário de contato contra spam, suporte a múltiplos idiomas, acessibilidade e otimização para busca.
 
-> Nos comparativos abaixo, cada imagem mostra **Antes — Site Antigo** à esquerda e **Depois — Site Atual** à direita.
+> Nos comparativos abaixo, cada imagem mostra **Antes: Site Antigo** à esquerda e **Depois: Site Atual** à direita.
 
 ## Cabeçalho e rodapé
 
@@ -69,7 +69,7 @@ Cada campo do formulário ganhou ícone e exemplo de preenchimento, o seletor de
 | **Formulário de contato** | Proteção anti-spam (campo oculto + intervalo mínimo entre envios) e novo modelo de e-mail de notificação |
 | **Acessibilidade** | Indicador de foco para navegação por teclado, respeito à opção "reduzir animações" do sistema, textos alternativos em imagens e link "pular para o conteúdo" |
 | **Idiomas** | O idioma declarado da página (pt-br / en / es) passou a refletir corretamente a navegação |
-| **CSS** | Cores, tipografia e espaçamentos centralizados num único lugar — antes o mesmo botão era recriado em 5 arquivos diferentes |
+| **CSS** | Cores, tipografia e espaçamentos centralizados num único lugar: antes o mesmo botão era recriado em 5 arquivos diferentes |
 
 ---
 

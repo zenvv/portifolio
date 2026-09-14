@@ -11,6 +11,24 @@
         ],
         "createdAt": "2026-08-31T00:07:45.603Z",
         "reason": "reusable <img> primitive: src is supplied by callers via ...props, not a placeholder"
+      },
+      {
+        "rule": "broken-image",
+        "value": "src/pages/projects/pid/project.tsx",
+        "files": [
+          "src/pages/projects/pid/project.tsx"
+        ],
+        "createdAt": "2026-09-14T18:16:59.230Z",
+        "reason": "MarkdownImage renders a dynamic <img src={src}> guarded by an early 'if (!src) return null' above it, not a hardcoded/placeholder src; false positive from static scan of the variable reference"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "src/pages/projects/pid/project.tsx"
+        ],
+        "createdAt": "2026-09-14T18:19:51.174Z",
+        "reason": "MarkdownImage renders a dynamic src passed through from markdown content, not a placeholder/broken image"
       }
     ]
   }

@@ -1,15 +1,15 @@
 <!-- Portfolio project post (zenvv.dev). Redesign of Bello Aramados'
      institutional website. Comparison images in ./images/. -->
 
-# Institutional Website — Bello Aramados
+# Institutional Website: Bello Aramados
 
-Full redesign of the institutional website for **Bello Aramados**, a metalworks producing wire, wire mesh, grates and screens, with two plants (Caxias do Sul and Piracicaba). The page structure, URLs and content stayed the same — what changed was the **look, the way information is organized, and the browsing experience**, especially on mobile. Stack: **PHP (CodeIgniter)** on the backend, **vanilla CSS** and targeted JavaScript on the frontend.
+Full redesign of the institutional website for **Bello Aramados**, a metalworks producing wire, wire mesh, grates and screens, with two plants (Caxias do Sul and Piracicaba). The page structure, URLs and content stayed the same: what changed was the **look, the way information is organized, and the browsing experience**, especially on mobile. Stack: **PHP (CodeIgniter)** on the backend, **vanilla CSS** and targeted JavaScript on the frontend.
 
 ## Context
 
 Roughly **90% of the changes are layout and design**. The rest happens behind the scenes: spam protection on the contact form, multi-language support, accessibility and search optimization.
 
-> In the comparisons below, each image shows **Before — Old Site** on the left and **After — Current Site** on the right.
+> In the comparisons below, each image shows **Before: Old Site** on the left and **After: Current Site** on the right.
 
 ## Header and footer
 
@@ -69,7 +69,7 @@ Every form field got an icon and a filled-in example, the contact-reason selecto
 | **Contact form** | Spam protection (a hidden field + a minimum interval between submissions) and a new notification email template |
 | **Accessibility** | Visible focus indicator for keyboard navigation, respecting the system's "reduce motion" setting, alt text on images, and a "skip to content" link |
 | **Languages** | The page's declared language (pt-br / en / es) now correctly reflects the browsing language |
-| **CSS** | Colors, typography and spacing centralized in one place — the same button used to be recreated across 5 different files |
+| **CSS** | Colors, typography and spacing centralized in one place: the same button used to be recreated across 5 different files |
 
 ---
 

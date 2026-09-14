@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 import SectionTitle from "@/components/SectionTitle";
 import type { Company, CompanyRole } from "@/data/experience";
 import type { Locale, Translations } from "@/lib/i18n/translations";
-import { Button } from "@/components/ui/button";
 import { GlobeIcon } from "@phosphor-icons/react/dist/ssr";
 
 function RoleRow({
@@ -30,11 +29,11 @@ function RoleRow({
   const hasActivities = activities.length > 0;
 
   return (
-    <div className="flex flex-col p-3.5 transition-colors hover:bg-muted/30">
+    <div className="flex flex-col py-3">
       <div className="flex flex-col min-w-0">
         <span className="text-sm font-medium">{role.title[locale]}</span>
         <span className="text-xs text-muted-foreground">
-          {role.start[locale]} — {role.end[locale]}
+          {role.start[locale]}–{role.end[locale]}
         </span>
         {role.note ? (
           <span className="text-[0.7rem] italic text-muted-foreground/70 mt-0.5">
@@ -87,28 +86,27 @@ function CompanyCard({
   t: Translations;
 }) {
   return (
-    <div className="flex flex-col border rounded-lg overflow-hidden">
-      <div className="flex items-center gap-3 p-3.5 border-b">
-        <span className="flex items-center justify-center size-8 border bg-background shrink-0 overflow-hidden rounded-sm">
+    <div className="flex flex-col gap-1 border-t pt-4 first:border-t-0 first:pt-0">
+      <div className="flex items-center gap-3 pb-1">
+        <span className="flex items-center justify-center size-7 shrink-0 overflow-hidden">
           <img
             src={company.icon}
             alt={company.name}
             className="size-full object-contain"
           />
         </span>
-        <span className="text-sm font-medium truncate">{company.name}</span>
-        <span className="flex-1 flex items-start justify-end">
-          <Button
-            variant={"outline"}
-            size="sm"
-            render={<a href={company.url} target="_blank"></a>}
-          >
-            <GlobeIcon />
-            {t.about.companiesWebsite}
-          </Button>
-        </span>
+        <span className="text-sm font-semibold truncate">{company.name}</span>
+        <a
+          href={company.url}
+          target="_blank"
+          rel="noreferrer"
+          className="ml-auto inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <GlobeIcon className="size-3" />
+          <span className="hidden sm:inline">{t.about.companiesWebsite}</span>
+        </a>
       </div>
-      <div className="flex flex-col divide-y">
+      <div className="flex flex-col divide-y divide-border/60">
         {company.roles.map((role) => (
           <RoleRow key={role.index} role={role} locale={locale} t={t} />
         ))}
@@ -129,12 +127,12 @@ export default function CompanySection({
   return (
     <div className="flex flex-col gap-3 w-full">
       <SectionTitle
-        align="center"
+        align="start"
         title={t.about.companiesTitle}
         icon={<HeadCircuitIcon />}
         titleLevel="h3"
       />
-      <div className="flex flex-col gap-3 p-4">
+      <div className="flex flex-col gap-3 pt-1">
         {companies.map((company) => (
           <CompanyCard
             key={company.index}

@@ -2,24 +2,20 @@ import { useLanguage } from "@/lib/i18n/language.provider";
 import { ArrowLeftIcon, MagicWandIcon } from "@phosphor-icons/react";
 import { useMemo, useState } from "react";
 
-import FeaturedBanner from "./components/FeaturedBanner";
-import ProjectCard from "./components/ProjectCard";
+import ProjectListRow from "./components/ProjectListRow";
 import ProjectsEmptyState from "./components/ProjectsEmptyState";
 import ProjectsFilterPanel from "./components/ProjectsFilterPanel";
-
+import ProjectsTypeDrawer from "./components/ProjectsTypeDrawer";
 import TransitionLink from "@/components/TransitionLink";
 import SectionTitle from "@/components/SectionTitle";
 import { Projetos } from "@/data/projects";
 import { Companies } from "@/data/experience";
-import { TECH_TYPES } from "@/data/stack";
-import { canonicalTechName, getTechType } from "@/lib/tech-icons";
 import type { ProjectTypeFilterValue } from "@/lib/project-type-meta";
 import {
   usePageMeta,
   PROJECTS_TITLE,
   PROJECTS_DESCRIPTION,
 } from "@/lib/use-page-meta";
-import { Scales } from "@/src/components/ui/scales";
 
 const COMPANY_GROUPS = ["Bello Aramados", "Centro Tecnológico Randon"] as const;
 const PERSONAL_GROUP = "__personal__";
@@ -37,61 +33,21 @@ export default function ProjectsPage() {
   const { locale, t } = useLanguage();
   usePageMeta(PROJECTS_TITLE[locale], PROJECTS_DESCRIPTION[locale]);
 
-  const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] =
     useState<ProjectTypeFilterValue>("all");
-  const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
-  const [selectedCompanies, setSelectedCompanies] = useState<string[]>([]);
-
-  const techGroups = useMemo(() => {
-    const byType = new Map<(typeof TECH_TYPES)[number], Set<string>>();
-    for (const p of Projetos) {
-      for (const tec of p.tecnologias) {
-        const canonical = canonicalTechName(tec);
-        const type = getTechType(tec);
-        if (!byType.has(type)) byType.set(type, new Set());
-        byType.get(type)!.add(canonical);
-      }
-    }
-    return TECH_TYPES.filter((type) => byType.has(type)).map((type) => ({
-      label: t.hero.stack.types[type],
-      options: Array.from(byType.get(type)!)
-        .sort((a, b) => a.localeCompare(b))
-        .map((name) => ({ value: name, label: name })),
-    }));
-  }, [t]);
-
-  const companyOptions = useMemo(
-    () => [
-      ...COMPANY_GROUPS.map((name) => ({ value: name, label: name })),
-      { value: PERSONAL_GROUP, label: t.projects.groups.personal },
-    ],
-    [t],
-  );
 
   const filteredProjects = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    return Projetos.filter((p) => {
-      const matchesSearch =
-        query === "" ||
-        p.title[locale].toLowerCase().includes(query) ||
-        p.shortDescription[locale].toLowerCase().includes(query);
-      const matchesType = selectedType === "all" || p.type === selectedType;
-      const matchesTechs =
-        selectedTechs.length === 0 ||
-        selectedTechs.some((tec) =>
-          p.tecnologias.some((raw) => canonicalTechName(raw) === tec),
-        );
-      const matchesCompany =
-        selectedCompanies.length === 0 ||
-        selectedCompanies.includes(companyGroupOf(p.empresa));
-
-      return matchesSearch && matchesType && matchesTechs && matchesCompany;
-    });
-  }, [search, selectedType, selectedTechs, selectedCompanies, locale]);
+    return Projetos.filter(
+      (p) =>
+        selectedType === "all" ||
+        p.type === selectedType ||
+        p.additionalTypes?.includes(selectedType),
+    );
+  }, [selectedType]);
 
   const groups = useMemo(() => {
-    const order = [...COMPANY_GROUPS, PERSONAL_GROUP];
+    // Personal work leads the page; client work follows.
+    const order = [PERSONAL_GROUP, ...COMPANY_GROUPS];
     return order
       .map((group) => ({
         group,
@@ -104,43 +60,40 @@ export default function ProjectsPage() {
   }, [filteredProjects, t]);
 
   return (
-    <div className="flex-1 flex flex-col ">
-      <span className="flex w-full items-start flex-col justify-between mb-0 gap-4">
-        <div className="p-2 border-b w-full flex justify-start items-center gap-4">
-          <TransitionLink
-            to="/"
-            direction="backward"
-            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors w-fit "
-          >
-            <ArrowLeftIcon className="size-3.5" />
-            {t.projects.backToHome}
-          </TransitionLink>
-        </div>
-      </span>
-
-      <div className="p-0 pt-0 max-w-full flex-1 flex flex-col gap-6">
-        <FeaturedBanner className="border-b pb-4" />
-
+    <div className="flex-1 flex flex-col w-full ">
+      <div className="p-2 border-b w-full flex justify-between items-center gap-4 sticky top-[69px] z-40 bg-background">
+        <TransitionLink
+          to="/"
+          direction="backward"
+          className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors w-fit "
+        >
+          <ArrowLeftIcon className="size-3.5" />
+          {t.projects.backToHome}
+        </TransitionLink>
+        <h1 className="absolute left-1/2 max-w-[45%] -translate-x-1/2 truncate font-heading text-sm italic text-foreground sm:max-w-[40%]">
+          {t.projects.title}
+        </h1>
         <ProjectsFilterPanel
           t={t}
-          search={search}
-          onSearchChange={setSearch}
           selectedType={selectedType}
           onTypeChange={setSelectedType}
-          techGroups={techGroups}
-          selectedTechs={selectedTechs}
-          onTechsChange={setSelectedTechs}
-          companyOptions={companyOptions}
-          selectedCompanies={selectedCompanies}
-          onCompaniesChange={setSelectedCompanies}
+          className="hidden lg:flex"
         />
+        <ProjectsTypeDrawer
+          t={t}
+          selectedType={selectedType}
+          onTypeChange={setSelectedType}
+          className="lg:hidden"
+        />
+      </div>
 
+      <div className="p-0 pt-6 min-w-0 max-w-full flex-1 flex flex-col gap-6 w-full">
         {groups.length > 0 ? (
-          <div className="flex flex-col gap-4 ">
+          <div className="flex flex-col gap-8 pb-8 w-full max-w-full">
             {groups.map(({ group, label, items }) => (
-              <div key={group} className="flex flex-col gap-3">
+              <div key={group} className="flex flex-col gap-3 px-4 w-full">
                 <SectionTitle
-                  align="center"
+                  align="start"
                   title={label}
                   icon={
                     group === PERSONAL_GROUP ? (
@@ -149,19 +102,18 @@ export default function ProjectsPage() {
                       <img
                         src={companyIconByName.get(group)}
                         alt=""
-                        className="size-4 shrink-0 rounded-xs object-contain"
+                        className="size-4 shrink-0 object-contain"
                       />
                     ) : null
                   }
                 />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-4">
+                <div className="flex flex-col w-full">
                   {items.map((projeto, index) => (
-                    <ProjectCard
+                    <ProjectListRow
                       key={projeto.slug}
                       projeto={projeto}
                       index={index}
                       locale={locale}
-                      t={t}
                     />
                   ))}
                 </div>
@@ -172,9 +124,6 @@ export default function ProjectsPage() {
           <ProjectsEmptyState />
         )}
       </div>
-      <span className="h-12 relative border-y">
-        <Scales />
-      </span>
     </div>
   );
 }

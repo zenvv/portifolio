@@ -41,7 +41,7 @@ export const Companies: Company[] = [
           en: [
             "Architected and built the SGE (internal ERP), unifying 4 areas previously managed on isolated spreadsheets: cut production order creation from ~30–45min to instant and implemented end-to-end traceability (Purchasing→Finance, Logistics→Finance) that didn't exist before, with granular RBAC per department/role and an audit log with notifications.",
             "Fully refactored the legacy institutional website (PHP, jQuery, MySQL, CSS), adding full responsiveness, fixing vulnerabilities, and implementing security layers on the contact form.",
-            "Structured the production planning & control (PCP) logic from scratch (FIFO queue, Order→Production Order→Queue tree) — a process with no formal control before — and translated that logic into a daily time-tracking app used by 30+ shop-floor operators with no tech background.",
+            "Structured the production planning & control (PCP) logic from scratch (FIFO queue, Order→Production Order→Queue tree), a process with no formal control before, and translated that logic into a daily time-tracking app used by 30+ shop-floor operators with no tech background.",
             "Built 8+ Power Apps applications and authored 10+ Power Automate flows to keep production databases up to date.",
           ],
           pt: [
@@ -73,7 +73,7 @@ export const Companies: Company[] = [
             "Developed Power Platform applications for operations, accounting, safety, test engineering, logistics, warehousing, and gatehouse/reception.",
             "Built an operating revenue forecasting system (Excel, MS Fabric, Power BI, Power Automate), used as a reference by the operations, sales, and accounting teams.",
             "Modeled ETLs and dashboards in Power BI; automated ERP (SAP) data extraction with Python (Pandas, OpenPyXL, NumPy, PyAutoGUI).",
-            "Designed and structured several company controls from scratch — most notably, maintenance controls and process controls for the tax and purchasing departments.",
+            "Designed and structured several company controls from scratch: most notably, maintenance controls and process controls for the tax and purchasing departments.",
             "Acted as key user for the rollout of Randoncorp's internal AI initiative (Project BRAIN) at my unit.",
           ],
           pt: [
@@ -98,7 +98,7 @@ export const Companies: Company[] = [
             "Operated the SAP-ERP system and automated internal processes (Power Automate) with forms (MS Forms) and integration to tables (SharePoint Lists, Excel).",
           ],
           pt: [
-            "Operei o sistema SAP-ERP e automatizei processos internos (Power Automate) com formulários (MS Forms) e integração a tabelas (Sharepoint Lists, Excel).",
+            "Operei o sistema SAP-ERP e automatizei processos internos (Power Automate) com formulários (MS Forms) e integração a tabelas (SharePoint Lists, Excel).",
           ],
         },
       },

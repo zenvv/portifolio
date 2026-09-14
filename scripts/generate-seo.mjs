@@ -1,17 +1,17 @@
 // Post-build step: generates sitemap.xml and prerenders per-route <head>
 // meta tags (title/description/OG/Twitter/canonical/hreflang) into static
 // HTML files under dist/. This is a client-only SPA (Vite + react-router,
-// no SSR) — a single dist/index.html is served for every path, so social
+// no SSR): a single dist/index.html is served for every path, so social
 // preview bots (LinkedIn/WhatsApp/Twitter/Facebook), which don't execute
 // JS, always saw the same generic tags regardless of which project (or
-// which language — PT is unprefixed, EN lives under /en) was shared. Since
+// which language, PT is unprefixed, EN lives under /en) was shared. Since
 // Vercel serves a matching static file before falling back to the
 // vercel.json SPA rewrite, writing dist/<route>/index.html with that
 // route's own title/description/image/hreflang lets bots (and anyone
 // sharing the link) see the right preview without needing real SSR.
 //
 // Routes and content come from scripts/routes.mjs, which loads
-// data/projects.ts and lib/use-page-meta.ts via Vite's SSR module loader —
+// data/projects.ts and lib/use-page-meta.ts via Vite's SSR module loader,
 // the same TS modules the client renders from, so this script can't drift
 // out of sync with them.
 import { writeFileSync, readFileSync, mkdirSync, existsSync } from "node:fs";
@@ -26,7 +26,7 @@ import {
 
 const distDir = resolve(root, "dist");
 const SITE_URL = "https://zenvv.dev";
-// Real photo — used only for the JSON-LD Person.image, a distinct field
+// Real photo, used only for the JSON-LD Person.image, a distinct field
 // from the share-preview card below.
 const PERSON_IMAGE = `${SITE_URL}/images/me.png`;
 // Share-preview default (see scripts/og-template.mjs / `npm run og`): one
@@ -54,7 +54,7 @@ const JOB_TITLE = {
   en: "Software Developer · UI/UX Designer",
 };
 // Every technology actually shown in the site's stack list (data/stack.ts),
-// deduplicated — not a hand-picked subset.
+// deduplicated, not a hand-picked subset.
 const KNOWS_ABOUT = JSON.stringify([...new Set(StackList.map((s) => s.name))]);
 
 const BANNER_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "gif", "svg"];
@@ -119,7 +119,7 @@ function renderHead({ path, alternatePath, locale, title, description, image }) 
   const enUrl = locale === "en" ? url : `${SITE_URL}${alternatePath}`;
   const defaultOg = DEFAULT_OG_IMAGE[locale];
   const img = absoluteUrl(image) ?? defaultOg.url;
-  // Only the generated default card has known, fixed dimensions — a
+  // Only the generated default card has known, fixed dimensions: a
   // project's own banner is an arbitrary screenshot, so claiming 1200x630
   // for it would be wrong and could make platforms crop it badly.
   const imgDimensions = image
@@ -223,7 +223,7 @@ const HTML_LANG = /<html lang="[^"]*"/;
 
 if (!HEAD_BLOCK.test(indexHtml)) {
   throw new Error(
-    "dist/index.html is missing the seo:head:start/end markers — did index.html change shape?",
+    "dist/index.html is missing the seo:head:start/end markers; did index.html change shape?",
   );
 }
 

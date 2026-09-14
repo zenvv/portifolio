@@ -1,68 +1,44 @@
 import { useLanguage } from "@/lib/i18n/language.provider";
-
 import { ArrowUpRightIcon, MusicNotesIcon } from "@phosphor-icons/react";
-import { cn } from "@/lib/utils";
-import { Img } from "@/components/ui/image";
-import SectionTitle from "@/components/SectionTitle";
 import { Songs, type songsTypes } from "@/data/songs";
+import { cn } from "@/lib/utils";
 
-function SongCard({ song }: { song: songsTypes }) {
+function SongRow({ song }: { song: songsTypes }) {
   return (
     <a
-      className={cn(
-        "flex hover:bg-muted items-center justify-center p-1 rounded-md group relative",
-      )}
       href={song.spotifyLink}
       target="_blank"
+      rel="noreferrer"
+      className="group flex items-center justify-between gap-3 border-t py-2 text-sm first:border-t-0"
     >
-      <Img
-        src={song.artwork ?? ""}
-        alt={`${song.name}'s artwork`}
-        wrapperClassName="size-10 shrink-0 rounded-sm"
-        className="rounded-sm"
-        draggable={false}
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="w-full flex flex-col items-center justify-center text-left truncate px-2 h-full pr-8">
-        <p className="leading-tight truncate w-full text-sm">{song.name}</p>
-
-        <p className="text-xs text-muted-foreground truncate w-full">
-          {song.artist}
-        </p>
-      </div>
-      <span className="absolute group-hover:text-primary right-4 top-4 group-hover:top-2 group-hover:right-2 transition-all opacity-0 group-hover:opacity-100">
-        <ArrowUpRightIcon weight="regular" className="size-4" />
+      <span className="min-w-0 truncate flex items-center justify-start gap-1">
+        <span className="text-foreground transition-colors group-hover:text-primary truncate">
+          {song.name}
+        </span>
+        <span>·</span>
+        <span className="text-muted-foreground"> {song.artist}</span>
       </span>
+      <ArrowUpRightIcon className="size-3.5 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary group-hover:opacity-100" />
     </a>
   );
 }
 
-function SongsCarousel() {
-  return (
-    <div className="relative flex items-center justify-center w-full p-4">
-      <div className="grid grid-cols-2 gap-1.5 w-full">
-        {Songs.map((song) => (
-          <SongCard key={song.index} song={song} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default function SongsBanner({ className }: { className?: string }) {
+/** A plain list (name, artist, and a link arrow) meant to sit inline below
+ * the "off the clock" section rather than behind a disclosure. */
+export default function SongsList({ className }: { className?: string }) {
   const { t } = useLanguage();
 
   return (
-    <div className={cn("flex flex-col gap-3 w-full", className)}>
-      <SectionTitle
-        align="center"
-        title={`${t.hero.songs.title}!`}
-        icon={<MusicNotesIcon className="size-3.5" />}
-        className=""
-        titleLevel="h3"
-      />
-      <SongsCarousel />
+    <div className={cn("flex w-full flex-col gap-2", className)}>
+      <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-medium tracking-wide text-muted-foreground uppercase">
+        <MusicNotesIcon className="size-3.5" />
+        {t.hero.songs.title}
+      </span>
+      <div className="flex flex-col">
+        {Songs.map((song) => (
+          <SongRow key={song.index} song={song} />
+        ))}
+      </div>
     </div>
   );
 }

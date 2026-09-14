@@ -1,7 +1,7 @@
 // Post-build step: renders every route in a real headless browser (after
 // hydration + async content, like a project's markdown fetch, has settled)
 // and overwrites dist/<route>/index.html with the resulting HTML. Runs
-// after generate-seo.mjs, which already wrote per-route <head> tags — those
+// after generate-seo.mjs, which already wrote per-route <head> tags; those
 // are read back client-side by usePageMeta() and stay intact, so the final
 // file has both the right <head> and the real page content in the body,
 // instead of the empty `<div id="root"></div>` a plain SPA build ships.
@@ -20,7 +20,7 @@ const PORT = 4321;
 const SITE_URL = "https://zenvv.dev";
 
 const { Projetos } = await loadContent();
-// Locale is derived purely from the URL ("/en/..." vs unprefixed — see
+// Locale is derived purely from the URL ("/en/..." vs unprefixed; see
 // lib/i18n/paths.ts), so visiting each route already renders the right
 // language; no locale needs to be forced here.
 const routes = getRoutePaths(Projetos);
@@ -52,7 +52,7 @@ let count = 0;
 for (const routePath of routes) {
   const page = await context.newPage();
   // Trailing slash matters here: vite's preview server (sirv) only resolves
-  // a directory's index.html for "/en/", not "/en" — without it, this falls
+  // a directory's index.html for "/en/", not "/en"; without it, this falls
   // through to the SPA index.html fallback and silently prerenders the
   // wrong route's <head> (title/body still look right because those are
   // fixed up client-side, but og:*/canonical meta baked at build time
@@ -64,7 +64,7 @@ for (const routePath of routes) {
   await waitForSettledContent(page);
   // usePageMeta() re-derives <link rel="canonical"> from
   // window.location.pathname client-side, which just picked up the trailing
-  // slash added above for the preview server's sake — put it back to the
+  // slash added above for the preview server's sake, put it back to the
   // slash-less form the rest of the site (sitemap, og:url, hreflang) uses.
   await page.evaluate((href) => {
     document
@@ -84,7 +84,7 @@ for (const routePath of routes) {
     : null;
   if (capturedPath !== routePath) {
     throw new Error(
-      `Prerendering ${routePath} captured og:url for "${capturedPath}" instead — the preview server likely served the wrong static file.`,
+      `Prerendering ${routePath} captured og:url for "${capturedPath}" instead: the preview server likely served the wrong static file.`,
     );
   }
 

@@ -2,7 +2,7 @@
      names and Power Fx are kept in their original Portuguese because they're real
      identifiers in the system; prose is translated. Keep the two files in sync.
      NOTE: image 15-previsao-comparativo.png has "WILLIAN ZENI" (full name) in test
-     rows — replace with "Fornecedor" or blur before publishing. -->
+     rows; replace with "Fornecedor" or blur before publishing. -->
 
 # Finance
 
@@ -57,9 +57,9 @@ flowchart TD
 
 The other three, in short:
 
-1. **`FINANCEIRO_CANCELA_PEDIDO`** — when an order is cancelled or deleted in Purchasing, cancels every payment row linked to it.
-2. **`FINANCEIRO_PREV_CRIAR`** — reads the forecast Excel spreadsheet and creates or updates the forecast entries, writing the ID back into the spreadsheet to keep both sides in sync.
-3. **`FINANCEIRO_ENVIAR_COMPROVANTES`** — saves the attached receipts to a document library, resolving name collisions, and returns the link to the entry.
+1. **`FINANCEIRO_CANCELA_PEDIDO`**: when an order is cancelled or deleted in Purchasing, cancels every payment row linked to it.
+2. **`FINANCEIRO_PREV_CRIAR`**: reads the forecast Excel spreadsheet and creates or updates the forecast entries, writing the ID back into the spreadsheet to keep both sides in sync.
+3. **`FINANCEIRO_ENVIAR_COMPROVANTES`**: saves the attached receipts to a document library, resolving name collisions, and returns the link to the entry.
 
 ## Data model
 

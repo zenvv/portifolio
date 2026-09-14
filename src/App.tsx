@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/lib/i18n/language.provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/sidebar/Navbar";
+import Footer from "@/components/Footer";
 import { prefetchRoute } from "@/src/route-prefetch";
 
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
   }, []);
 
   // Scrolls to a "#section" target after navigating there, e.g. the header's
-  // "Contact" nav link pointing at "/#contato" from another page — the
+  // "Contact" nav link pointing at "/#contato" from another page: the
   // target route's chunk may still be loading when this runs, so poll
   // briefly instead of assuming the element already exists.
   const { pathname, hash } = useLocation();
@@ -55,16 +56,17 @@ export default function App() {
       <LanguageProvider>
         <TooltipProvider>
           <div className="min-h-dvh flex flex-col ">
-            <div className="max-w-full border-x lg:max-w-5xl mx-auto min-h-full flex-1 shrink-0 w-full flex flex-col z-50 relative bg-background">
+            <div className="max-w-full mx-auto min-h-full flex-1 shrink-0 w-full flex flex-col z-50 relative">
               <Navbar />
               <div
-                className="flex md:flex-row flex-col md:gap-8 flex-1 min-w-0"
+                className="flex flex-col flex-1 mx-auto w-full max-w-7xl min-w-0"
                 style={{ viewTransitionName: "page-content" }}
               >
                 <Suspense fallback={null}>
                   <Outlet />
                 </Suspense>
               </div>
+              <Footer />
             </div>
           </div>
         </TooltipProvider>

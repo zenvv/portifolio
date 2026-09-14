@@ -1,24 +1,31 @@
+import { useState } from "react";
+import { motion } from "motion/react";
 import { useLanguage } from "@/lib/i18n/language.provider";
 
 import { getTechIcon, getSolidTechIcon } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
+import { EASE, useScrollReveal } from "@/lib/motion";
 import TechIcon from "@/components/TechIcon";
 import { Button } from "../ui/button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../ui/collapsible";
+import { CaretDownIcon } from "@phosphor-icons/react";
 import { StackList, TECH_TYPES, type techType } from "@/data/stack";
-import { Scales } from "@/src/components/ui/scales";
+import SectionTitle from "../SectionTitle";
+
+const TILE_STAGGER = 0.045;
+const TILE_STAGGER_CAP = 14;
+const TILE_DURATION = 0.3;
 
 function LearningBadge() {
   const { t } = useLanguage();
 
   return (
-    <span className="text-[0.55rem] leading-none px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium uppercase tracking-wide">
+    <span className="text-[0.55rem] leading-none px-1.5 py-0.5 bg-primary/10 text-primary font-medium uppercase tracking-wide">
       {t.hero.stack.learningBadge}
     </span>
   );
@@ -51,8 +58,9 @@ function TechIconSwap({
         <TechIcon
           icon={base}
           className={cn(
-            "absolute inset-0 size-full transition-opacity duration-200",
-            hover && "opacity-100 group-hover:opacity-0",
+            "absolute inset-0 size-full transition-all duration-200",
+            hover &&
+              "opacity-100 scale-100 group-hover:scale-90 group-hover:opacity-0",
           )}
         />
       ) : null}
@@ -60,8 +68,10 @@ function TechIconSwap({
         <TechIcon
           icon={hover}
           className={cn(
-            "absolute inset-0 size-full transition-opacity duration-200",
-            base ? "opacity-0 group-hover:opacity-100" : "opacity-100",
+            "absolute inset-0 size-full transition-all duration-200",
+            base
+              ? "opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100"
+              : "opacity-100",
           )}
         />
       ) : null}
@@ -69,31 +79,61 @@ function TechIconSwap({
   );
 }
 
-/** Icon + name pill, name always visible — same visual pattern as the tech
- * chips on project cards and the project detail page, so the hero stack
- * row doesn't introduce a new one. */
-function FeaturedTileDesktop({ tech }: { tech: (typeof StackList)[number] }) {
+/** Icon-only tile, larger than the old text pill; the name only shows in a
+ * tooltip on hover/focus so the row reads as a clean mark grid. Fades and
+ * scales in once, staggered by `delay`, as the row scrolls into view. */
+function FeaturedIconTile({
+  tech,
+  active,
+  reduceMotion,
+  delay,
+}: {
+  tech: (typeof StackList)[number];
+  active: boolean;
+  reduceMotion: boolean;
+  delay: number;
+}) {
+  const { t } = useLanguage();
   const icon = getTechIcon(tech.name);
 
   return (
-    <a
-      href={tech.link}
-      target="_blank"
-      rel="noreferrer"
-      className={cn(
-        "group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-transparent px-2.5 py-1 text-xs leading-none text-muted-foreground opacity-70 transition-all hover:border-border hover:text-foreground hover:opacity-100",
-      )}
+    <motion.span
+      initial={reduceMotion ? false : { opacity: 0, scale: 0.6 }}
+      animate={active ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: TILE_DURATION, delay, ease: EASE }}
     >
-      {icon ? (
-        <TechIconSwap
-          name={tech.name}
-          invert={false}
-          className="size-3.5 shrink-0 transition-all"
-        />
-      ) : null}
-      <span className="whitespace-nowrap">{tech.name}</span>
-      {tech.learning ? <LearningBadge /> : null}
-    </a>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <a
+              href={tech.link}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={tech.name}
+              className="group relative flex size-10 shrink-0 items-center justify-center border border-transparent text-muted-foreground opacity-70 transition-all bg-linear-to-t from-transparent to-transparent hover:from-muted hover:border-border hover:text-foreground hover:opacity-100 sm:size-11 outline outline-dotted outline-transparent hover:outline-border outline-offset-8 hover:outline-offset-4 "
+            />
+          }
+        >
+          {icon ? (
+            <TechIconSwap
+              name={tech.name}
+              invert={false}
+              className="size-6 shrink-0 transition-all sm:size-7"
+            />
+          ) : null}
+          {tech.learning ? (
+            <span
+              aria-hidden
+              className="absolute top-1.5 right-1.5 size-1.5 bg-primary"
+            />
+          ) : null}
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          {tech.name}
+          {tech.learning ? ` · ${t.hero.stack.learningBadge}` : ""}
+        </TooltipContent>
+      </Tooltip>
+    </motion.span>
   );
 }
 
@@ -139,47 +179,60 @@ const featuredList = StackList.filter((tech) => tech.featured);
 
 export default function StackSection({ className }: { className?: string }) {
   const { t } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const { ref, active, reduceMotion } = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div className={cn("flex gap-2 w-full ", className)}>
-      {/* desktop */}
-      <div className="flex flex-wrap gap-2 items-center">
-        {featuredList.map((tech) => (
-          <FeaturedTileDesktop key={tech.index} tech={tech} />
-        ))}
-      </div>
-
-      <Dialog>
-        <DialogTrigger
-          render={
-            <Button
-              variant="ghost"
-              size="sm"
-              className="self-start rounded-full text-xs text-muted-foreground"
-            />
-          }
+    <div className="flex flex-col gap-8">
+      <SectionTitle title={t.hero.stack.title} align="center" divider={false} />
+      <Collapsible
+        open={open}
+        onOpenChange={setOpen}
+        className={cn("w-full", className)}
+      >
+        <div
+          ref={ref}
+          className="mx-auto flex max-w-66 flex-wrap items-center justify-center gap-4 sm:max-w-71 lg:max-w-none"
         >
-          {t.hero.stack.showAll}
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-3xl rounded-md p-1 bg-background/20 backdrop-blur-2xl">
-          <div className="rounded-sm border p-0 min-w-full flex flex-col h-full flex-1 bg-popover">
-            <span className="relative h-6 border-b">
-              <Scales />
-            </span>
-            <DialogHeader className="text-center p-6 border-b mb-6 text-xl">
-              <DialogTitle>{t.hero.stack.allTitle}</DialogTitle>
-            </DialogHeader>
-            <div className="columns-2 sm:columns-4 gap-4 max-h-[60vh] overflow-y-auto pr-1 p-6 pt-0">
-              {TECH_TYPES.map((type) => (
-                <StackColumn key={type} type={type} />
-              ))}
-            </div>
-            <span className="relative h-8 border-t">
-              <Scales />
-            </span>
+          {featuredList.map((tech, index) => (
+            <FeaturedIconTile
+              key={tech.index}
+              tech={tech}
+              active={active}
+              reduceMotion={reduceMotion}
+              delay={Math.min(index, TILE_STAGGER_CAP) * TILE_STAGGER}
+            />
+          ))}
+        </div>
+
+        <div className="flex justify-center pt-3">
+          <CollapsibleTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1 text-xs text-muted-foreground"
+              />
+            }
+          >
+            {open ? t.hero.stack.showLess : t.hero.stack.showAll}
+            <CaretDownIcon
+              className={cn(
+                "size-3 transition-transform",
+                open && "rotate-180",
+              )}
+            />
+          </CollapsibleTrigger>
+        </div>
+
+        <CollapsibleContent>
+          <div className="columns-2 sm:columns-4 gap-4 pt-4">
+            {TECH_TYPES.map((type) => (
+              <StackColumn key={type} type={type} />
+            ))}
           </div>
-        </DialogContent>
-      </Dialog>
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 }

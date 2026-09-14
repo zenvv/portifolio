@@ -1,7 +1,7 @@
-<!-- RASCUNHO Claude — post de portfólio (flagship), mesmo molde do controle-operacional v2:
+<!-- RASCUNHO Claude, post de portfólio (flagship), mesmo molde do controle-operacional v2:
      enxuto, bullets/tabelas/Mermaid, imagens públicas. Revisar tom e cortes.
      ATENÇÃO: a imagem 15-previsao-comparativo.png tem "WILLIAN ZENI" (nome completo) em
-     linhas de teste — trocar por "Fornecedor" ou blur antes de publicar. -->
+     linhas de teste; trocar por "Fornecedor" ou blur antes de publicar. -->
 
 # Financeiro
 
@@ -56,9 +56,9 @@ flowchart TD
 
 Os outros três, em resumo:
 
-1. **`FINANCEIRO_CANCELA_PEDIDO`** — quando um pedido é cancelado ou excluído em Compras, cancela todas as linhas de pagamento ligadas a ele.
-2. **`FINANCEIRO_PREV_CRIAR`** — lê a planilha Excel de previsão e cria ou atualiza os lançamentos previstos, gravando o ID de volta na planilha pra manter os dois lados sincronizados.
-3. **`FINANCEIRO_ENVIAR_COMPROVANTES`** — salva os comprovantes anexados numa biblioteca de documentos, resolvendo colisão de nome, e devolve o link pro lançamento.
+1. **`FINANCEIRO_CANCELA_PEDIDO`**: quando um pedido é cancelado ou excluído em Compras, cancela todas as linhas de pagamento ligadas a ele.
+2. **`FINANCEIRO_PREV_CRIAR`**: lê a planilha Excel de previsão e cria ou atualiza os lançamentos previstos, gravando o ID de volta na planilha pra manter os dois lados sincronizados.
+3. **`FINANCEIRO_ENVIAR_COMPROVANTES`**: salva os comprovantes anexados numa biblioteca de documentos, resolvendo colisão de nome, e devolve o link pro lançamento.
 
 ## Modelo de dados
 
