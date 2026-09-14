@@ -13,6 +13,7 @@ import { writeFileSync, mkdirSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { preview } from "vite";
 import { chromium } from "playwright";
+import sparticuzChromium from "@sparticuz/chromium";
 import { root, loadContent, getRoutePaths } from "./routes.mjs";
 
 const distDir = resolve(root, "dist");
@@ -31,7 +32,18 @@ const server = await preview({
 });
 const base = `http://localhost:${PORT}`;
 
-const browser = await chromium.launch();
+// Vercel's build container lacks the shared libraries (libnss3, etc.)
+// Playwright's own downloaded Chromium needs to launch, so on Vercel we
+// launch @sparticuz/chromium's build instead, which is compiled to run in
+// that kind of restricted Linux environment. Locally/elsewhere, Playwright's
+// own Chromium (fetched by scripts/postinstall.mjs) is used as-is.
+const browser = process.env.VERCEL
+  ? await chromium.launch({
+      args: sparticuzChromium.args,
+      executablePath: await sparticuzChromium.executablePath(),
+      headless: true,
+    })
+  : await chromium.launch();
 const context = await browser.newContext();
 
 /** Waits for hydration and any async content (markdown fetch, etc.) to
