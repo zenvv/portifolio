@@ -52,7 +52,7 @@ export const socials: SocialsType[] = [
     id: 3,
     label: "WhatsApp",
     icon: WhatsappLogoIcon,
-    link: "tel:54991580442",
+    link: "https://wa.me/5554991580442",
     captionKey: "whatsapp",
   },
 ];

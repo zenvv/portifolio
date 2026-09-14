@@ -124,6 +124,20 @@ export const PROBLEM_SOLUTION: Partial<
         "Dois apps sobre a mesma base, dois públicos: **Checklists**, que a logística usa pra preencher um formulário dinâmico de entrada/saída (as perguntas vêm de uma tabela de padrões, por tipo de amostra) e gerar o PDF; e **Amostras**, onde engenharia e comercial consultam tudo sobre uma amostra — imagens, checklists e documentos fiscais — em abas carregadas sob demanda.",
     },
   },
+  "nfs-transporte": {
+    en: {
+      problem:
+        "- There was no standard way to request a Transportation Declaration: it arrived over Teams, e-mail, in person, even a sticky note.\n- A declaration was typed by hand into Qualitor while looking at the physical invoice, and the ticket number was then written on the invoice itself.\n- Invoices were only filed physically, with no standard way to receive, organize or track whether one had already been returned.\n- A cycle that could take **up to 6h**, between searching, communication noise and rework.",
+      solution:
+        "A standardized Microsoft Forms request feeding a central SharePoint list, with automatic status e-mails at every step. Invoices started being scanned on arrival and organized by client, with a direct link embedded in the list; and the declaration's final PDF started being captured automatically by a flow that reads the fiscal sector's e-mail. Manual effort dropped from up to 6h to 5-10 minutes.",
+    },
+    pt: {
+      problem:
+        "- Não havia forma padrão de pedir uma Declaração de Transporte: chegava por Teams, e-mail, pessoalmente ou até post-it.\n- A declaração era digitada à mão no Qualitor olhando a nota fiscal física, e o número do chamado depois anotado na própria nota.\n- Notas fiscais ficavam arquivadas só fisicamente, sem forma padronizada de receber, organizar ou rastrear se uma nota já tinha retornado.\n- Um ciclo que podia levar **até 6h**, entre busca, ruído de comunicação e retrabalho.",
+      solution:
+        "Formulário padronizado (Microsoft Forms) alimentando uma lista central no SharePoint, com avisos automáticos por e-mail a cada mudança de status. Notas fiscais passaram a ser digitalizadas na chegada e organizadas por cliente, com link direto embutido na lista; e o PDF final da declaração passou a ser capturado automaticamente por um fluxo que lê o e-mail do setor fiscal. Esforço manual caiu de até 6h para 5 a 10 minutos.",
+    },
+  },
   "kanban-pco": {
     en: {
       problem:
