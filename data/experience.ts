@@ -18,6 +18,9 @@ export type Company = {
   roles: CompanyRole[];
 };
 
+/** Toggles the "open to work" card shown above the experience list. */
+export const OPEN_TO_WORK = true;
+
 export const Companies: Company[] = [
   {
     index: 0,
@@ -32,10 +35,10 @@ export const Companies: Company[] = [
           pt: "Prestador de Serviços PJ (Desenvolvimento & TI)",
         },
         start: { en: "Oct 2025", pt: "Out 2025" },
-        end: { en: "Present", pt: "Atual" },
+        end: { en: "Sep 2026", pt: "Set 2026" },
         note: {
-          en: "Part-time through Feb 2026, full-time since Mar 2026",
-          pt: "Colaboração part-time até fev/2026, full-time desde mar/2026",
+          en: "Part-time through Feb 2026, full-time from Mar 2026",
+          pt: "Colaboração part-time até fev/2026, full-time a partir de mar/2026",
         },
         activities: {
           en: [

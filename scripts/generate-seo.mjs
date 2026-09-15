@@ -166,7 +166,7 @@ function renderHead({ path, alternatePath, locale, title, description, image }) 
         "knowsAbout": ${KNOWS_ABOUT},
         "sameAs": [
           "https://www.github.com/zenvv",
-          "https://www.linkedin.com/in/willian-z-327bba186/"
+          "https://www.linkedin.com/in/willianzeni/"
         ]
       }
     </script>

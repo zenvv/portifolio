@@ -12,6 +12,7 @@ import {
   WhatsappLogoIcon,
   type Icon,
 } from "@phosphor-icons/react";
+import { Contact } from "@/data/contact";
 
 export interface SocialsType {
   id: number;
@@ -31,28 +32,28 @@ export const socials: SocialsType[] = [
     id: 0,
     label: "Github",
     icon: GithubLogoIcon,
-    link: "https://www.github.com/zenvv",
+    link: Contact.github,
     captionKey: "github",
   },
   {
     id: 1,
     label: "LinkedIn",
     icon: LinkedinLogoIcon,
-    link: "https://www.linkedin.com/in/willian-z-327bba186/",
+    link: Contact.linkedin,
     captionKey: "linkedin",
   },
   {
     id: 2,
     label: "Email",
     icon: EnvelopeOpenIcon,
-    link: "mailto:willianf.zeni@gmail.com",
-    caption: "willianf.zeni@gmail.com",
+    link: `mailto:${Contact.email}`,
+    caption: Contact.email,
   },
   {
     id: 3,
     label: "WhatsApp",
     icon: WhatsappLogoIcon,
-    link: "https://wa.me/5554991580442",
+    link: Contact.whatsapp,
     captionKey: "whatsapp",
   },
 ];

@@ -11,9 +11,32 @@ import {
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import SectionTitle from "@/components/SectionTitle";
-import type { Company, CompanyRole } from "@/data/experience";
+import {
+  OPEN_TO_WORK,
+  type Company,
+  type CompanyRole,
+} from "@/data/experience";
 import type { Locale, Translations } from "@/lib/i18n/translations";
 import { GlobeIcon } from "@phosphor-icons/react/dist/ssr";
+
+function OpenToWorkCard({ t }: { t: Translations }) {
+  return (
+    <div className="flex items-center gap-4 bg-linear-to-r from-primary/5 via-transparent to-transparent border p-3 pl-4">
+      <span className="relative flex size-2 shrink-0">
+        <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
+        <span className="relative inline-flex size-2 rounded-full bg-primary" />
+      </span>
+      <div className="flex flex-col min-w-0">
+        <span className="text-base font-semibold text-foreground font-heading italic ">
+          {t.about.openToWorkTitle}
+        </span>
+        <span className="text-xs text-muted-foreground">
+          {t.about.openToWorkDescription}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 function RoleRow({
   role,
@@ -133,6 +156,7 @@ export default function CompanySection({
         titleLevel="h3"
       />
       <div className="flex flex-col gap-3 pt-1">
+        {OPEN_TO_WORK ? <OpenToWorkCard t={t} /> : null}
         {companies.map((company) => (
           <CompanyCard
             key={company.index}

@@ -10,7 +10,7 @@ export default function CTA({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center justify-center gap-2 w-full py-2",
+        "flex flex-wrap flex-col sm:flex-row items-center justify-center gap-2 w-full py-2",
         className,
       )}
     >
@@ -19,7 +19,7 @@ export default function CTA({ className }: { className?: string }) {
         direction="forward"
         variant="default"
         size="lg"
-        className="gap-1.5"
+        className=" gap-1.5 px-4 sm:w-auto w-64"
       >
         {t.cta.viewAllProjects}
         <ArrowRightIcon className="size-3.5" />

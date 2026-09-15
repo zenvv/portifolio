@@ -116,6 +116,9 @@ export const translations = {
         "Brazilian **Full-Stack Developer** with hands-on experience across **corporate systems integration**, **process automation**, the **Microsoft Power Platform**, **SharePoint/Graph API**, and **ReactJS**. I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments, from mapping a broken workflow to shipping the tool that fixes it.",
       companiesWebsite: "View Company Website",
       companiesTitle: "Experience",
+      openToWorkTitle: "Open to work!",
+      openToWorkDescription:
+        "Currently available for full-time roles, freelance projects, and consulting.",
       showActivities: "Show activities",
       hideActivities: "Hide activities",
       educationTitle: "Education",
@@ -260,6 +263,9 @@ export const translations = {
         "Desenvolvedor Full-Stack, com atuação prática em **integração de sistemas corporativos**, **automação de processos**, **Microsoft Power Platform**, **SharePoint/Graph API** e **ReactJS**. Combino desenvolvimento de software, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais, do mapeamento de um fluxo quebrado até a entrega da ferramenta que resolve.",
       companiesTitle: "Experiência",
       companiesWebsite: "Ver website da empresa",
+      openToWorkTitle: "Aberto a oportunidades!",
+      openToWorkDescription:
+        "Disponível para vagas full-time, projetos freelance e consultoria.",
       showActivities: "Mostrar atividades desenvolvidas",
       hideActivities: "Ocultar atividades",
       educationTitle: "Educação",
