@@ -5,7 +5,10 @@ import { cn } from "@/lib/utils";
 
 function DownloadCV({ className }: { className?: string }) {
   const { t, locale } = useLanguage();
-  const cvHref = locale === "pt" ? "/cv/Curriculo_WFZ.pdf" : "/cv/en.pdf";
+  const cvHref =
+    locale === "pt"
+      ? "/cv/Curriculo_Willian_Zeni.pdf"
+      : "/cv/CV_Willian_Zeni.pdf";
 
   return (
     <Button
