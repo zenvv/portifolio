@@ -3,9 +3,53 @@ import { Fragment, useState } from "react";
 import { useLanguage } from "@/lib/i18n/language.provider";
 import TransitionLink from "@/components/TransitionLink";
 import DownloadCV from "./sidebar/DownloadCV";
-import { ArrowRightIcon } from "@phosphor-icons/react";
+import OpenToWorkBadge from "@/components/OpenToWorkBadge";
+import {
+  ArrowRightIcon,
+  CodeIcon,
+  DatabaseIcon,
+  GithubLogoIcon,
+  LightningIcon,
+  LinkedinLogoIcon,
+  PaintBrushIcon,
+} from "@phosphor-icons/react";
 import CornerMarks from "@/components/CornerMarks";
 import { EASE } from "@/lib/motion";
+import { Contact } from "@/data/contact";
+import type { SocialsType } from "./sidebar/Contact";
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+
+const CAPABILITY_ICON = {
+  development: CodeIcon,
+  automation: LightningIcon,
+  data: DatabaseIcon,
+  design: PaintBrushIcon,
+} as const;
+
+const CAPABILITY_ORDER = [
+  "development",
+  "automation",
+  "data",
+  "design",
+] as const;
+
+const socials: SocialsType[] = [
+  {
+    id: 0,
+    label: "Github",
+    icon: GithubLogoIcon,
+    link: Contact.github,
+    captionKey: "github",
+  },
+  {
+    id: 1,
+    label: "LinkedIn",
+    icon: LinkedinLogoIcon,
+    link: Contact.linkedin,
+    captionKey: "linkedin",
+  },
+];
 
 /** Entrance stagger: one group's worth of children settle in together,
  * each with the same fade+rise and the site's one confident-arrival ease,
@@ -114,20 +158,25 @@ function Hero() {
   const reduceMotion = !!useReducedMotion();
 
   return (
-    <div className="relative sm:-mx-6 -mt-6 flex w-full flex-col items-center gap-7 bg-blueprint-grid mask-x-from-90% text-center sm:py-16">
+    <div className="relative flex w-full flex-col items-center gap-7 text-start sm:py-16">
+      <div className="absolute bg-blueprint-grid h-1/2 inset-0 z-0 mask-b-from-0"></div>
       <CornerMarks />
       <motion.div
-        className="mx-auto flex w-full max-w-2xl flex-col items-center gap-4 bg-radial from-background to-transparent h-full p-6 pt-12 sm:pt-16"
+        className="mx-auto flex w-full max-w-5xl flex-col items-center sm:items-start gap-4 h-full p-6 z-10 sm:text-start text-center"
         initial={reduceMotion ? false : "hidden"}
         animate="show"
         variants={CONTAINER}
       >
+        <motion.div variants={ITEM}>
+          <OpenToWorkBadge />
+        </motion.div>
+
         <motion.div
-          className="flex flex-col items-center gap-1.5"
+          className="flex w-full flex-col items-center sm:items-start gap-1.5"
           variants={ITEM}
         >
           <h1 className="cursor-default font-heading text-5xl italic text-foreground sm:text-6xl text-pretty md:max-w-full max-w-xs">
-            <InteractiveGreeting text={t.hero.greeting} />
+            <InteractiveGreeting text={t.hero.name} />
           </h1>
           <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground/70">
             {t.hero.label}
@@ -142,7 +191,7 @@ function Hero() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row w-full flex-wrap items-center justify-center gap-2"
+          className="flex flex-col sm:flex-row w-full flex-wrap items-center justify-start gap-2"
           variants={ITEM}
         >
           <TransitionLink
@@ -159,6 +208,54 @@ function Hero() {
           </TransitionLink>
 
           <DownloadCV />
+
+          <span className="hidden md:flex items-center gap-1 ml-2">
+            {socials.map((social) => (
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    variant={"ghost"}
+                    className={"group"}
+                    render={
+                      <a
+                        key={social.id}
+                        href={social.link}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <social.icon className="group-hover:hidden block" />
+                        <social.icon
+                          weight="fill"
+                          className="group-hover:block hidden"
+                        />
+                      </a>
+                    }
+                  />
+                </TooltipTrigger>
+                <TooltipContent side="bottom">{social.label}</TooltipContent>
+              </Tooltip>
+            ))}
+          </span>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-wrap items-center sm:items-start justify-center sm:justify-start sm:gap-8 gap-4 w-full pt-8"
+          variants={ITEM}
+        >
+          {CAPABILITY_ORDER.map((key) => {
+            const Icon = CAPABILITY_ICON[key];
+            return (
+              <span
+                key={key}
+                className="inline-flex items-center gap-1.5 font-mono text-[0.7rem] text-muted-foreground hover:text-foreground/80 select-none"
+              >
+                <Icon className="size-3.5" />
+                <span className="sm:block hidden">
+                  {t.hero.capabilities[key]}
+                </span>
+              </span>
+            );
+          })}
         </motion.div>
       </motion.div>
     </div>

@@ -2,6 +2,10 @@
      uma manicure autônoma. Screenshots em ./images/ capturados de uma instância
      de demonstração com dados fictícios (estrutura idêntica à de produção). -->
 
+> **Desenvolvimento assistido por IA**
+>
+> Este projeto foi desenvolvido majoritariamente por codificação assistida por IA. Arquitetura, requisitos, regras de negócio e decisões técnicas foram definidas e validadas por mim, enquanto a implementação foi fortemente assistida por IA.
+
 ## O que o app faz
 
 - **Agenda como faixa contínua de tempo**: cada atendimento ocupa altura

@@ -16,7 +16,13 @@ export default function FeaturedProjects({
   const { ref, active, reduceMotion } = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div ref={ref} className={cn("flex flex-col gap-1 w-full", className)}>
+    <div
+      ref={ref}
+      className={cn(
+        "flex flex-col gap-1 w-full my-8 mx-auto max-w-5xl flex-1 lg:px-0 px-6 shrink-0 h-full",
+        className,
+      )}
+    >
       <motion.h2
         className="font-heading text-xl font-medium italic text-foreground mb-4"
         initial={reduceMotion ? false : { opacity: 0, y: 8 }}
@@ -25,7 +31,7 @@ export default function FeaturedProjects({
       >
         {t.hero.projects.title}
       </motion.h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+      <div className="grid sm:grid-cols-2 grid-cols-1 gap-8">
         {featuredProjects.map((proj, index) => (
           <ProjectCard
             key={proj.slug}

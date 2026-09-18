@@ -29,9 +29,9 @@ export default function CodeBlock({
 
   if (!html) {
     return (
-      <div className={cn("md-code-block", "not-prose")}>
-        <pre>
-          <code>{code}</code>
+      <div className={cn("md-code-block dark *:dark", "not-prose")}>
+        <pre className="">
+          <code className="">{code}</code>
         </pre>
       </div>
     );
@@ -39,7 +39,7 @@ export default function CodeBlock({
 
   return (
     <div
-      className={cn("md-code-block", "not-prose")}
+      className={cn("md-code-block dark *:dark", "not-prose")}
       // Shiki returns a full <pre class="shiki">...</pre> string with each
       // token's colors baked in as CSS variables (see .md-code-block rules
       // in index.css for the light/dark switch).

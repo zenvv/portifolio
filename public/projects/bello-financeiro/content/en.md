@@ -6,9 +6,11 @@
 
 # Finance
 
+_This Power App was later superseded by the [Finance module](/projects/erp-bello-aramados) of the Bello SGE (ERP), part of the move from separate departmental apps to a unified system. It's documented here as the original solution and the direct precursor of that module's data model and rules._
+
 ## What the app does
 
-- **Payments:** a single list (`Controle de Pagamentos`), grouped by due week, filterable by year, week, payment method, status, overdue and forecast.
+- **Payments:** a single list (`Fila de Pagamentos`), grouped by due week, filterable by year, week, payment method, status, overdue and forecast.
 - **Verification:** every pending entry goes through a review screen (unit, amount, cost center, category, bank, date). On verifying, an automation notifies Purchasing that the payment was made.
 - **Manual entry:** recording a payment outside the Purchasing flow (registered or one-off supplier, payment method, installments).
 - **Registers:** `Centros de Custo` (auto-generated code, e.g. `PCA_ADM`) and `Categorias de Compra`. Same lists used by the Purchasing app.
@@ -20,7 +22,7 @@
 
 ```mermaid
 flowchart TD
-    A[Purchasing completes an order in 'Pagamentos de Pedidos'] --> B[Automation creates one row per installment in 'Controle de Pagamentos']
+    A[Purchasing completes an order in 'Pagamentos de Pedidos'] --> B[Automation creates one row per installment in 'Fila de Pagamentos']
     M[Manual entry in the app] --> C
     P[Forecast spreadsheet uploaded] --> PA[Automation creates forecast entries]
     PA --> C
@@ -48,7 +50,7 @@ flowchart TD
     D -->|Crédito Parcelado| DP[due date = base + installment months; description 'Parcela X de Y']
     D -->|Débito or Pix| DN[no due date]
     D -->|Boleto or Crédito à Vista| DB[due date = base date]
-    DP --> C[Creates a row in 'Controle de Pagamentos', not verified]
+    DP --> C[Creates a row in 'Fila de Pagamentos', not verified]
     DN --> C
     DB --> C
 ```
@@ -66,24 +68,24 @@ The other three, in short:
 ```mermaid
 erDiagram
     "Ordens de Compra (Compras)" ||--o{ "Pagamentos de Pedidos (Compras)" : "ID Pedido"
-    "Pagamentos de Pedidos (Compras)" ||--o{ "Controle de Pagamentos" : "automation, 1 per installment"
-    "Fornecedores" ||--o{ "Controle de Pagamentos" : "Fornecedor"
-    "Centros de Custo" ||--o{ "Controle de Pagamentos" : "Centro de Custo"
-    "Categorias de Compra" ||--o{ "Controle de Pagamentos" : "Categoria"
-    "Bancos" ||--o{ "Controle de Pagamentos" : "Banco"
+    "Pagamentos de Pedidos (Compras)" ||--o{ "Fila de Pagamentos" : "automation, 1 per installment"
+    "Fornecedores" ||--o{ "Fila de Pagamentos" : "Fornecedor"
+    "Centros de Custo" ||--o{ "Fila de Pagamentos" : "Centro de Custo"
+    "Categorias de Compra" ||--o{ "Fila de Pagamentos" : "Categoria"
+    "Bancos" ||--o{ "Fila de Pagamentos" : "Banco"
     "Unidades" ||--o{ "Centros de Custo" : "Unidade"
 ```
 
 | List                                         | Site       | Role                                                                                |
 | -------------------------------------------- | ---------- | ----------------------------------------------------------------------------------- |
-| `Controle de Pagamentos`                     | Finance    | Payable entry: one row per installment, whether from Purchasing, manual or forecast |
+| `Fila de Pagamentos`                     | Finance    | Payable entry: one row per installment, whether from Purchasing, manual or forecast |
 | `Bancos`                                     | Finance    | Account/card, opening balance, cut-off date, assigned payment methods               |
 | `Centros de Custo` / `Categorias de Compra`  | Finance    | Accounting classification, shared with the Purchasing app                           |
 | `Unidades`                                   | Finance    | Branches (Piracicaba, Caxias do Sul)                                                |
 | `Fornecedores`                               | Purchasing | Supplier register, read and edited by both apps                                     |
 | `Pagamentos de Pedidos` / `Ordens de Compra` | Purchasing | Origin of the entries, read cross-site                                              |
 
-**`Controle de Pagamentos`** (main fields)
+**`Fila de Pagamentos`** (main fields)
 
 | Column                                                          | Type             | Description                                               |
 | --------------------------------------------------------------- | ---------------- | --------------------------------------------------------- |
@@ -151,7 +153,7 @@ Demo version, fictional data (structure identical to the real one).
 ```powerfx
 ThisItem.'Saldo Inicial' -
 Sum(
-    Filter('Controle de Pagamentos', Status.Value = "Pago" && 'Verificado?' = true, Banco = ThisItem.'Nome do Banco'),
+    Filter('Fila de Pagamentos', Status.Value = "Pago" && 'Verificado?' = true, Banco = ThisItem.'Nome do Banco'),
     Valor
 )
 ```

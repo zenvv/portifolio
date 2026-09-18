@@ -54,20 +54,6 @@ export const PROBLEM_SOLUTION: Partial<
         "App de chão de fábrica da unidade de Piracicaba. Mostra pra cada máquina o que produzir agora, na ordem certa, e registra cada apontamento já descontando do que falta. Roda em tablet, usado por 30+ operadores diariamente em toda a fábrica.",
     },
   },
-  nailly: {
-    en: {
-      problem:
-        "- The user is a middle-aged manicurist, tired, with her hands busy. Not a dev, not a \"persona\": a real person who today **forgets appointments** and **can't remember whether she already charged someone**.\n- The work is already mentally heavy (hours talking to people). The app exists to **take load off her head**, not add to it.\n- Single scoping test: _does this reduce her mental load?_ If not, it's out. If a screen needs more than two taps for its most common task, it's wrong.\n- She serves 20–40 regulars, on weekly / biweekly / monthly recurrence. Three are home visits. She **gets paid in batches** (R$ 180 at once covering the month's 4 sessions), not per appointment.\n- Two surfaces, two audiences: **her panel** (authenticated, opened dozens of times a day) and a **public form** for new clients to request a slot (picture a 65-year-old, in a hurry, on street 4G).",
-      solution:
-        "Scheduling and finance app for a self-employed manicurist. A mobile-first PWA, used almost 100% on an Android phone, between one client and the next. It replaces Google Calendar + informal WhatsApp billing with a single tool built for the real workflow of someone who sees ~6–8 clients a day and gets paid in batches.",
-    },
-    pt: {
-      problem:
-        "- A usuária é uma manicure de meia-idade, cansada, com as mãos ocupadas. Não é dev, não é \"persona\": é uma pessoa real que hoje **esquece agendamentos** e **não lembra se já cobrou**.\n- O trabalho já é mentalmente pesado (horas conversando com gente). O app existe para **tirar carga da cabeça dela**, não adicionar.\n- Critério de escopo único: _isso reduz a carga mental dela?_ Se não, não entra. Se uma tela exige mais de dois toques para a tarefa mais comum, está errada.\n- Ela atende entre 20 e 40 clientes fixas, com recorrência semanal, quinzenal ou mensal. Três são a domicílio. **Recebe pagamento em lote** (R$ 180 de uma vez cobrindo as 4 sessões do mês), não por atendimento.\n- Duas telas, dois públicos: o **painel dela** (autenticado, aberto dezenas de vezes por dia) e um **formulário público** para clientes novas pedirem horário (uma pessoa de 65 anos, com pressa, no 4G da rua).",
-      solution:
-        "App de agenda e controle financeiro para uma manicure autônoma. PWA, mobile-first, usado quase 100% num Android, entre um atendimento e outro. Ele substitui o Google Agenda + a cobrança informal no WhatsApp por uma ferramenta só, feita para o fluxo real de uma profissional que atende ~6–8 clientes por dia e recebe em lote.",
-    },
-  },
   "bello-compras": {
     en: {
       problem:
@@ -87,13 +73,13 @@ export const PROBLEM_SOLUTION: Partial<
       problem:
         "- The Test Risk Analysis (ADR) — the document describing the test, its risks and the preventive measures — was filled in a spreadsheet, printed, and physically circulated to collect each responsible party's signature before a vehicle could run on track.\n- The process took **1h30 per analysis**.\n- There was no way to locate an analysis afterward: the information stayed only with the responsible engineer, and a signature could get lost along the way.\n- Outside the ADR, CTR's tooling-shop services (bending, welding) often had no service order or risk analysis of their own, leaving the operator with no cover for what they were doing.",
       solution:
-        "Digitized the ADR into a form with a sequential approval queue (Test Engineer → Brigade Member → Track Controller → HSE Engineer → Operations Coordinator), cutting the process from 1h30 to 10-15 minutes and now covering 40 to 50 analyses a month. It grew to also cover tooling-service releases, environmental licenses and access management — the largest app in the project, with 8 screens.",
+        "Digitized the ADR into a form with a sequential approval queue (Test Engineer → Brigade Member → Track Controller → HSE Engineer → Operations Coordinator), cutting an estimated 1h30 down to about 15 minutes and, while I was there, handling 40 to 50 analyses a month. It grew to also cover tooling-service releases, environmental licenses and access management — the largest app in the project, with 8 screens.",
     },
     pt: {
       problem:
         "- A Análise de Risco de Teste (ADR) — o documento que descreve o teste, os riscos e as medidas preventivas — era preenchida em planilha, impressa e circulava fisicamente pra coletar a assinatura de cada responsável antes de liberar a rodagem.\n- O processo levava **1h30 por análise**.\n- Não tinha como localizar uma análise depois: a informação ficava só com o engenheiro responsável, e uma assinatura podia se perder no meio do caminho.\n- Fora da ADR, os serviços de ferramentaria do CTR (dobra, solda) muitas vezes não tinham ordem de serviço nem análise de risco própria, deixando o operador sem respaldo sobre o que estava fazendo.",
       solution:
-        "Digitalizei a ADR num formulário com fila de aprovação sequencial (Engenheiro Responsável → Brigadista → Controlador de Pista → Engenheiro de SSMA → Coordenador de Operações), reduzindo o processo de 1h30 pra 10-15 minutos, hoje respondendo por 40 a 50 análises emitidas por mês. Cresceu pra cobrir também liberação de serviços de ferramentaria, licenças ambientais e gestão de pessoas habilitadas — o maior app do projeto, com 8 telas.",
+        "Digitalizei a ADR num formulário com fila de aprovação sequencial (Engenheiro Responsável → Brigadista → Controlador de Pista → Engenheiro de SSMA → Coordenador de Operações), reduzindo uma estimativa de 1h30 pra cerca de 15 minutos e, enquanto eu estava lá, respondendo por 40 a 50 análises emitidas por mês. Cresceu pra cobrir também liberação de serviços de ferramentaria, licenças ambientais e gestão de pessoas habilitadas — o maior app do projeto, com 8 telas.",
     },
   },
   pistas: {
@@ -127,15 +113,15 @@ export const PROBLEM_SOLUTION: Partial<
   "nfs-transporte": {
     en: {
       problem:
-        "- There was no standard way to request a Transportation Declaration: it arrived over Teams, e-mail, in person, even a sticky note.\n- A declaration was typed by hand into Qualitor while looking at the physical invoice, and the ticket number was then written on the invoice itself.\n- Invoices were only filed physically, with no standard way to receive, organize or track whether one had already been returned.\n- A cycle that could take **up to 6h**, between searching, communication noise and rework.",
+        "- There was no standard way to request a Transportation Declaration: it arrived over Teams, e-mail, in person, even a sticky note.\n- A declaration was typed by hand into Qualitor while looking at the physical invoice, and the ticket number was then written on the invoice itself.\n- Invoices were only filed physically, with no standard way to receive, organize or track whether one had already been returned.\n- A cycle that could take an estimated **up to 6h**, between searching, communication noise and rework.",
       solution:
-        "A standardized Microsoft Forms request feeding a central SharePoint list, with automatic status e-mails at every step. Invoices started being scanned on arrival and organized by client, with a direct link embedded in the list; and the declaration's final PDF started being captured automatically by a flow that reads the fiscal sector's e-mail. Manual effort dropped from up to 6h to 5-10 minutes.",
+        "A standardized Microsoft Forms request feeding a central SharePoint list, with automatic status e-mails at every step. Invoices started being scanned on arrival and organized by client, with a direct link embedded in the list; and the declaration's final PDF started being captured automatically by a flow that reads the fiscal sector's e-mail. Manual effort dropped from an estimated 6h to about 20 minutes.",
     },
     pt: {
       problem:
-        "- Não havia forma padrão de pedir uma Declaração de Transporte: chegava por Teams, e-mail, pessoalmente ou até post-it.\n- A declaração era digitada à mão no Qualitor olhando a nota fiscal física, e o número do chamado depois anotado na própria nota.\n- Notas fiscais ficavam arquivadas só fisicamente, sem forma padronizada de receber, organizar ou rastrear se uma nota já tinha retornado.\n- Um ciclo que podia levar **até 6h**, entre busca, ruído de comunicação e retrabalho.",
+        "- Não havia forma padrão de pedir uma Declaração de Transporte: chegava por Teams, e-mail, pessoalmente ou até post-it.\n- A declaração era digitada à mão no Qualitor olhando a nota fiscal física, e o número do chamado depois anotado na própria nota.\n- Notas fiscais ficavam arquivadas só fisicamente, sem forma padronizada de receber, organizar ou rastrear se uma nota já tinha retornado.\n- Um ciclo que podia levar uma estimativa de **até 6h**, entre busca, ruído de comunicação e retrabalho.",
       solution:
-        "Formulário padronizado (Microsoft Forms) alimentando uma lista central no SharePoint, com avisos automáticos por e-mail a cada mudança de status. Notas fiscais passaram a ser digitalizadas na chegada e organizadas por cliente, com link direto embutido na lista; e o PDF final da declaração passou a ser capturado automaticamente por um fluxo que lê o e-mail do setor fiscal. Esforço manual caiu de até 6h para 5 a 10 minutos.",
+        "Formulário padronizado (Microsoft Forms) alimentando uma lista central no SharePoint, com avisos automáticos por e-mail a cada mudança de status. Notas fiscais passaram a ser digitalizadas na chegada e organizadas por cliente, com link direto embutido na lista; e o PDF final da declaração passou a ser capturado automaticamente por um fluxo que lê o e-mail do setor fiscal. Esforço manual caiu de uma estimativa de 6h para cerca de 20 minutos.",
     },
   },
   "kanban-pco": {
@@ -150,6 +136,34 @@ export const PROBLEM_SOLUTION: Partial<
         "- O CTR já tinha um kanban físico — post-its num quadro branco na garagem — discutido numa reunião diária com toda a equipe de operação.\n- O quadro físico não era o problema: era o depois dele. Cada setor reportava andamento por um canal diferente (suporte eletrônico de um jeito, laboratório de outro, engenharia às vezes esquecia).\n- Sem uma fonte única, não dava pra montar uma linha do tempo confiável de como um teste evoluiu, nem alimentar a gestão com um Gantt de acompanhamento.",
       solution:
         "Um board digital que espelha o físico, sem substituí-lo: o PCO move os cards no tablet durante a própria reunião, gerando um histórico real de cada mudança de fase e alimentando um Kanban e Gantt no Power BI pra gestão acompanhar sem precisar estar na reunião. Um board separado (`KANBAN CAE`) cobre a lógica própria do setor de engenharia de simulação, incluindo estudos exploratórios sem ordem de serviço ainda.",
+    },
+  },
+  "bello-website": {
+    en: {
+      problem:
+        "The site's look and mobile navigation hadn't kept up: a mobile menu that didn't feel native, a phone number spelled out instead of an icon, a home carousel that said little, and small bugs like the footer's Facebook icon linking to Instagram.",
+      solution:
+        "A full visual and UX redesign — same PHP (CodeIgniter) backend, same URLs and content — that touches every page, rebuilds the mobile menu from scratch, and adds spam protection, accessibility and language fixes behind the scenes.",
+    },
+    pt: {
+      problem:
+        "A aparência do site e a navegação mobile estavam desatualizadas: um menu mobile que não parecia nativo, telefone escrito por extenso em vez de ícone, um carrossel na home que dizia pouco, e bugs pequenos como o ícone do Facebook no rodapé linkando pro Instagram.",
+      solution:
+        "Um redesign completo de visual e UX — mesmo back-end PHP (CodeIgniter), mesmas URLs e conteúdo — que passa por todas as páginas, reconstrói o menu mobile do zero e adiciona proteção antispam, acessibilidade e correções de idioma por trás da tela.",
+    },
+  },
+  "rpa-sap-pyautogui": {
+    en: {
+      problem:
+        "Someone from the administrative sector had to log into SAP by hand, run a report across three transactions, export it, and rebuild a Power BI dashboard from the result — with no set schedule, since it depended on someone remembering to do it.",
+      solution:
+        "A PyAutoGUI robot that drives SAP by screen coordinates and keyboard shortcuts, running the same routine unattended four times a day: opens SAP, runs the three transactions, exports to Excel, and refreshes and publishes the Power BI dashboard.",
+    },
+    pt: {
+      problem:
+        "Alguém do setor administrativo precisava logar no SAP manualmente, rodar um relatório em três transações, exportar e reconstruir um dashboard no Power BI a partir do resultado — sem periodicidade fixa, já que dependia de alguém lembrar de fazer.",
+      solution:
+        "Um robô em PyAutoGUI que opera o SAP por coordenadas de tela e atalhos de teclado, rodando a mesma rotina sozinho quatro vezes ao dia: abre o SAP, roda as três transações, exporta pro Excel e atualiza e publica o dashboard no Power BI.",
     },
   },
 };

@@ -5,7 +5,7 @@
 
 - The **PCO** (operations scheduler) uses the app on a tablet during the daily meeting itself: as a physical sticky note moves to a new column on the garage board, they reflect the same move on the digital board.
 - **Two boards:** `KANBAN` covers general operations (staging, track run, lab, review); `KANBAN CAE` is separate because the CAE sector (simulation engineering) develops tests on its own schedule, including a "Study" flow — exploratory, with no commercial service order yet — that only becomes a real order once approved.
-- Moving a card **never writes straight to SharePoint**: every phase/status/position change becomes a `Patch` on a local collection (`kbTEMP`/`kbCAETEMP`), and everything only syncs in one batch once the PCO confirms — avoiding a partial write mid-meeting while cards are still being moved.
+- Moving a card **never writes straight to SharePoint**: every phase/status/position change becomes a `Patch` on a local collection (`kbTEMP`/`kbCAETEMP`), grouping every move into a single batch that only syncs to SharePoint once the PCO confirms — instead of writing on every drag while cards are still being sorted mid-meeting.
 - On confirm, the app also updates the source commercial order's `Etapa` and `Status`, keeping the sales funnel in sync with the operational kanban.
 
 ## From the meeting to Power BI
@@ -84,7 +84,11 @@ Filter(Choices('KANBAN CAE'[@FASE]), If(currentItemCAE.TIPO.Value = "ESTUDO",
 
 ## Architecture decisions
 
-- **Local edits, batch commit.** Moving a card only edits the local collection; the real write to SharePoint only happens when the PCO confirms — avoiding a partial write mid-meeting.
+- **Local edits, batch commit.** Moving a card only edits the local collection; the real write to SharePoint only happens in one batch when the PCO confirms, instead of on every drag. The batch itself is a `ForAll`/`Patch` loop, not a single atomic transaction.
 - **Bridge to Power BI via a scheduled flow, not a direct write.** `UPSERT_PLANEJAMENTOTESTES_PCO` re-syncs the planning list on a daily recurrence, instead of the app writing to it on every change: keeps the board fast to use and pushes the sync workload to the background.
 - **Two nearly identical boards, on purpose.** `KANBAN` and `KANBAN CAE` have different phases because CAE works on its own logic (exploratory studies with no OS). It's duplicated logic, but it avoided complicating the screen with a per-sector phase configuration.
 - **Digital kanban as a complement, not a replacement.** The physical board still exists; the app just formalizes what already happens in the meeting, without changing the ritual itself — which cut a lot of resistance from the operations team.
+
+---
+
+_In production at CTR (Randon Group). Formulas and list names were simplified for readability._

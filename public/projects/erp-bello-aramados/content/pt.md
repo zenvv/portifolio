@@ -26,6 +26,16 @@ uma aplicação web usada por funcionários de escritório e de escritório de f
 sempre em português, sem cadastro público: as contas são as próprias contas
 Microsoft 365 da empresa.
 
+É o ponto de chegada de uma progressão, não um sistema feito do zero: PCP,
+Comercial, Compras e Controle Operacional começaram como [Power Apps separados
+sobre SharePoint](/projects/bello-ecosystems), cada um dono de uma etapa de um
+modelo de dados de produção compartilhado. Conforme esses apps e o acoplamento
+entre setores cresceram, o [Painel do PCP virou a prova de
+conceito](/projects/bello-ecosystems) que levou a unificar PCP, Comercial, Fiscal
+e Financeiro nesta única aplicação Next.js sobre o mesmo backend SharePoint. O
+[Financeiro](/projects/bello-financeiro) foi um dos Power Apps incorporados dessa
+forma; o [Compras](/projects/bello-compras) ainda roda como app próprio.
+
 ## O que o sistema faz
 
 | Área           | O que faz no sistema                                                                                                          |

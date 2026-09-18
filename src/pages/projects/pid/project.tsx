@@ -41,6 +41,13 @@ import ArticleImageIndex from "@/components/markdown/ArticleImageIndex";
 import SidebarRail from "@/components/markdown/SidebarRail";
 import ProblemSolution from "@/src/pages/projects/components/ProblemSolution";
 import { PROBLEM_SOLUTION } from "@/lib/project-problem-solution";
+import { PROJECT_PAGE_CONTENT } from "@/lib/project-page-content";
+import ProjectSummaryGrid from "@/src/pages/projects/components/ProjectSummaryGrid";
+import ProjectDecisions from "@/src/pages/projects/components/ProjectDecisions";
+import ProjectScreens from "@/src/pages/projects/components/ProjectScreens";
+import ProjectResults from "@/src/pages/projects/components/ProjectResults";
+import WhatIdDoDifferently from "@/src/pages/projects/components/WhatIdDoDifferently";
+import TechnicalDetails from "@/components/markdown/TechnicalDetails";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState, type JSX, type ReactNode } from "react";
 
@@ -93,6 +100,11 @@ const markdownComponents: Components = {
     );
   },
   img: MarkdownImage,
+  table: ({ children, ...rest }) => (
+    <div className="overflow-x-auto">
+      <table {...rest}>{children}</table>
+    </div>
+  ),
 };
 
 /** Every markdown/HTML `<img>` in the article body (a `<figure>` block, a
@@ -164,20 +176,21 @@ export default function ProjectPage() {
   }
 
   const problemSolution = PROBLEM_SOLUTION[projeto.slug]?.[locale];
+  const pageContent = PROJECT_PAGE_CONTENT[projeto.slug];
 
   return (
     <ProjectGalleryProvider images={images}>
-      <div className="flex flex-col gap-0 max-w-full min-w-0">
+      <div className="flex flex-col gap-0 w-full max-w-5xl mx-auto min-w-0">
         {/* Sticky sub-nav: back left, project name center (once the title
           below has scrolled out of view), actions right. */}
-        <div className="sticky top-[69px] z-40 flex items-center justify-between gap-3 border-b bg-background px-4 py-2 ">
+        <div className="sticky top-[69px] z-40 flex items-center justify-between gap-3 border-b bg-background sm:px-0 py-2 px-2">
           <TransitionLink
             to="/projects"
             direction="backward"
-            className="z-10 flex shrink-0 items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="z-10 flex shrink-0 items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground not-sm:bg-muted"
           >
-            <ArrowLeftIcon className="size-3.5" />
-            {t.projects.backToProjects}
+            <ArrowLeftIcon className="size-4" />
+            <span className="not-sm:hidden">{t.projects.backToProjects}</span>
           </TransitionLink>
 
           <span
@@ -191,7 +204,7 @@ export default function ProjectPage() {
 
           <div className="z-10 flex min-w-0 flex-1 items-center justify-end gap-2">
             {projeto.repo ? (
-              <Button size="sm" variant="outline">
+              <Button size="sm" variant="secondary" className={"dark"}>
                 <a
                   href={projeto.repo}
                   target="_blank"
@@ -219,11 +232,11 @@ export default function ProjectPage() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4 border-b p-6 text-center">
-          <div className="flex flex-col items-center gap-1 leading-none">
+        <div className="flex flex-col items-center sm:items-start gap-4 px-6 sm:px-4 py-6 sm:text-start text-center ">
+          <div className="flex flex-col items-center sm:items-start gap-1 leading-none">
             <h1
               ref={titleRef}
-              className="m-0! font-heading text-xl italic font-medium leading-none text-balance sm:text-2xl"
+              className="m-0! font-heading text-3xl italic font-semibold leading-none text-balance "
             >
               {projeto.title[locale]}
             </h1>
@@ -239,46 +252,40 @@ export default function ProjectPage() {
               ∙ {formatProjectDate(projeto.createdAt, locale)}
             </span>
           </div>
-          {projeto.description[locale] ? (
-            <p className="max-w-xl text-sm">
+          {pageContent ? (
+            <p className="sm:max-w-xl text-sm text-muted-foreground">
+              {pageContent.subtitle[locale]}
+            </p>
+          ) : projeto.description[locale] ? (
+            <p className="sm:max-w-xl text-sm">
               {renderRichText(projeto.description[locale])}
             </p>
           ) : null}
         </div>
 
-        {hasBanner && (
-          <span className="w-full">
-            <FallbackImage
-              candidates={getProjectBannerCandidates(projeto.slug)}
-              fluid
-              hideOnFail
-              onNotFound={() => setHasBanner(false)}
-              wrapperClassName="w-full min-h-60 sm:min-h-90"
-              className="h-auto"
+        {pageContent ? (
+          <div className="flex justify-center p-0 py-6">
+            <ProjectSummaryGrid
+              role={pageContent.role[locale]}
+              duration={pageContent.duration[locale]}
+              status={pageContent.status[locale]}
+              tecnologias={projeto.tecnologias}
+              locale={locale}
+              t={t}
             />
-            {projeto?.imageCaption && (
-              <span className="flex items-start justify-center gap-2 p-5">
-                <InfoIcon className="size-3.5 text-muted-foreground/70 shrink-0" />
-                <p className="text-[0.7rem] leading-tight text-muted-foreground">
-                  {renderRichText(projeto?.imageCaption?.[locale] ?? "")}
-                </p>
-              </span>
-            )}
-          </span>
-        )}
-
-        {projeto.tecnologias.length > 0 ? (
-          <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 border border-dashed my-2 p-4 w-fit mx-auto">
-            <span className="font-medium text-xs text-muted-foreground uppercase tracking-tight mr-4">
+          </div>
+        ) : projeto.tecnologias.length > 0 ? (
+          <div className="flex sm:flex-wrap sm:flex-row flex-col sm:items-center items-start justify-center gap-x-1.5 gap-y-4 first:border-t-0 my-2 p-4 w-full mx-auto">
+            <span className="font-medium text-xs text-muted-foreground uppercase tracking-tight">
               Stack:
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 divide-x">
+            <div className="flex sm:flex-wrap sm:flex-row flex-col items-start sm:items-center justify-center gap-x-1.5 gap-y-3 sm:divide-x">
               {projeto.tecnologias.map((tec) => {
                 const icon = getSolidTechIcon(tec);
                 return (
                   <span
                     key={tec}
-                    className="flex items-center gap-1 font-mono text-xs leading-none text-muted-foreground select-none px-2 mr-1 hover:text-foreground transition-colors"
+                    className="flex items-center gap-1 font-mono text-sm leading-none select-none px-2 mr-1"
                   >
                     {icon ? <TechIcon icon={icon} className="size-3" /> : null}
                     {tec}
@@ -289,6 +296,27 @@ export default function ProjectPage() {
           </div>
         ) : null}
 
+        {hasBanner && (
+          <span className="w-full flex-1 shrink-0">
+            <FallbackImage
+              candidates={getProjectBannerCandidates(projeto.slug)}
+              fluid
+              hideOnFail
+              onNotFound={() => setHasBanner(false)}
+              wrapperClassName="w-full min-h-40 sm:min-h-90"
+              className="h-auto"
+            />
+            {projeto?.imageCaption && (
+              <span className="flex items-start justify-center gap-2 w-full mt-4">
+                <InfoIcon className="size-3.5 text-muted-foreground/70 shrink-0" />
+                <p className="text-[0.7rem] leading-tight text-muted-foreground">
+                  {renderRichText(projeto?.imageCaption?.[locale] ?? "")}
+                </p>
+              </span>
+            )}
+          </span>
+        )}
+
         {problemSolution ? (
           <ProblemSolution
             problem={problemSolution.problem}
@@ -297,8 +325,59 @@ export default function ProjectPage() {
           />
         ) : null}
 
+        {pageContent ? (
+          <div className="flex flex-col items-center gap-16 px-6 w-full sm:px-0 py-12">
+            <ProjectDecisions
+              decisions={pageContent.decisions}
+              locale={locale}
+              t={t}
+            />
+            <ProjectScreens
+              screens={pageContent.screens}
+              locale={locale}
+              t={t}
+            />
+            <ProjectResults
+              results={pageContent.results}
+              locale={locale}
+              t={t}
+            />
+            <WhatIdDoDifferently
+              paragraphs={pageContent.whatIdDoDifferently}
+              locale={locale}
+              t={t}
+            />
+          </div>
+        ) : null}
+
         {markdown ? (
-          <>
+          <TechnicalDetails
+            title={pageContent ? t.projects.technicalDetailsTitle : ""}
+            hideTrigger={!pageContent}
+          >
+            {pageContent && projeto.tecnologias.length > 0 ? (
+              <div className="flex sm:flex-wrap sm:flex-row flex-col sm:items-center items-start justify-center gap-x-1.5 gap-y-4 first:border-t-0 my-2 p-4 w-full mx-auto">
+                <span className="font-medium text-xs text-muted-foreground uppercase tracking-tight">
+                  Stack:
+                </span>
+                <div className="flex sm:flex-wrap sm:flex-row flex-col items-start sm:items-center justify-center gap-x-1.5 gap-y-3 sm:divide-x">
+                  {projeto.tecnologias.map((tec) => {
+                    const icon = getSolidTechIcon(tec);
+                    return (
+                      <span
+                        key={tec}
+                        className="flex items-center gap-1 font-mono text-sm leading-none select-none px-2 mr-1"
+                      >
+                        {icon ? (
+                          <TechIcon icon={icon} className="size-3" />
+                        ) : null}
+                        {tec}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
             <div className="flex w-full items-start gap-8 pt-12">
               {markdown.length > TOC_MIN_MARKDOWN_LENGTH ? (
                 <SidebarRail>
@@ -328,7 +407,7 @@ export default function ProjectPage() {
                 title={t.projects.tableOfContents}
               />
             ) : null}
-          </>
+          </TechnicalDetails>
         ) : null}
 
         <div className="flex items-center justify-between gap-3 border-t p-6">

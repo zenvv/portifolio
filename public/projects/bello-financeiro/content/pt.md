@@ -5,9 +5,11 @@
 
 # Financeiro
 
+_Este Power App foi posteriormente substituído pelo [módulo Financeiro](/projects/erp-bello-aramados) do SGE Bello (ERP), parte da migração de apps departamentais separados para um sistema unificado. Fica documentado aqui como a solução original e precursora direta do modelo de dados e das regras desse módulo._
+
 ## O que o app faz
 
-- **Pagamentos:** lista única (`Controle de Pagamentos`), agrupada por semana de vencimento, com filtro por ano, semana, forma de pagamento, situação, vencido e previsto.
+- **Pagamentos:** lista única (`Fila de Pagamentos`), agrupada por semana de vencimento, com filtro por ano, semana, forma de pagamento, situação, vencido e previsto.
 - **Verificação:** cada lançamento pendente passa por uma tela de conferência (unidade, valor, centro de custo, categoria, banco, data). Ao verificar, uma automação avisa o setor de Compras que aquele pagamento foi feito.
 - **Lançamento manual:** registro de pagamento fora do fluxo de Compras (fornecedor cadastrado ou avulso, forma de pagamento, parcelas).
 - **Cadastros:** `Centros de Custo` (código gerado automático, tipo `PCA_ADM`) e `Categorias de Compra`. São as mesmas listas usadas pelo app de Compras.
@@ -19,7 +21,7 @@
 
 ```mermaid
 flowchart TD
-    A[Compras conclui um pedido em 'Pagamentos de Pedidos'] --> B[Automação cria uma linha por parcela em 'Controle de Pagamentos']
+    A[Compras conclui um pedido em 'Pagamentos de Pedidos'] --> B[Automação cria uma linha por parcela em 'Fila de Pagamentos']
     M[Lançamento manual no app] --> C
     P[Planilha de previsão enviada] --> PA[Automação cria lançamentos previstos]
     PA --> C
@@ -47,7 +49,7 @@ flowchart TD
     D -->|Crédito Parcelado| DP[vencimento = base + meses da parcela; descrição 'Parcela X de Y']
     D -->|Débito ou Pix| DN[sem data de vencimento]
     D -->|Boleto ou Crédito à Vista| DB[vencimento = data base]
-    DP --> C[Cria linha em 'Controle de Pagamentos', não verificada]
+    DP --> C[Cria linha em 'Fila de Pagamentos', não verificada]
     DN --> C
     DB --> C
 ```
@@ -65,24 +67,24 @@ Os outros três, em resumo:
 ```mermaid
 erDiagram
     "Ordens de Compra (Compras)" ||--o{ "Pagamentos de Pedidos (Compras)" : "ID Pedido"
-    "Pagamentos de Pedidos (Compras)" ||--o{ "Controle de Pagamentos" : "automação, 1 por parcela"
-    "Fornecedores" ||--o{ "Controle de Pagamentos" : "Fornecedor"
-    "Centros de Custo" ||--o{ "Controle de Pagamentos" : "Centro de Custo"
-    "Categorias de Compra" ||--o{ "Controle de Pagamentos" : "Categoria"
-    "Bancos" ||--o{ "Controle de Pagamentos" : "Banco"
+    "Pagamentos de Pedidos (Compras)" ||--o{ "Fila de Pagamentos" : "automação, 1 por parcela"
+    "Fornecedores" ||--o{ "Fila de Pagamentos" : "Fornecedor"
+    "Centros de Custo" ||--o{ "Fila de Pagamentos" : "Centro de Custo"
+    "Categorias de Compra" ||--o{ "Fila de Pagamentos" : "Categoria"
+    "Bancos" ||--o{ "Fila de Pagamentos" : "Banco"
     "Unidades" ||--o{ "Centros de Custo" : "Unidade"
 ```
 
 | Lista                                        | Site       | Papel                                                                          |
 | -------------------------------------------- | ---------- | ------------------------------------------------------------------------------ |
-| `Controle de Pagamentos`                     | Financeiro | Lançamento a pagar: uma linha por parcela, seja de Compras, manual ou previsto |
+| `Fila de Pagamentos`                     | Financeiro | Lançamento a pagar: uma linha por parcela, seja de Compras, manual ou previsto |
 | `Bancos`                                     | Financeiro | Conta/cartão, saldo inicial, data de corte, formas de pagamento atribuídas     |
 | `Centros de Custo` / `Categorias de Compra`  | Financeiro | Classificação contábil, compartilhadas com o app de Compras                    |
 | `Unidades`                                   | Financeiro | Filiais (Piracicaba, Caxias do Sul)                                            |
 | `Fornecedores`                               | Compras    | Cadastro de fornecedores, lido e editado pelos dois apps                       |
 | `Pagamentos de Pedidos` / `Ordens de Compra` | Compras    | Origem dos lançamentos, lidas cross-site                                       |
 
-**`Controle de Pagamentos`** (campos principais)
+**`Fila de Pagamentos`** (campos principais)
 
 | Coluna                                                          | Tipo             | Descrição                                                      |
 | --------------------------------------------------------------- | ---------------- | -------------------------------------------------------------- |
@@ -150,7 +152,7 @@ Versão demo, dados fictícios (estrutura idêntica à real).
 ```powerfx
 ThisItem.'Saldo Inicial' -
 Sum(
-    Filter('Controle de Pagamentos', Status.Value = "Pago" && 'Verificado?' = true, Banco = ThisItem.'Nome do Banco'),
+    Filter('Fila de Pagamentos', Status.Value = "Pago" && 'Verificado?' = true, Banco = ThisItem.'Nome do Banco'),
     Valor
 )
 ```

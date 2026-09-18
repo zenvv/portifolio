@@ -46,17 +46,53 @@ const browser = process.env.VERCEL
   : await chromium.launch();
 const context = await browser.newContext();
 
+/** Walks the page from top to bottom and back in small steps so every
+ * scroll-triggered reveal (`useInView`/`useScrollReveal`, e.g. the impact
+ * stats count-up) fires its `once: true` IntersectionObserver, the same way
+ * a real visitor scrolling down would. Without this, anything below the
+ * fold never becomes "active" in a headless capture that never scrolls, and
+ * bakes into the static HTML at its pre-animation resting state (e.g. a
+ * counter frozen at "+0") instead of its real end value. */
+async function scrollThroughPage(page) {
+  await page.evaluate(async () => {
+    const height = document.documentElement.scrollHeight;
+    const step = Math.max(400, Math.floor(window.innerHeight / 2));
+    for (let y = 0; y <= height; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 40));
+    }
+    window.scrollTo(0, height);
+    await new Promise((r) => setTimeout(r, 40));
+    window.scrollTo(0, 0);
+  });
+}
+
+// A count-up (see ImpactStats/ProjectResults) sits idle for ~1s after
+// becoming active before it starts changing the DOM, then animates for
+// ~1.1s more. A single pair of matching polls can land entirely inside that
+// idle gap and falsely look "settled" before the animation has even
+// started, so this requires several consecutive stable reads (i.e. a
+// continuous stable window longer than that idle gap) before concluding.
+const STABLE_POLL_INTERVAL_MS = 150;
+const STABLE_STREAK_REQUIRED = 10;
+const MAX_POLLS = 60;
+
 /** Waits for hydration and any async content (markdown fetch, etc.) to
- * settle by polling #root's rendered text until it stops changing. */
+ * settle by polling #root's rendered text until it stops changing. Also
+ * covers scroll-triggered animations (e.g. a count-up) finishing after
+ * {@link scrollThroughPage} has fired them: their text keeps changing frame
+ * to frame, so the loop keeps polling until they reach their resting value. */
 async function waitForSettledContent(page) {
   let previous = null;
-  for (let i = 0; i < 40; i++) {
+  let streak = 0;
+  for (let i = 0; i < MAX_POLLS; i++) {
     const current = await page.evaluate(
       () => document.getElementById("root")?.innerText.length ?? 0,
     );
-    if (current > 0 && current === previous) return;
+    streak = current > 0 && current === previous ? streak + 1 : 0;
+    if (streak >= STABLE_STREAK_REQUIRED) return;
     previous = current;
-    await page.waitForTimeout(150);
+    await page.waitForTimeout(STABLE_POLL_INTERVAL_MS);
   }
 }
 
@@ -73,6 +109,7 @@ for (const routePath of routes) {
   await page.goto(new URL(url, base).toString(), {
     waitUntil: "networkidle",
   });
+  await scrollThroughPage(page);
   await waitForSettledContent(page);
   // usePageMeta() re-derives <link rel="canonical"> from
   // window.location.pathname client-side, which just picked up the trailing

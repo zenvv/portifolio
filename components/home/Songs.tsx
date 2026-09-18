@@ -1,7 +1,20 @@
+import { useState } from "react";
 import { useLanguage } from "@/lib/i18n/language.provider";
-import { ArrowUpRightIcon, MusicNotesIcon } from "@phosphor-icons/react";
+import {
+  ArrowUpRightIcon,
+  CaretDownIcon,
+  MusicNotesIcon,
+} from "@phosphor-icons/react";
 import { Songs, type songsTypes } from "@/data/songs";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+const VISIBLE_COUNT = 3;
 
 function SongRow({ song }: { song: songsTypes }) {
   return (
@@ -34,6 +47,7 @@ export default function SongsList({ className }: { className?: string }) {
         <MusicNotesIcon className="size-3.5" />
         {t.hero.songs.title}
       </span>
+
       <div className="flex flex-col">
         {Songs.map((song) => (
           <SongRow key={song.index} song={song} />

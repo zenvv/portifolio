@@ -72,7 +72,7 @@ export const StackList: stackTypes[] = [
     type: "frameworks",
     featured: true,
   },
-  { index: 8, name: "Svelte", link: "https://svelte.dev/", type: "frameworks" },
+  // { index: 8, name: "Svelte", link: "https://svelte.dev/", type: "frameworks" },
   {
     index: 9,
     name: "Tailwind CSS",
@@ -90,12 +90,12 @@ export const StackList: stackTypes[] = [
     type: "data",
     featured: true,
   },
-  {
-    index: 13,
-    name: "Microsoft Fabric",
-    link: "https://www.microsoft.com/pt-br/microsoft-fabric",
-    type: "data",
-  },
+  // {
+  //   index: 13,
+  //   name: "Microsoft Fabric",
+  //   link: "https://www.microsoft.com/pt-br/microsoft-fabric",
+  //   type: "data",
+  // },
   {
     index: 14,
     name: "Power BI",
@@ -132,12 +132,12 @@ export const StackList: stackTypes[] = [
     type: "automation",
     featured: true,
   },
-  {
-    index: 19,
-    name: "Microsoft Graph API",
-    link: "https://learn.microsoft.com/en-us/graph/use-the-api",
-    type: "automation",
-  },
+  // {
+  //   index: 19,
+  //   name: "Microsoft Graph API",
+  //   link: "https://learn.microsoft.com/en-us/graph/use-the-api",
+  //   type: "automation",
+  // },
   {
     index: 20,
     name: "N8N",

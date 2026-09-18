@@ -1,7 +1,7 @@
 import { getSingletonHighlighter, type BundledLanguage } from "shiki";
 import { powerfxGrammar } from "./powerfx-grammar";
 
-const THEMES = { light: "github-light", dark: "vesper" } as const;
+const THEMES = { light: "vesper", dark: "vesper" } as const;
 
 const LANG_ALIASES: Record<string, string> = {
   js: "javascript",
@@ -40,9 +40,17 @@ export async function highlightCode(code: string, rawLang: string) {
       await highlighter.loadLanguage(lang as BundledLanguage);
       loadedLangs.add(lang);
     } catch {
-      return highlighter.codeToHtml(code, { lang: "text", themes: THEMES });
+      return highlighter.codeToHtml(code, {
+        lang: "text",
+        themes: THEMES,
+        defaultColor: "dark",
+      });
     }
   }
 
-  return highlighter.codeToHtml(code, { lang, themes: THEMES });
+  return highlighter.codeToHtml(code, {
+    lang,
+    themes: THEMES,
+    defaultColor: "dark",
+  });
 }

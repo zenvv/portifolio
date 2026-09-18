@@ -52,14 +52,14 @@ export default function App() {
   }, [pathname, hash]);
 
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <LanguageProvider>
         <TooltipProvider>
           <div className="min-h-dvh flex flex-col ">
-            <div className="max-w-full mx-auto min-h-full flex-1 shrink-0 w-full flex flex-col z-50 relative">
+            <div className="max-w-full mx-auto min-h-full flex-1 shrink-0 w-full flex flex-col z-50 relative p-0">
               <Navbar />
               <div
-                className="flex flex-col flex-1 mx-auto w-full max-w-7xl min-w-0"
+                className="flex flex-col flex-1 mx-auto w-full min-w-0"
                 style={{ viewTransitionName: "page-content" }}
               >
                 <Suspense fallback={null}>

@@ -34,19 +34,22 @@ export default function ContactDrawer({ className }: { className?: string }) {
       >
         <List /> Contato
       </SheetTrigger>
-      <SheetContent side="bottom" className="max-h-[85dvh] overflow-y-auto">
+      <SheetContent
+        side="bottom"
+        className="max-h-[85dvh] overflow-y-auto dark"
+      >
         <SheetHeader className="leading-none gap-0">
           <SheetTitle>Willian Zeni</SheetTitle>
           <SheetDescription>@zenvv</SheetDescription>
         </SheetHeader>
         <div className="flex flex-col px-2 pb-8 gap-4">
-          <div className="flex flex-col px-4">
+          <div className="flex flex-col items-center text-center px-4">
             <h2 className="font-heading italic text-xl">{t.contact.heading}</h2>
             <p className="text-sm text-muted-foreground">
               {t.contact.subheading}
             </p>
           </div>
-          <ContactGrid />
+          <ContactGrid className="flex-col p-4" />
         </div>
       </SheetContent>
     </Sheet>

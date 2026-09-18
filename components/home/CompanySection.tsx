@@ -1,23 +1,47 @@
-import { useState } from "react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import {
-  AsteriskIcon,
-  CaretDownIcon,
-  HeadCircuitIcon,
-} from "@phosphor-icons/react";
-import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+import { AsteriskIcon, HeadCircuitIcon } from "@phosphor-icons/react";
+import TransitionLink from "@/components/TransitionLink";
 import SectionTitle from "@/components/SectionTitle";
 import {
   OPEN_TO_WORK,
+  type Activity,
   type Company,
   type CompanyRole,
 } from "@/data/experience";
 import type { Locale, Translations } from "@/lib/i18n/translations";
 import { GlobeIcon } from "@phosphor-icons/react/dist/ssr";
+
+/** Matches a `[[label|project-slug]]` span inside an activity's text. */
+const PROJECT_LINK_PATTERN = /\[\[(.+?)\|(.+?)\]\]/g;
+
+/** Renders an activity's text, turning any `[[label|project-slug]]` span
+ * into a link to that project's page. */
+function renderActivityText(text: string) {
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  PROJECT_LINK_PATTERN.lastIndex = 0;
+  while ((match = PROJECT_LINK_PATTERN.exec(text))) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
+    const [, label, slug] = match;
+    nodes.push(
+      <TransitionLink
+        key={match.index}
+        to={`/projects/${slug}`}
+        direction="forward"
+        plain
+        className="text-foreground underline underline-offset-2 decoration-muted-foreground/40 hover:decoration-foreground transition-colors"
+      >
+        {label}
+      </TransitionLink>,
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+
+  return nodes;
+}
 
 function OpenToWorkCard({ t }: { t: Translations }) {
   return (
@@ -41,15 +65,13 @@ function OpenToWorkCard({ t }: { t: Translations }) {
 function RoleRow({
   role,
   locale,
-  t,
 }: {
   role: CompanyRole;
   locale: Locale;
-  t: Translations;
 }) {
-  const [open, setOpen] = useState(false);
-  const activities = role.activities[locale].filter((a) => a.trim() !== "");
-  const hasActivities = activities.length > 0;
+  const activities = role.activities.filter(
+    (a: Activity) => a.text[locale].trim() !== "",
+  );
 
   return (
     <div className="flex flex-col py-3">
@@ -65,35 +87,18 @@ function RoleRow({
         ) : null}
       </div>
 
-      {hasActivities ? (
-        <Collapsible open={open} onOpenChange={setOpen}>
-          <CollapsibleTrigger className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors mt-3 w-fit">
-            <CaretDownIcon
-              className={cn(
-                "size-3 transition-transform",
-                open ? "rotate-180" : "",
-              )}
-            />
-            {open ? t.about.hideActivities : t.about.showActivities}
-          </CollapsibleTrigger>
-
-          <CollapsibleContent>
-            <span className="flex flex-col gap-1.5 pt-3 pl-0.5">
-              {activities.map((activity) => (
-                <span
-                  key={activity}
-                  className="text-xs text-muted-foreground flex items-start gap-2"
-                >
-                  <AsteriskIcon
-                    weight="bold"
-                    className="shrink-0 size-3! mt-0.5"
-                  />
-                  {activity}
-                </span>
-              ))}
+      {activities.length > 0 ? (
+        <span className="flex flex-col gap-1.5 pt-3 pl-0.5">
+          {activities.map((activity) => (
+            <span
+              key={activity.text[locale]}
+              className="text-xs text-muted-foreground flex items-start gap-2"
+            >
+              <AsteriskIcon weight="bold" className="shrink-0 size-3! mt-0.5" />
+              <span>{renderActivityText(activity.text[locale])}</span>
             </span>
-          </CollapsibleContent>
-        </Collapsible>
+          ))}
+        </span>
       ) : null}
     </div>
   );
@@ -131,7 +136,7 @@ function CompanyCard({
       </div>
       <div className="flex flex-col divide-y divide-border/60">
         {company.roles.map((role) => (
-          <RoleRow key={role.index} role={role} locale={locale} t={t} />
+          <RoleRow key={role.index} role={role} locale={locale} />
         ))}
       </div>
     </div>

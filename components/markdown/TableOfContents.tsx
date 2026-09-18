@@ -68,7 +68,7 @@ export default function TableOfContents({
           key={h.id}
           href={`#${h.id}`}
           className={cn(
-            "truncate px-3 py-1.5 font-mono text-xs transition-colors -ml-px border-l",
+            "truncate px-3 py-1.5 font-mono text-xs  -ml-px border-l-3",
             activeId === h.id
               ? "border-primary font-medium text-foreground"
               : "border-transparent text-muted-foreground hover:text-foreground",
@@ -122,12 +122,12 @@ export function TableOfContentsMobile({
         document.body,
       )}
       <SheetContent side="right" className="gap-0">
-        <SheetHeader className="border-b pb-3">
-          <span className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground/60">
+        <SheetHeader className="pb-3">
+          <span className="font-mono text-lg uppercase tracking-widest text-muted-foreground/60">
             {title}
           </span>
         </SheetHeader>
-        <nav className="flex flex-col overflow-y-auto p-2">
+        <nav className="flex flex-col overflow-y-auto p-2 pl-0 ml-4 border-l">
           {headings.map((h) => (
             <SheetClose
               key={h.id}
@@ -135,7 +135,7 @@ export function TableOfContentsMobile({
                 <a
                   href={`#${h.id}`}
                   className={cn(
-                    "truncate border-l px-3 py-2.5 font-mono text-xs transition-colors",
+                    "truncate border-l-3 px-3 py-2.5 font-mono text-xs transition-colors",
                     activeId === h.id
                       ? "border-primary font-medium text-foreground"
                       : "border-transparent text-muted-foreground hover:text-foreground",

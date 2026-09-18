@@ -6,7 +6,7 @@
 
 - O **PCO** (Programador de Operações) usa o app em tablet durante a própria reunião diária: conforme o post-it físico muda de coluna no quadro da garagem, ele reflete a mudança no board digital.
 - **Dois boards:** `KANBAN` cobre a operação geral (locação, rodagem, laboratório, checagem); `KANBAN CAE` é separado porque o setor de CAE (engenharia de simulação) desenvolve testes numa ordem própria, incluindo um fluxo de "Estudo" — exploratório, sem ordem de serviço comercial — que só vira uma ordem de fato quando aprovado.
-- Mover um card **nunca grava direto no SharePoint**: cada mudança de fase/situação/posição vira um `Patch` numa coleção local (`kbTEMP`/`kbCAETEMP`), e só quando o PCO confirma é que tudo sincroniza de uma vez em lote — evita gravação parcial no meio da reunião enquanto os cards ainda estão sendo movidos.
+- Mover um card **nunca grava direto no SharePoint**: cada mudança de fase/situação/posição vira um `Patch` numa coleção local (`kbTEMP`/`kbCAETEMP`), agrupando todos os movimentos num único lote que só sincroniza com o SharePoint quando o PCO confirma — em vez de gravar a cada arrastar enquanto os cards ainda estão sendo organizados durante a reunião.
 - Ao confirmar, o app também atualiza a `Etapa` e o `Status` da ordem comercial de origem, mantendo o funil comercial em sincronia com o kanban operacional.
 
 ## Da reunião ao Power BI
@@ -85,8 +85,12 @@ Filter(Choices('KANBAN CAE'[@FASE]), If(currentItemCAE.TIPO.Value = "ESTUDO",
 
 ## Decisões de arquitetura
 
-- **Edição local, commit em lote.** Mover um card edita só a coleção local; a gravação real no SharePoint só acontece quando o PCO confirma — evita gravação parcial no meio da reunião.
+- **Edição local, commit em lote.** Mover um card edita só a coleção local; a gravação real no SharePoint só acontece em um lote quando o PCO confirma, em vez de a cada arrastar. O lote em si é um loop `ForAll`/`Patch`, não uma transação atômica única.
 - **Ponte pro Power BI via fluxo agendado, não escrita direta.** `UPSERT_PLANEJAMENTOTESTES_PCO` resincroniza a lista de planejamento numa recorrência diária, em vez do app escrever nela a cada mudança: mantém o board rápido de usar e joga a carga de sincronização pro background.
 - **Dois boards quase idênticos, de propósito.** `KANBAN` e `KANBAN CAE` têm fases diferentes porque o CAE trabalha numa lógica própria (estudos exploratórios sem OS). É lógica duplicada, mas evitou complicar a tela com uma configuração de fases por setor.
 - **Kanban digital como complemento, não substituto.** O quadro físico continua existindo; o app só formaliza o que já acontece na reunião, sem mudar o ritual em si — o que reduziu bastante a resistência da equipe operacional.
+
+---
+
+_Em produção no CTR (Randon Group). Fórmulas e nomes de lista foram simplificados pra leitura._
 

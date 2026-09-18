@@ -33,6 +33,18 @@ export type Project = {
   link?: string | null;
   color?: string | null;
   repo?: string | null;
+  /**
+   * Visual weight within its company group on the /projects list, so a small
+   * or umbrella entry doesn't compete for attention with the flagship work it
+   * sits next to. Omitted = normal weight, sorted by date like everything
+   * else in the group.
+   * - "ecosystem": a collection post bundling several smaller supporting
+   *   apps that each also have (or don't need) their own page.
+   * - "secondary": a minor, non-flagship entry (e.g. a standalone logomark).
+   * Both sink to the bottom of their group, after the normal-weight items,
+   * still ordered by date among themselves.
+   */
+  tier?: "ecosystem" | "secondary";
 };
 
 /**
@@ -43,8 +55,9 @@ export type Project = {
  */
 export const FEATURED_SLUGS = [
   "erp-bello-aramados",
-  "nailly",
+  "nfs-transporte",
   "operational-app",
+  "risk-analysis-app",
 ] as const;
 
 export const Projetos: Project[] = [
@@ -68,6 +81,7 @@ export const Projetos: Project[] = [
       "SharePoint Lists",
       "TypeScript",
       "Tailwind CSS",
+      "Claude Code",
     ],
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
@@ -100,6 +114,7 @@ export const Projetos: Project[] = [
     tags: ["Web", "Software"],
     empresa: "Bello Aramados",
     type: "powerapps",
+    tier: "ecosystem",
   },
   {
     index: 2,
@@ -109,8 +124,8 @@ export const Projetos: Project[] = [
       pt: "App - Controle Operacional",
     },
     description: {
-      en: "Operational app for Bello Aramados, designed to register the operators' work and provide real-time updates on production status. The app enhances communication between the production team and management, ensuring efficient workflow and timely delivery of products.",
-      pt: "Aplicativo operacional para a Bello Aramados, desenvolvido para registrar o trabalho dos operadores e fornecer atualizações em tempo real sobre o status da produção. O app melhora a comunicação entre a equipe de produção e a gestão, garantindo um fluxo de trabalho eficiente e a entrega pontual dos produtos.",
+      en: "Operational app for Bello Aramados, designed to register the operators' work and provide near real-time updates on production status (a local estimate shown instantly, reconciled by an automation every few minutes). The app enhances communication between the production team and management, ensuring efficient workflow and timely delivery of products.",
+      pt: "Aplicativo operacional para a Bello Aramados, desenvolvido para registrar o trabalho dos operadores e fornecer atualizações quase em tempo real sobre o status da produção (uma estimativa local exibida na hora, reconciliada por uma automação a cada poucos minutos). O app melhora a comunicação entre a equipe de produção e a gestão, garantindo um fluxo de trabalho eficiente e a entrega pontual dos produtos.",
     },
     shortDescription: {
       en: "Brought FIFO to the shop floor (order → work order → queue → production), built for 30+ operators with little tech familiarity",
@@ -205,12 +220,12 @@ export const Projetos: Project[] = [
     slug: "risk-analysis-app",
     title: { en: "App - HSE", pt: "App - SSMA" },
     description: {
-      en: "Risk-analysis app for the CTR (Randon Group's proving ground): digitized the Test Risk Analysis approval chain from 1h30 down to 10-15min, and grew to cover tooling-service releases, environmental licenses and access management for operators, brigade members, engineers and visitors.",
-      pt: "App de SSMA do CTR (campo de provas do grupo Randon): digitalizei a Análise de Risco de Teste, reduzindo o processo de aprovação de 1h30 para 10-15min, e o app cresceu pra cobrir liberação de serviços de ferramentaria, licenças ambientais e gestão de pessoas habilitadas (operadores, brigadistas, engenheiros, visitantes).",
+      en: "Risk-analysis app for the CTR (Randon Group's proving ground): digitized the Test Risk Analysis approval chain, cutting an estimated 1h30 down to about 15min, and grew to cover tooling-service releases, environmental licenses and access management for operators, brigade members, engineers and visitors.",
+      pt: "App de SSMA do CTR (campo de provas do grupo Randon): digitalizei a Análise de Risco de Teste, reduzindo o processo de aprovação de uma estimativa de 1h30 para cerca de 15min, e o app cresceu pra cobrir liberação de serviços de ferramentaria, licenças ambientais e gestão de pessoas habilitadas (operadores, brigadistas, engenheiros, visitantes).",
     },
     shortDescription: {
-      en: "Cut a 1h30 signature chain to 10-15min, plus tooling releases, licenses and access management",
-      pt: "Reduziu de 1h30 para 10-15min a Análise de Risco de Teste, mais ferramentaria, licenças e gestão de pessoas",
+      en: "Cut an estimated 1h30 signature chain to ~15min, plus tooling releases, licenses and access management",
+      pt: "Reduziu de uma estimativa de 1h30 para ~15min a Análise de Risco de Teste, mais ferramentaria, licenças e gestão de pessoas",
     },
     createdAt: "2025-02",
     tecnologias: ["Power Apps", "Power Automate", "SharePoint Lists"],
@@ -230,10 +245,10 @@ export const Projetos: Project[] = [
       pt: "Redesenhei o recebimento de notas fiscais e a emissão de Declarações de Transporte (documento substituto, já que o CTR não tem inscrição estadual) para amostras de teste veicular recebidas diariamente. O processo antigo era manual e sem rastreio: nota arquivada em papel, copiada à mão pro sistema de chamados, impressa e grampeada pra entregar ao motorista. Um formulário padronizado, uma lista do SharePoint como fonte única de verdade e avisos automáticos por status reduziram um ciclo que podia levar até 6 horas para minutos de esforço manual.",
     },
     shortDescription: {
-      en: "Cut a 6h manual invoice/declaration cycle down to 5-10min of hands-on effort",
-      pt: "Reduziu de até 6h para 5-10min o esforço manual num ciclo de notas/declarações",
+      en: "Cut an estimated 6h manual invoice/declaration cycle down to ~20min of hands-on effort",
+      pt: "Reduziu de uma estimativa de 6h para ~20min o esforço manual num ciclo de notas/declarações",
     },
-    createdAt: "2022-04",
+    createdAt: "2023-04",
     tecnologias: ["Microsoft Forms", "Power Automate", "SharePoint Lists"],
     tags: ["Microsoft", "Automation"],
     empresa: "Centro Tecnológico Randon",
@@ -247,8 +262,8 @@ export const Projetos: Project[] = [
       pt: "RPA com PyAutoGUI para Extração de Relatórios SAP",
     },
     description: {
-      en: "",
-      pt: "",
+      en: "RPA script (Python + PyAutoGUI) that drove SAP ERP/HANA by screen coordinates and keyboard shortcuts: opened SAP, authenticated via SSO, ran a custom report across three transactions (ZMM075, ME2L, MB51), and exported each to Excel. It then opened the Power BI desktop file for the purchasing report and refreshed and published it, also by simulated clicks. Ran unattended on a dedicated notebook via Windows Task Scheduler, four times a day, ~9-12min end to end.",
+      pt: "Script de RPA (Python + PyAutoGUI) que operava o SAP ERP/HANA por coordenadas de tela e atalhos de teclado: abria o SAP, autenticava via SSO, executava um relatório padrão próprio em três transações (ZMM075, ME2L, MB51) e exportava cada uma para Excel. Depois abria o arquivo do Power BI Desktop do relatório de compras e atualizava e publicava, também por cliques simulados. Rodava sozinho num notebook dedicado via Agendador de Tarefas do Windows, quatro vezes ao dia, ~9-12min de ponta a ponta.",
     },
     shortDescription: {
       en: "RPA that pulls SAP reports and refreshes a Power BI dashboard",
@@ -270,8 +285,8 @@ export const Projetos: Project[] = [
     slug: "sferi",
     title: { en: "Sferi", pt: "Sferi" },
     description: {
-      en: "sferi is a Figma-inspired design tool (shapes, frames, typography, gradients, image fills, groups, layers, the works) built from scratch on the HTML canvas, via Konva, as a personal deep-dive into how canvas-based editors actually work under the hood: hit-testing, transforms, clipping, undo history, all of it.",
-      pt: "sferi é uma ferramenta de design inspirada no Figma (formas, frames, tipografia, gradientes, preenchimento com imagem, grupos, camadas, tudo isso) construída do zero sobre o HTML canvas, via Konva, como um mergulho pessoal em como editores baseados em canvas realmente funcionam por baixo dos panos: hit-testing, transformações, clipping, histórico de undo, tudo.",
+      en: "sferi is a Figma-inspired design tool (shapes, frames, typography, gradients, image fills, groups, layers, the works) built on top of Konva's HTML canvas engine, as a personal deep-dive into how canvas-based editors work: hit-testing, transforms, clipping, undo history, all of it. AI-assisted implementation (see note on the project page).",
+      pt: "sferi é uma ferramenta de design inspirada no Figma (formas, frames, tipografia, gradientes, preenchimento com imagem, grupos, camadas, tudo isso) construída sobre o motor de canvas do Konva, como um mergulho pessoal em como editores baseados em canvas funcionam: hit-testing, transformações, clipping, histórico de undo, tudo. Implementação assistida por IA (ver nota na página do projeto).",
     },
     shortDescription: {
       en: "Figma-inspired vector designing tool",
@@ -287,37 +302,12 @@ export const Projetos: Project[] = [
       "Zustand",
       "Konva",
       "GSAP",
+      "Claude Code",
     ],
     tags: ["Web", "Software"],
     type: "web",
     repo: "https://github.com/zenvv/sferi",
     link: "https://sferi.vercel.app/",
-  },
-  {
-    index: 11,
-    slug: "not-my-typo",
-    title: { en: "Not My Typo", pt: "Not My Typo" },
-    description: {
-      en: "Not My Typo is a from-scratch clone of the monkeytype.com typing-test experience: words stream across the screen, you type them, and the app tracks your words-per-minute, accuracy, consistency, and misses.",
-      pt: "Not My Typo é um clone feito do zero da experiência de teste de digitação do monkeytype.com: as palavras passam pela tela, você digita, e o app acompanha suas palavras por minuto, precisão, consistência e erros.",
-    },
-    shortDescription: {
-      en: "MonkeyType inspired mini-game",
-      pt: "Mini-game inspirado no MonkeyType",
-    },
-    createdAt: "2026-07",
-    tecnologias: [
-      "Vite",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Zustand",
-      "shadcn/ui",
-    ],
-    tags: ["Web", "Software"],
-    type: "web",
-    repo: "https://github.com/zenvv/not-my-typo",
-    link: "https://not-my-typo.vercel.app/",
   },
   {
     index: 12,
@@ -335,6 +325,7 @@ export const Projetos: Project[] = [
     tecnologias: ["Figma"],
     tags: ["Design", "Figma"],
     type: "design",
+    tier: "secondary",
     color: "#FF5400",
   },
   {
@@ -360,6 +351,7 @@ export const Projetos: Project[] = [
       "PWA",
       "Vercel",
       "Zod",
+      "Claude Code",
     ],
     tags: ["Web", "Software"],
     empresa: "",
@@ -456,6 +448,7 @@ export const Projetos: Project[] = [
     tags: ["Web", "Software"],
     empresa: "Centro Tecnológico Randon",
     type: "powerapps",
+    tier: "ecosystem",
   },
 ];
 

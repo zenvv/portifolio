@@ -74,10 +74,10 @@ export function SocialIconLinks({ className }: { className?: string }) {
             rel="noreferrer"
             aria-label={social.label}
             title={social.label}
-            className="group flex size-9 items-center justify-center text-muted-foreground transition-all hover:bg-primary hover:text-black"
+            className="group flex size-8 items-center justify-center text-muted-foreground transition-all hover:bg-muted hover:text-foreground rounded"
           >
-            <Icon weight="regular" className="size-4 group-hover:hidden" />
-            <Icon weight="fill" className="hidden size-5 group-hover:block" />
+            <Icon weight="regular" className="size-4.5 group-hover:hidden" />
+            <Icon weight="fill" className="hidden size-4.5 group-hover:block" />
           </a>
         );
       })}
@@ -99,10 +99,7 @@ export function ContactGrid({ className }: { className?: string }) {
   const { ref, active, reduceMotion } = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div
-      ref={ref}
-      className={cn("grid grid-cols-1  sm:grid-cols-2 sm:gap-1", className)}
-    >
+    <div ref={ref} className={cn("flex gap-2", className)}>
       {socials.map((social, i) => {
         const delay = i * ROW_STAGGER;
         return (
@@ -111,10 +108,10 @@ export function ContactGrid({ className }: { className?: string }) {
             href={social.link}
             target="_blank"
             rel="noreferrer"
-            className="group relative block p-5 text-left transition-all hover:from-muted/50 bg-linear-to-tl from-transparent to-transparent outline outline-transparent outline-offset-0 hover:outline-border hover:-outline-offset-6"
+            className="group relative block p-5 text-left transition-all shrink-0 flex-1 bg-background dark *:dark rounded"
           >
             <motion.span
-              className="flex items-center gap-4"
+              className="flex flex-col items-start gap-4"
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               animate={active ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -123,17 +120,17 @@ export function ContactGrid({ className }: { className?: string }) {
                 ease: EASE,
               }}
             >
-              <span className="flex size-10 outline outline-offset-0 group-hover:outline-offset-4 group-hover:outline-border outline-transparent outline-dotted shrink-0 items-center justify-center border text-muted-foreground transition-all group-hover:bg-linear-to-t from-muted to-transparent group-hover:text-primary">
+              <span className="flex size-10 items-center justify-center border transition-all rounded group-hover:bg-muted/50">
                 <social.icon
                   weight="regular"
-                  className="size-5 transition-all group-hover:size-6 group-hover:hidden"
+                  className="size-7 transition-all group-hover:hidden text-muted-foreground"
                 />
                 <social.icon
                   weight="fill"
-                  className="hidden size-5 transition-all group-hover:size-6 group-hover:block"
+                  className="hidden size-7 transition-all group-hover:block text-primary"
                 />
               </span>
-              <span className="flex min-w-0 flex-1 flex-col">
+              <span className="flex min-w-0 flex-1 flex-col text-start items-start">
                 <span className="text-sm font-medium text-foreground">
                   {social.label}
                 </span>
@@ -144,7 +141,7 @@ export function ContactGrid({ className }: { className?: string }) {
                       : "")}
                 </span>
               </span>
-              <ArrowUpRightIcon className="size-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary group-hover:opacity-100" />
+              <ArrowUpRightIcon className="size-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary group-hover:opacity-100 absolute top-4 right-4" />
             </motion.span>
           </a>
         );

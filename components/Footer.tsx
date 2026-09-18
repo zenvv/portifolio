@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="relative flex w-full flex-col bg-linear-to-t from-background to-transparent">
         <div className="flex w-full flex-col items-center sm:text-left text-center gap-8 px-6 sm:h-40 sm:flex-row sm:justify-between py-10 sm:py-0 max-w-7xl mx-auto">
           <div className="flex flex-col gap-1">
-            <span className="font-heading text-xl leading-none text-foreground italic sm:text-2xl">
+            <span className="font-heading leading-none text-foreground italic text-2xl">
               Willian Zeni
             </span>
             <span className="font-mono text-xs leading-none text-muted-foreground">

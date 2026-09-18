@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import type { Locale } from "./i18n/translations";
+import { NFS_REDUCTION } from "@/data/metrics";
 
 const DEFAULT_TITLE: Record<Locale, string> = {
   pt: "Willian Zeni | Desenvolvedor Full-Stack | Automação e Integração de Sistemas",
   en: "Willian Zeni | Full-Stack Developer | Automation & Systems Integration",
 };
-// Descriptions lead with a number already published on a project page
-// (nfs-transporte's shortDescription), not a new claim.
+// Leads with the nfs-transporte reduction from data/metrics.ts, the single
+// source for this number, not a new claim written here.
 const DEFAULT_DESCRIPTION: Record<Locale, string> = {
-  pt: "Desenvolvedor full-stack focado em automação e integração de sistemas. Já reduziu um ciclo manual de notas fiscais de 6h para 15–30min.",
-  en: "Full-stack developer focused on automation and systems integration. Cut a manual invoice cycle from 6h down to 15-30min.",
+  pt: `Desenvolvedor full-stack focado em automação e integração de sistemas. Já reduziu um ciclo manual de notas fiscais de ${NFS_REDUCTION.from} para ~${NFS_REDUCTION.to}.`,
+  en: `Full-stack developer focused on automation and systems integration. Cut a manual invoice cycle from ${NFS_REDUCTION.from} down to ~${NFS_REDUCTION.to}.`,
 };
 const PROJECTS_TITLE: Record<Locale, string> = {
   pt: "zenvv / projetos",

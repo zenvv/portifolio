@@ -7,7 +7,6 @@ export type songsTypes = {
 };
 
 export const Songs: songsTypes[] = [
-  
   {
     index: 2,
     name: "Shoegaze",
@@ -29,7 +28,7 @@ export const Songs: songsTypes[] = [
   {
     index: 4,
     name: "Wild Blue",
-    artist: "Jonh Mayer",
+    artist: "John Mayer",
     artwork:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273779063301154e835a91a35e0",
     spotifyLink:
@@ -47,7 +46,7 @@ export const Songs: songsTypes[] = [
   {
     index: 6,
     name: "Love Comes to Everyone",
-    artist: "George Harrinson",
+    artist: "George Harrison",
     artwork:
       "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2731ee74a7aef22d2d05537ac91",
     spotifyLink:
@@ -63,5 +62,4 @@ export const Songs: songsTypes[] = [
     spotifyLink:
       "https://open.spotify.com/track/0y5CnV2idm2KkQEudDjfDT?si=1ea6fec133934ecd",
   },
- 
 ];

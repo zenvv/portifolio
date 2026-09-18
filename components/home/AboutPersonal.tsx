@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/purity */
 import { useMemo } from "react";
 import { motion } from "motion/react";
 import { useLanguage } from "@/lib/i18n/language.provider";
@@ -93,11 +94,19 @@ export default function AboutPersonal({ className }: { className?: string }) {
         title={t.about.personalEyebrow}
         icon={<CoffeeIcon />}
         titleLevel="h3"
+        className="hidden sm:flex"
+      />
+      <SectionTitle
+        align="center"
+        title={t.about.personalEyebrow}
+        icon={<CoffeeIcon />}
+        titleLevel="h3"
+        className="sm:hidden flex"
       />
 
-      <div className="flex flex-col items-start gap-4 pt-1">
+      <div className="flex flex-col sm:items-start items-center text-center sm:text-start gap-4 pt-1">
         <FloatingGallery active={active} reduceMotion={reduceMotion} />
-        <p className="max-w-sm text-sm text-muted-foreground text-pretty">
+        <p className="max-w-sm text-sm text-muted-foreground text-pretty mb-8">
           {t.about.personalTeaser}
         </p>
         <SongsList />

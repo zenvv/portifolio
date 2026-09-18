@@ -3,7 +3,7 @@
   <img alt="sferi" src="/projects/sferi/images/logo_black.svg" width="180">
 </picture>
 
-### uma ferramenta de design construída do zero sobre o HTML canvas
+### uma ferramenta de design construída sobre o HTML canvas
 
 **[sferi.vercel.app](https://sferi.vercel.app)**
 
@@ -13,9 +13,13 @@
 
 [sferi](https://sferi.vercel.app) é uma ferramenta de design inspirada no Figma
 (formas, frames, tipografia, gradientes, preenchimento com imagem, grupos, camadas,
-tudo isso) construída do zero sobre o HTML canvas, via [Konva](http://konvajs.org/),
-como um mergulho pessoal em como editores baseados em canvas realmente funcionam por
-baixo dos panos: hit-testing, transformações, clipping, histórico de undo, tudo.
+tudo isso) construída sobre o motor de canvas do [Konva](http://konvajs.org/),
+como um mergulho pessoal em como editores baseados em canvas funcionam:
+hit-testing, transformações, clipping, histórico de undo, tudo.
+
+> **Desenvolvimento assistido por IA**
+>
+> Este projeto foi desenvolvido majoritariamente por codificação assistida por IA. Arquitetura, requisitos, regras de negócio e decisões técnicas foram definidas e validadas por mim, enquanto a implementação foi fortemente assistida por IA.
 
 ## Capturas de tela
 
@@ -69,7 +73,7 @@ entrada no painel de camadas à esquerda.
 
 ## Licença
 
-MIT, veja [LICENSE](LICENSE).
+MIT, veja [LICENSE](https://github.com/zenvv/sferi/blob/main/LICENSE).
 
 <br>
 

@@ -26,6 +26,16 @@ with two plants. It is a web application used by office and factory-office staff
 always in Portuguese, with no public sign-up: accounts are the company's own
 Microsoft 365 accounts.
 
+It's the end point of a progression, not a from-scratch system: PPC, Sales,
+Purchasing and Operational Control started as separate [Power Apps over
+SharePoint](/projects/bello-ecosystems), each owning one step of a shared
+production data model. As those apps and the coupling between sectors grew, the
+[PPC Panel became the proof of concept](/projects/bello-ecosystems)
+that led to unifying PPC, Sales, Tax and Finance into this single Next.js
+application over the same SharePoint backend. [Finance](/projects/bello-financeiro)
+was one of the Power Apps folded into it this way; [Purchasing](/projects/bello-compras)
+still runs as its own app.
+
 ## What the system does
 
 | Area          | What it does in the system                                                                                                     |

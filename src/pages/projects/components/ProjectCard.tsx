@@ -24,6 +24,7 @@ function ProjectCard({
   t,
   className,
   active = true,
+  mini = false,
   reduceMotion = false,
 }: {
   projeto: Project;
@@ -34,6 +35,7 @@ function ProjectCard({
   /** Plays this card's entrance once true; defaults to already-active for
    * callers outside a scroll-triggered grid. */
   active?: boolean;
+  mini?: boolean;
   reduceMotion?: boolean;
 }) {
   const techLine = projeto.tecnologias
@@ -50,39 +52,29 @@ function ProjectCard({
       plain
       className={cn("group flex flex-col gap-3", className)}
     >
-      <div className="relative">
-        <motion.span
-          className="absolute left-2 top-2 z-10 border border-border/70 bg-card/90 px-1.5 py-0.5 font-mono text-[0.6rem] leading-none text-muted-foreground backdrop-blur-sm"
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.6 }}
-          animate={active ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: BADGE_DURATION, delay: base, ease: EASE }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </motion.span>
-        <motion.div
-          className="aspect-video w-full shrink-0 overflow-hidden border"
-          initial={reduceMotion ? false : { clipPath: WIPE.left.from }}
-          animate={active ? { clipPath: WIPE.left.to } : {}}
-          transition={{
-            duration: BANNER_DURATION,
-            delay: base + BANNER_DELAY_OFFSET,
-            ease: EASE,
-          }}
-        >
-          <FallbackImage
-            candidates={getProjectBannerCandidates(projeto.slug)}
-            alt={projeto.title[locale]}
-            loading="lazy"
-            decoding="async"
-            wrapperClassName="h-full w-full"
-            className="transition-transform duration-300 group-hover:scale-105"
-            projectType={projeto.type}
-          />
-        </motion.div>
-      </div>
+      <motion.div
+        className="aspect-video w-full overflow-hidden border"
+        initial={reduceMotion ? false : { clipPath: WIPE.left.from }}
+        animate={active ? { clipPath: WIPE.left.to } : {}}
+        transition={{
+          duration: BANNER_DURATION,
+          delay: base + BANNER_DELAY_OFFSET,
+          ease: EASE,
+        }}
+      >
+        <FallbackImage
+          candidates={getProjectBannerCandidates(projeto.slug)}
+          alt={projeto.title[locale]}
+          loading="lazy"
+          decoding="async"
+          wrapperClassName="aspect-video w-full"
+          className="transition-transform duration-300 group-hover:scale-105"
+          projectType={projeto.type}
+        />
+      </motion.div>
 
       <motion.div
-        className="flex flex-col gap-1"
+        className="flex flex-col gap-1 shrink-0"
         initial={reduceMotion ? false : { opacity: 0, y: 12 }}
         animate={active ? { opacity: 1, y: 0 } : {}}
         transition={{
@@ -91,17 +83,25 @@ function ProjectCard({
           ease: EASE,
         }}
       >
-        <h2 className="font-heading text-base font-medium leading-tight w-fit border-b border-transparent transition-colors group-hover:border-primary">
+        <h2
+          className={cn(
+            "font-heading text-base font-medium leading-tight w-fit border-b border-transparent transition-colors group-hover:border-primary",
+            mini ? "line-clamp-1" : "",
+          )}
+        >
           {projeto.title[locale]}
         </h2>
-        <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
-          {projeto.shortDescription[locale]}
-        </p>
-
-        {techLine ? (
-          <span className="font-mono text-xs text-muted-foreground/60 pt-1">
-            {techLine}
-          </span>
+        {!mini ? (
+          <>
+            <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
+              {projeto.shortDescription[locale]}
+            </p>
+            {techLine ? (
+              <span className="font-mono text-xs text-muted-foreground/60 pt-1">
+                {techLine}
+              </span>
+            ) : null}{" "}
+          </>
         ) : null}
         <span className="inline-flex w-fit items-center gap-1 pt-1.5 text-xs font-semibold transition-[gap] group-hover:gap-1.5">
           {t.projects.readMore}

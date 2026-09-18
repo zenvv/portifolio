@@ -3,6 +3,10 @@
      instance with fictional data (structure identical to production).
      DB table/column names kept in Portuguese; they're real schema identifiers. -->
 
+> **AI-assisted development**
+>
+> This project was developed primarily through AI-assisted coding. Architecture, requirements, business rules and technical decisions were defined and validated by me, while implementation was heavily assisted by AI.
+
 ## What the app does
 
 - **The day as a continuous time band**: every appointment takes height

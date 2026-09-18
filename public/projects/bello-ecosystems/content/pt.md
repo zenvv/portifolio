@@ -183,4 +183,4 @@ O peso do modelo está nas listas, não no app. Ele é leve porque só precisa s
 
 ---
 
-_Apps em produção na Bello Aramados. As fórmulas e nomes de lista foram simplificados para leitura._
+_Apps construídos e entregues pra Bello Aramados. As fórmulas e nomes de lista foram simplificados para leitura._

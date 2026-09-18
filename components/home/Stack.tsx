@@ -1,31 +1,27 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { motion } from "motion/react";
 import { useLanguage } from "@/lib/i18n/language.provider";
 
 import { getTechIcon, getSolidTechIcon } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
-import { EASE, useScrollReveal } from "@/lib/motion";
+import { EASE } from "@/lib/motion";
 import TechIcon from "@/components/TechIcon";
-import { Button } from "../ui/button";
+
 import { Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "../ui/collapsible";
-import { CaretDownIcon } from "@phosphor-icons/react";
+
+// import { CaretDownIcon } from "@phosphor-icons/react";
 import { StackList, TECH_TYPES, type techType } from "@/data/stack";
 import SectionTitle from "../SectionTitle";
 
-const TILE_STAGGER = 0.045;
-const TILE_STAGGER_CAP = 14;
+// const TILE_STAGGER = 0.045;
+// const TILE_STAGGER_CAP = 14;
 const TILE_DURATION = 0.3;
 
 function LearningBadge() {
   const { t } = useLanguage();
 
   return (
-    <span className="text-[0.55rem] leading-none px-1.5 py-0.5 bg-primary/10 text-primary font-medium uppercase tracking-wide">
+    <span className="text-[0.55rem] leading-none px-1.5 py-0.5 text-muted-foreground border font-medium uppercase tracking-wide">
       {t.hero.stack.learningBadge}
     </span>
   );
@@ -139,14 +135,16 @@ function FeaturedIconTile({
 
 /** condensed row for the categorized modal list: solid icon by default, colored on hover */
 function StackListItem({ tech }: { tech: (typeof StackList)[number] }) {
+  const solid = getSolidTechIcon(tech.name);
+
   return (
     <a
       href={tech.link}
       target="_blank"
       rel="noreferrer"
-      className="group flex items-center gap-2 rounded-md px-1.5 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+      className="group flex items-center gap-2 rounded-md px-1.5 py-1 text-xs text-foreground/80 hover:text-foreground"
     >
-      <TechIconSwap invert name={tech.name} className="size-3.5" />
+      {solid ? <TechIcon icon={solid} className={cn("size-3")} /> : null}
       <span className="flex flex-1 min-w-0 items-center flex-wrap gap-x-1.5 gap-y-0.5">
         <span className="truncate">{tech.name}</span>
         {tech.learning ? <LearningBadge /> : null}
@@ -175,22 +173,22 @@ function StackColumn({ type }: { type: techType }) {
   );
 }
 
-const featuredList = StackList.filter((tech) => tech.featured);
+// const featuredList = StackList.filter((tech) => tech.featured);
 
 export default function StackSection({ className }: { className?: string }) {
   const { t } = useLanguage();
-  const [open, setOpen] = useState(false);
-  const { ref, active, reduceMotion } = useScrollReveal<HTMLDivElement>();
+  // const [open, setOpen] = useState(false);
+  // const { ref, active, reduceMotion } = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 bg-muted py-10">
       <SectionTitle title={t.hero.stack.title} align="center" divider={false} />
-      <Collapsible
-        open={open}
-        onOpenChange={setOpen}
-        className={cn("w-full", className)}
-      >
-        <div
+      <div className="columns-2 sm:columns-4 gap-4 pt-4 max-w-5xl mx-auto">
+        {TECH_TYPES.map((type) => (
+          <StackColumn key={type} type={type} />
+        ))}
+      </div>
+      {/* <div
           ref={ref}
           className="mx-auto flex max-w-66 flex-wrap items-center justify-center gap-4 sm:max-w-71 lg:max-w-none"
         >
@@ -204,8 +202,14 @@ export default function StackSection({ className }: { className?: string }) {
             />
           ))}
         </div>
+      <Collapsible
+        open={open}
+        onOpenChange={setOpen}
+        className={cn("w-full max-w-5xl mx-auto", className)}
+      >
+        
 
-        <div className="flex justify-center pt-3">
+        <div className="flex justify-center pt-3 ">
           <CollapsibleTrigger
             render={
               <Button
@@ -226,13 +230,9 @@ export default function StackSection({ className }: { className?: string }) {
         </div>
 
         <CollapsibleContent>
-          <div className="columns-2 sm:columns-4 gap-4 pt-4">
-            {TECH_TYPES.map((type) => (
-              <StackColumn key={type} type={type} />
-            ))}
-          </div>
+          
         </CollapsibleContent>
-      </Collapsible>
+      </Collapsible> */}
     </div>
   );
 }

@@ -73,4 +73,4 @@ CTR's **Homepage** centralizes links to internal systems and processes (a data-d
 
 ---
 
-_Apps in production at CTR (Randon Group). Formulas and list names were simplified for readability._
+_Apps built and delivered at CTR (Randon Group). Formulas and list names were simplified for readability._

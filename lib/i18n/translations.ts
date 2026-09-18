@@ -8,14 +8,14 @@ export const translations = {
       languageSelection: "Language selection",
       cv: "Download CV",
       menu: "Menu",
-      theme: "Theme",
       home: "Home",
       projects: "Projects",
     },
     easterEgg: "🎉 me at my birthday :)",
     hero: {
-      greeting: "Hi, I'm Will :^)",
-      label: "software developer · ui/ux designer",
+      greeting: "Hello! I'm",
+      name: "Willian Zeni",
+      label: "Full-Stack Developer · Automation & Systems Integration",
       aboutTitle: "About me",
       tagline:
         "I automate processes and integrate corporate systems with Power Platform, Power BI, React and TypeScript.",
@@ -25,6 +25,7 @@ export const translations = {
       },
       projects: {
         title: "Featured Projects",
+        otherTitle: "Other projects",
       },
       stack: {
         title: "Tech stack",
@@ -46,30 +47,11 @@ export const translations = {
       songs: {
         title: "Some songs that I jam to",
       },
-    },
-    capabilities: {
-      title: "What I do",
-      items: {
-        development: {
-          title: "Software development",
-          description:
-            "Web applications and internal systems, like Bello Aramados' ERP and Nailly's scheduling PWA.",
-        },
-        automation: {
-          title: "Automation & Power Platform",
-          description:
-            "Process automation with Power Apps, Power Automate and Power Fx, like Bello Aramados' Power Apps ecosystem.",
-        },
-        data: {
-          title: "Data & integrations",
-          description:
-            "Microsoft Graph API and SharePoint integrations, Power BI dashboards, and Python automations pulling ERP data.",
-        },
-        design: {
-          title: "UI/UX & design",
-          description:
-            "Interfaces and visual identity, from the Bello Aramados institutional website redesign to logomarks in Figma.",
-        },
+      capabilities: {
+        development: "Software development",
+        automation: "Automation & Power Platform",
+        data: "Data & integrations",
+        design: "UI/UX & design",
       },
     },
     cta: {
@@ -95,6 +77,14 @@ export const translations = {
       problem: "Problem",
       solution: "Solution",
       problemSolutionTitle: "From problem to solution",
+      role: "My role",
+      duration: "Duration",
+      status: "Status",
+      decisionsTitle: "Key decisions",
+      screensTitle: "Screens",
+      resultsTitle: "Result",
+      whatIdDoDifferentlyTitle: "What I'd do differently today",
+      technicalDetailsTitle: "Technical details",
       types: {
         all: "All",
         web: "Web",
@@ -104,7 +94,11 @@ export const translations = {
         design: "Design",
       },
       groups: {
-        personal: "Personal Projects",
+        personal: "Other Projects",
+      },
+      tiers: {
+        ecosystem: "Collection",
+        secondary: "Logomark",
       },
       empty: {
         title: "No projects match this filter",
@@ -113,7 +107,7 @@ export const translations = {
     },
     about: {
       intro:
-        "Brazilian **Full-Stack Developer** with hands-on experience across **corporate systems integration**, **process automation**, the **Microsoft Power Platform**, **SharePoint/Graph API**, and **ReactJS**. I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments, from mapping a broken workflow to shipping the tool that fixes it.",
+        "Brazilian **Full-Stack Developer**, evolving from a strong foundation in the **Microsoft Power Platform** (**process automation**, **corporate systems integration**, **SharePoint/Graph API**) toward traditional web development with **ReactJS** and **TypeScript**. I combine software development, process modeling, and graphic/interface design, with a track record of leading end-to-end projects in industrial environments, from mapping a broken workflow to shipping the tool that fixes it.",
       companiesWebsite: "View Company Website",
       companiesTitle: "Experience",
       openToWorkTitle: "Open to work!",
@@ -142,6 +136,7 @@ export const translations = {
     },
     impact: {
       heading: "My track record",
+      hours: "manual work hours reduced",
       processes: "automated processes",
       apps: "apps built in Power Platform",
       flows: "automation flows",
@@ -155,14 +150,14 @@ export const translations = {
       languageSelection: "Seleção de idioma",
       cv: "Baixar Currículo",
       menu: "Menu",
-      theme: "Tema",
       home: "Início",
       projects: "Projetos",
     },
     easterEgg: "🎉 eu no meu aniversário :)",
     hero: {
-      greeting: "Eae, eu sou o Will :^)",
-      label: "desenvolvedor de software · ui/ux designer",
+      greeting: "Prazer! Eu sou",
+      name: "Willian Zeni",
+      label: "Desenvolvedor Full-Stack · Automação e Integração de Sistemas",
       aboutTitle: "Sobre mim",
       tagline:
         "Automatizo processos e integro sistemas corporativos com Power Platform, Power BI, React e TypeScript",
@@ -172,6 +167,7 @@ export const translations = {
       },
       projects: {
         title: "Projetos em Destaque",
+        otherTitle: "Outros projetos",
       },
       stack: {
         title: "Stack de tecnologias",
@@ -193,30 +189,11 @@ export const translations = {
       songs: {
         title: "Algumas músicas que eu curto",
       },
-    },
-    capabilities: {
-      title: "O que eu faço",
-      items: {
-        development: {
-          title: "Desenvolvimento de software",
-          description:
-            "Aplicações web e sistemas internos, como o ERP da Bello Aramados e o PWA de agenda da Nailly.",
-        },
-        automation: {
-          title: "Automação & Power Platform",
-          description:
-            "Automação de processos com Power Apps, Power Automate e Power Fx, como o ecossistema de Power Apps da Bello Aramados.",
-        },
-        data: {
-          title: "Dados & integrações",
-          description:
-            "Integrações via Microsoft Graph API e SharePoint, dashboards em Power BI e automações em Python extraindo dados de ERP.",
-        },
-        design: {
-          title: "UI/UX & design",
-          description:
-            "Interfaces e identidade visual, do redesign do site institucional da Bello Aramados a logomarcas em Figma.",
-        },
+      capabilities: {
+        development: "Desenvolvimento de software",
+        automation: "Automação & Power Platform",
+        data: "Dados & integrações",
+        design: "UI/UX & design",
       },
     },
     cta: {
@@ -242,6 +219,14 @@ export const translations = {
       problem: "Problema",
       solution: "Solução",
       problemSolutionTitle: "Do problema à solução",
+      role: "Meu papel",
+      duration: "Duração",
+      status: "Status",
+      decisionsTitle: "Principais decisões",
+      screensTitle: "Telas",
+      resultsTitle: "Resultado",
+      whatIdDoDifferentlyTitle: "O que eu faria diferente hoje",
+      technicalDetailsTitle: "Detalhes técnicos",
       types: {
         all: "Tudo",
         web: "Web",
@@ -251,7 +236,11 @@ export const translations = {
         design: "Design",
       },
       groups: {
-        personal: "Projetos Pessoais",
+        personal: "Outros projetos",
+      },
+      tiers: {
+        ecosystem: "Coleção",
+        secondary: "Logomarca",
       },
       empty: {
         title: "Nenhum projeto encontrado com esse filtro",
@@ -260,7 +249,7 @@ export const translations = {
     },
     about: {
       intro:
-        "Desenvolvedor Full-Stack, com atuação prática em **integração de sistemas corporativos**, **automação de processos**, **Microsoft Power Platform**, **SharePoint/Graph API** e **ReactJS**. Combino desenvolvimento de software, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais, do mapeamento de um fluxo quebrado até a entrega da ferramenta que resolve.",
+        "Desenvolvedor Full-Stack, evoluindo de uma base forte em **Microsoft Power Platform** (**automação de processos**, **integração de sistemas corporativos**, **SharePoint/Graph API**) em direção ao desenvolvimento web tradicional com **ReactJS** e **TypeScript**. Combino desenvolvimento de software, modelagem de processos e design gráfico/interface, com histórico de conduzir projetos de ponta a ponta em ambientes industriais, do mapeamento de um fluxo quebrado até a entrega da ferramenta que resolve.",
       companiesTitle: "Experiência",
       companiesWebsite: "Ver website da empresa",
       openToWorkTitle: "Aberto a oportunidades!",
@@ -291,6 +280,7 @@ export const translations = {
     impact: {
       heading: "Meu desempenho",
       processes: "processos automatizados",
+      hours: "horas reduzidas em trabalho manual",
       apps: "apps em Power Platform",
       flows: "fluxos de automação",
       reductionLabel: "Redução de tempo de processo",

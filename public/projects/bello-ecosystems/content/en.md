@@ -241,4 +241,4 @@ because it only needs to be.
 
 ---
 
-_Apps in production at Bello Aramados. Formulas and list names were simplified for readability._
+_Apps built and delivered for Bello Aramados. Formulas and list names were simplified for readability._

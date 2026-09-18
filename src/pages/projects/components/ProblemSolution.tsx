@@ -7,6 +7,8 @@ import {
   LightningIcon,
   ArrowFatLinesRightIcon,
   ArrowFatLineDownIcon,
+  ShuffleIcon,
+  ArrowSquareRightIcon,
 } from "@phosphor-icons/react";
 import type { Translations } from "@/lib/i18n/translations";
 
@@ -84,15 +86,9 @@ export default function ProblemSolution({
   const active = !!reduceMotion || inView;
 
   return (
-    <div ref={ref} className="border pt-10 pb-6">
-      {/* <div className="flex flex-col items-center gap-1 pt-10 pb-6 text-center">
-        <h2 className="text-balance font-heading text-lg italic text-foreground sm:text-xl">
-          {t.projects.problemSolutionTitle}
-        </h2>
-      </div> */}
-
-      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1.2fr]">
-        <div className="flex flex-col gap-2 p-6 pt-0 sm:pt-6">
+    <div ref={ref} className="p-6 sm:px-6 px-0">
+      <div className="flex sm:flex-row flex-col items-stretch justify-between gap-4 sm:gap-2 h-full relative">
+        <div className="flex flex-col items-center text-center gap-2 p-6 bg-muted flex-1 shrink-0 ">
           <span className="flex justify-center items-center gap-1.5 font-heading text-md font-semibold tracking-widest text-muted-foreground italic">
             <WarningIcon className="size-3.5" />
             {t.projects.problem}
@@ -102,95 +98,22 @@ export default function ProblemSolution({
           </div>
         </div>
 
-        <div className="flex items-center justify-center py-2 sm:px-4 sm:py-6">
-          <motion.span
-            className="relative flex items-center justify-center"
-            initial={{ opacity: 0, translateX: -20 }}
-            animate={{ opacity: 1, translateX: 0 }}
-            transition={{ duration: 0.4, delay: ARROW_DELAY, ease: EASE }}
-          >
-            <ArrowFatLineDownIcon
-              className="size-8 text-muted-foreground sm:hidden"
-              weight="light"
-            />
-            <ArrowFatLinesRightIcon
-              className="hidden size-8 text-muted-foreground sm:block"
-              weight="light"
-            />
-          </motion.span>
-        </div>
+        <ArrowSquareRightIcon
+          weight="fill"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-6 sm:-translate-y-1/2 sm:size-10 size-8 transition-all text-foreground bg-background rounded-[4px] sm:p-0.5 rotate-90 sm:rotate-0"
+        />
 
-        <motion.div
-          className="m-6 mt-0 flex flex-col gap-2.5 border border-primary/30 p-2"
-          initial={{
-            opacity: 0,
-            scale: 0,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-          }}
-          transition={{ duration: 0.5, delay: SOLUTION_DELAY, ease: EASE }}
-        >
-          <motion.div
-            className="flex flex-col gap-2.5 border border-dashed border-primary/30 bg-primary/5 p-6 h-full w-full"
-            initial={{
-              opacity: 0,
-              borderStyle: "solid",
-            }}
-            animate={{
-              opacity: 1,
-              borderStyle: "dashed",
-            }}
-            transition={{
-              duration: 0.6,
-              delay: SOLUTION_DELAY + 0.5,
-              ease: EASE,
-            }}
-          >
-            <motion.span
-              className="flex items-center gap-1.5 font-heading justify-center font-semibold tracking-widest text-primary text-2xl italic text-center w-full"
-              initial={{
-                opacity: 0,
-                scale: 0,
-                y: 40,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 1,
-                delay: SOLUTION_DELAY + 0.5,
-                ease: EASE,
-              }}
-            >
-              <LightningIcon className="size-5" weight="fill" />
-              {t.projects.solution}
-            </motion.span>
-            <motion.div
-              className="prose prose-sm max-w-none text-sm font-medium text-foreground text-center leading-relaxed! [&>ul]:my-0"
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 1,
-                delay: SOLUTION_DELAY + 1,
-                ease: EASE,
-              }}
-            >
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {solution}
-              </ReactMarkdown>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+        <div className="bg-foreground text-background flex flex-col flex-1 shrink-0 p-6 gap-2 ">
+          <span className="flex items-center gap-1.5 font-heading justify-center font-semibold tracking-widest text-primary text-md italic text-center w-full">
+            <LightningIcon className="size-3.5" weight="fill" />
+            {t.projects.solution}
+          </span>
+          <div className="prose prose-sm max-w-none text-sm font-medium text-background text-center leading-relaxed! [&>ul]:my-0">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {solution}
+            </ReactMarkdown>
+          </div>
+        </div>
       </div>
     </div>
   );

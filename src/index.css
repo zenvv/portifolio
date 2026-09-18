@@ -49,7 +49,7 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-xs: 0rem;
+  --radius-xs: 0.5rem;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -90,7 +90,7 @@
   --chart-3: #948c74;
   --chart-4: #6e6857;
   --chart-5: #46423b;
-  --radius: 0rem;
+  --radius: 0.4rem;
   --sidebar: #fbfaf6;
   --sidebar-foreground: #201d18;
   --sidebar-primary: #201d18;
@@ -202,7 +202,7 @@
      token to render as its own little pill. Customize the block chrome
      here instead. */
   .md-code-block {
-    @apply my-4 overflow-hidden rounded-md border border-border bg-muted/40;
+    @apply my-4 overflow-hidden rounded-md border border-border bg-background;
   }
   .md-code-block pre,
   .md-code-block > pre.shiki {

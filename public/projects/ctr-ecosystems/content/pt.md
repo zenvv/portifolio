@@ -76,4 +76,4 @@ A **Homepage** do CTR centraliza links pros sistemas e processos internos (lista
 
 ---
 
-_Apps em produção no CTR (Randon Group). Fórmulas e nomes de lista foram simplificados pra leitura._
+_Apps construídos e entregues no CTR (Randon Group). Fórmulas e nomes de lista foram simplificados pra leitura._
